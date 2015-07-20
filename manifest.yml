@@ -1,0 +1,6 @@
+---
+applications:
+- name: iaa-mvp
+  memory: 128M
+  instances: 1
+  domain: 18f.gov
