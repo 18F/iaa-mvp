@@ -6,3 +6,4 @@ applications:
   domain: 18f.gov
 env:
   FORCE_HTTPS: true
+  MONGO_URL: mongodb://nowhere
