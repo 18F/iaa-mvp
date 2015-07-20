@@ -2,6 +2,8 @@
 
 A minimum viable product for filling our MVPs.
 
+Very much in alpha.
+
 ## Milestones
 
 ### Milestone 1
@@ -21,4 +23,14 @@ A minimum viable product for filling our MVPs.
 ## Under the hood
 
 It's just Meteor.
+
+## Deployment
+
+See devops for Cloud Foundry help/setup if you don't have an account (18F staff only).
+
+```
+$ cf push iaa-mvp -b https://github.com/csterwa/cf-meteor-buildpack.git
+```
+
+
 
