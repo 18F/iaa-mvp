@@ -1,0 +1,22 @@
+<template name='layout'>
+  <head>
+    <title>7600A | Interagency Agreement Manager | 18F</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/forms_2.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script type="text/javascript" src="javascripts/application.js"></script>
+  </head>
+  <body>
+    <header class="banner" role="banner">
+      <div class="wrap">
+        <h1><span class="logo">18F</span><span class="interagency-agreement-manager">Interagency Agreement Manager</span></h1>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        {{> yield}}
+      </div>
+    </main>
+  </body>
+</template>

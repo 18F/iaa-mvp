@@ -1,0 +1,1116 @@
+<template name='for-agencies_survey'>
+  <form>
+    <div class="page">
+      <header>
+        <a class="a-back" href="/for-agencies">&larr; Back to the
+        overview</a>
+
+        <h1 class="page-title"><abbr title="Interagency Agreement">IAA</abbr>
+        Preparation Survey</h1>
+      </header>
+
+      <p>Combined with a mutually agreeable statement of work, your answers to
+      the following questions give us everything we need to draft an
+      Interagency Agreement. Please have the following information on hand:</p>
+
+      <ul>
+        <li>Basic information about your agency as well as the office within
+        your agency requesting our services.</li>
+
+        <li>Basic information about your project as well as contact information
+        for your program official (who can sign <abbr title=
+        "interagency agreement">IAA</abbr>s).</li>
+
+        <li>Financial information such as the type of money your agency will
+        use (for example, &ldquo;one-year,&rdquo; &ldquo;multi-year,&rdquo; or
+        &ldquo;no-year&rdquo;) as well as contact information for your finance
+        office&rsquo;s point of contact (who can ensure that payments to 18F
+        are accurate and timely) and funding official (who can obligate
+        funds).</li>
+      </ul>
+
+      <p>All fields are required unless otherwise indicated. For additional
+      context on this form, see our <a href="primer.html">Primer on Interagency
+      Agreements.</a></p>
+
+      <div class="field field-iaa-number">
+        <label for="iaa-number"><span class="label-text"><abbr title=
+        "Interagency Agreement">IAA</abbr> number</span> <input id="iaa-number"
+        name="iaa-number" required="" type="text" value="18F-4A"></label>
+      </div>
+    </div>
+
+    <section class="section-form section-agency">
+      <h1>Your agency</h1>
+
+      <div class="field">
+        <label for="agency-name"><span class="label-text">Name</span>
+        <input id="agency-name" name="agency-name" required="" type=
+        "text"></label>
+      </div>
+
+      <fieldset class="fieldset-mailing-address">
+        <legend>Mailing address</legend>
+
+        <div class="field field-street-address">
+          <label for="agency-mailing-address-street-address"><span class=
+          "label-text">Street address</span> <input id=
+          "agency-mailing-address-street-address" name=
+          "agency-mailing-address-street-address" required="" type=
+          "text"></label>
+        </div>
+
+        <div class="field-city-state-zip">
+          <div class="field field-city">
+            <label for="agency-mailing-address-city"><span class=
+            "label-text">City</span> <input id="agency-mailing-address-city"
+            name="agency-mailing-address-city" required="" type="text"></label>
+          </div>
+
+          <div class="field field-state field-select">
+            <label for="agency-mailing-address-state"><span class=
+            "label-text">State</span> <select id="agency-mailing-address-state"
+            name="agency-mailing-address-state">
+              <option value="AL">
+                Alabama
+              </option>
+
+              <option value="AK">
+                Alaska
+              </option>
+
+              <option value="AZ">
+                Arizona
+              </option>
+
+              <option value="AR">
+                Arkansas
+              </option>
+
+              <option value="CA">
+                California
+              </option>
+
+              <option value="CO">
+                Colorado
+              </option>
+
+              <option value="CT">
+                Connecticut
+              </option>
+
+              <option value="DE">
+                Delaware
+              </option>
+
+              <option value="DC">
+                District of Columbia
+              </option>
+
+              <option value="FL">
+                Florida
+              </option>
+
+              <option value="GA">
+                Georgia
+              </option>
+
+              <option value="HI">
+                Hawaii
+              </option>
+
+              <option value="ID">
+                Idaho
+              </option>
+
+              <option value="IL">
+                Illinois
+              </option>
+
+              <option value="IN">
+                Indiana
+              </option>
+
+              <option value="IA">
+                Iowa
+              </option>
+
+              <option value="KS">
+                Kansas
+              </option>
+
+              <option value="KY">
+                Kentucky
+              </option>
+
+              <option value="LA">
+                Louisiana
+              </option>
+
+              <option value="ME">
+                Maine
+              </option>
+
+              <option value="MD">
+                Maryland
+              </option>
+
+              <option value="MA">
+                Massachusetts
+              </option>
+
+              <option value="MI">
+                Michigan
+              </option>
+
+              <option value="MN">
+                Minnesota
+              </option>
+
+              <option value="MS">
+                Mississippi
+              </option>
+
+              <option value="MO">
+                Missouri
+              </option>
+
+              <option value="MT">
+                Montana
+              </option>
+
+              <option value="NE">
+                Nebraska
+              </option>
+
+              <option value="NV">
+                Nevada
+              </option>
+
+              <option value="NH">
+                New Hampshire
+              </option>
+
+              <option value="NJ">
+                New Jersey
+              </option>
+
+              <option value="NM">
+                New Mexico
+              </option>
+
+              <option value="NY">
+                New York
+              </option>
+
+              <option value="NC">
+                North Carolina
+              </option>
+
+              <option value="ND">
+                North Dakota
+              </option>
+
+              <option value="OH">
+                Ohio
+              </option>
+
+              <option value="OK">
+                Oklahoma
+              </option>
+
+              <option value="OR">
+                Oregon
+              </option>
+
+              <option value="PA">
+                Pennsylvania
+              </option>
+
+              <option value="RI">
+                Rhode Island
+              </option>
+
+              <option value="SC">
+                South Carolina
+              </option>
+
+              <option value="SD">
+                South Dakota
+              </option>
+
+              <option value="TN">
+                Tennessee
+              </option>
+
+              <option value="TX">
+                Texas
+              </option>
+
+              <option value="UT">
+                Utah
+              </option>
+
+              <option value="VT">
+                Vermont
+              </option>
+
+              <option value="VA">
+                Virginia
+              </option>
+
+              <option value="WA">
+                Washington
+              </option>
+
+              <option value="WV">
+                West Virginia
+              </option>
+
+              <option value="WI">
+                Wisconsin
+              </option>
+
+              <option value="WY">
+                Wyoming
+              </option>
+            </select></label>
+          </div>
+
+          <div class="field field-zip">
+            <label for="agency-mailing-address-zip"><span class=
+            "label-text">Zip</span> <input id="agency-mailing-address-zip"
+            name="agency-mailing-address-zip" required="" type="text"></label>
+          </div>
+        </div>
+      </fieldset>
+    </section>
+
+    <section class="section-form section-office">
+      <header>
+        <h1>Your office or organization</h1>
+      </header>
+
+      <div class="field">
+        <label for="office-name"><span class="label-text">Name</span>
+        <input id="office-name" name="office-name" required="" type=
+        "text"></label>
+      </div>
+
+      <fieldset class="fieldset-mailing-address">
+        <legend>Mailing address</legend>
+
+        <div class="field field-street-address">
+          <label for="office-mailing-address-street-address"><span class=
+          "label-text">Street address</span> <input id=
+          "office-mailing-address-street-address" name=
+          "office-mailing-address-street-address" required="" type=
+          "text"></label>
+        </div>
+
+        <div class="field-city-state-zip">
+          <div class="field field-city">
+            <label for="office-mailing-address-city"><span class=
+            "label-text">City</span> <input id="office-mailing-address-city"
+            name="office-mailing-address-city" required="" type="text"></label>
+          </div>
+
+          <div class="field field-state field-select">
+            <label for="office-mailing-address-state"><span class=
+            "label-text">State</span> <select id="office-mailing-address-state"
+            name="office-mailing-address-state">
+              <option value="AL">
+                Alabama
+              </option>
+
+              <option value="AK">
+                Alaska
+              </option>
+
+              <option value="AZ">
+                Arizona
+              </option>
+
+              <option value="AR">
+                Arkansas
+              </option>
+
+              <option value="CA">
+                California
+              </option>
+
+              <option value="CO">
+                Colorado
+              </option>
+
+              <option value="CT">
+                Connecticut
+              </option>
+
+              <option value="DE">
+                Delaware
+              </option>
+
+              <option value="DC">
+                District of Columbia
+              </option>
+
+              <option value="FL">
+                Florida
+              </option>
+
+              <option value="GA">
+                Georgia
+              </option>
+
+              <option value="HI">
+                Hawaii
+              </option>
+
+              <option value="ID">
+                Idaho
+              </option>
+
+              <option value="IL">
+                Illinois
+              </option>
+
+              <option value="IN">
+                Indiana
+              </option>
+
+              <option value="IA">
+                Iowa
+              </option>
+
+              <option value="KS">
+                Kansas
+              </option>
+
+              <option value="KY">
+                Kentucky
+              </option>
+
+              <option value="LA">
+                Louisiana
+              </option>
+
+              <option value="ME">
+                Maine
+              </option>
+
+              <option value="MD">
+                Maryland
+              </option>
+
+              <option value="MA">
+                Massachusetts
+              </option>
+
+              <option value="MI">
+                Michigan
+              </option>
+
+              <option value="MN">
+                Minnesota
+              </option>
+
+              <option value="MS">
+                Mississippi
+              </option>
+
+              <option value="MO">
+                Missouri
+              </option>
+
+              <option value="MT">
+                Montana
+              </option>
+
+              <option value="NE">
+                Nebraska
+              </option>
+
+              <option value="NV">
+                Nevada
+              </option>
+
+              <option value="NH">
+                New Hampshire
+              </option>
+
+              <option value="NJ">
+                New Jersey
+              </option>
+
+              <option value="NM">
+                New Mexico
+              </option>
+
+              <option value="NY">
+                New York
+              </option>
+
+              <option value="NC">
+                North Carolina
+              </option>
+
+              <option value="ND">
+                North Dakota
+              </option>
+
+              <option value="OH">
+                Ohio
+              </option>
+
+              <option value="OK">
+                Oklahoma
+              </option>
+
+              <option value="OR">
+                Oregon
+              </option>
+
+              <option value="PA">
+                Pennsylvania
+              </option>
+
+              <option value="RI">
+                Rhode Island
+              </option>
+
+              <option value="SC">
+                South Carolina
+              </option>
+
+              <option value="SD">
+                South Dakota
+              </option>
+
+              <option value="TN">
+                Tennessee
+              </option>
+
+              <option value="TX">
+                Texas
+              </option>
+
+              <option value="UT">
+                Utah
+              </option>
+
+              <option value="VT">
+                Vermont
+              </option>
+
+              <option value="VA">
+                Virginia
+              </option>
+
+              <option value="WA">
+                Washington
+              </option>
+
+              <option value="WV">
+                West Virginia
+              </option>
+
+              <option value="WI">
+                Wisconsin
+              </option>
+
+              <option value="WY">
+                Wyoming
+              </option>
+            </select></label>
+          </div>
+
+          <div class="field field-zip">
+            <label for="office-mailing-address-zip"><span class=
+            "label-text">Zip</span> <input id="office-mailing-address-zip"
+            name="office-mailing-address-zip" required="" type="text"></label>
+          </div>
+        </div>
+      </fieldset>
+    </section>
+
+    <section class="section-form section-project">
+      <h1>Your project</h1>
+
+      <div class="field field-project-name">
+        <label for="project-name"><span class="label-text">Project name</span>
+        <input id="project-name" name="project-name" required="" type=
+        "text"></label>
+      </div>
+
+      <div class="field field-project-number">
+        <label for="project-number"><span class="label-text">Project
+        number</span> <input id="project-number" name="project-number"
+        required="" type="text"></label>
+      </div>
+
+      <fieldset class="fieldset-program-official">
+        <legend>Program official</legend>
+
+        <p>The program official is a member of your agency who has authority to
+        sign the <abbr title="interagency agreement">IAA</abbr>. This person
+        will also ensure that our work is properly scoped. This person may or
+        may not be your agency&rsquo;s contracting officer depending on its
+        <abbr title="Interagency Agreement">IAA</abbr> business process.</p>
+
+        <div class="field field-name">
+          <label for="project-program-official-name"><span class=
+          "label-text">Name</span> <input id="project-program-official-name"
+          name="project-program-official-name" required="" type="text"></label>
+        </div>
+
+        <div class="field field-title">
+          <label for="project-program-official-title"><span class=
+          "label-text">Title</span> <input id="project-program-official-title"
+          name="project-program-official-title" required="" type=
+          "text"></label>
+        </div>
+
+        <div class="field field-telephone-number">
+          <label for="project-program-official-telephone-number"><span class=
+          "label-text">Telephone number</span> <input id=
+          "project-program-official-telephone-number" name=
+          "project-program-official-telephone-number" required="" type=
+          "tel"></label>
+        </div>
+
+        <div class="field field-email-address">
+          <label for="project-program-official-email-address"><span class=
+          "label-text">Email address</span> <input id=
+          "project-program-official-email-address" name=
+          "project-program-official-email-address" required="" type=
+          "email"></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fieldset-additional-point-of-contact">
+        <legend>Additional point of contact (optional)</legend>
+
+        <div class="field field-name">
+          <label for="project-additional-point-of-contact-name"><span class=
+          "label-text">Name</span> <input id=
+          "project-additional-point-of-contact-name" name=
+          "project-additional-point-of-contact-name" type="text"></label>
+        </div>
+
+        <div class="field field-title">
+          <label for="project-additional-point-of-contact-title"><span class=
+          "label-text">Title</span> <input id=
+          "project-additional-point-of-contact-title" name=
+          "project-additional-point-of-contact-title" type="text"></label>
+        </div>
+
+        <div class="field field-telephone-number">
+          <label for=
+          "project-additional-point-of-contact-telephone-number"><span class=
+          "label-text">Telephone number</span> <input id=
+          "project-additional-point-of-contact-telephone-number" name=
+          "project-additional-point-of-contact-telephone-number" type=
+          "tel"></label>
+        </div>
+
+        <div class="field field-email-address">
+          <label for=
+          "project-additional-point-of-contact-email-address"><span class=
+          "label-text">Email address</span> <input id=
+          "project-additional-point-of-contact-email-address" name=
+          "project-additional-point-of-contact-email-address" type=
+          "email"></label>
+        </div>
+      </fieldset>
+    </section>
+
+    <section class="section-form section-financial-information">
+      <h1>Financial information</h1>
+
+      <fieldset class="fieldset-statuatory-authority" data-branch-name=
+      "financial-information-statuatory-authority">
+        <legend>Under what statuatory authority will your agency pay
+        18F?</legend>
+
+        <div class="field field-radio">
+          <label for=
+          "financial-information-statuatory-authority-franchise-fund"><input id="financial-information-statuatory-authority-franchise-fund"
+          name="financial-information-statuatory-authority" required="" type=
+          "radio"> <span class="label-text">Franchise fund</span></label>
+        </div>
+
+        <div class="field field-radio">
+          <label for=
+          "financial-information-statuatory-authority-revolving-fund"><input id="financial-information-statuatory-authority-revolving-fund"
+          name="financial-information-statuatory-authority" required="" type=
+          "radio"> <span class="label-text">Revolving fund</span></label>
+        </div>
+
+        <div class="field field-radio">
+          <label for=
+          "financial-information-statuatory-authority-working-capital-fund"><input id="financial-information-statuatory-authority-working-capital-fund"
+          name="financial-information-statuatory-authority" required="" type=
+          "radio"> <span class="label-text">Working capital fund</span></label>
+        </div>
+
+        <div class="field field-radio">
+          <label for=
+          "financial-information-statuatory-authority-economy-act"><input id=
+          "financial-information-statuatory-authority-economy-act" name=
+          "financial-information-statuatory-authority" required="" type=
+          "radio"> <span class="label-text">Economy Act (31 U.S.C. 1535/FAR
+          17.5)</span></label>
+        </div>
+
+        <div class="field field-radio">
+          <label for=
+          "financial-information-statuatory-authority-other"><input id=
+          "financial-information-statuatory-authority-other" name=
+          "financial-information-statuatory-authority" required="" type=
+          "radio"> <span class="label-text">Other</span></label>
+        </div>
+      </fieldset>
+
+      <aside class="branch" data-branch-name=
+      "financial-information-statuatory-authority" data-branch-value=
+      "franchise-fund working-capital-fund revolving-fund other">
+        <h1 class="branch-logic">If franchise fund, revolving fund, working
+        capital fund, or other authority:</h1>
+
+        <div class="field">
+          <label for=
+          "financial-information-statuatory-authority-title-and-citation"><span class="label-text">
+          Statutory authority title and citation</span> <input id=
+          "financial-information-statuatory-authority-title-and-citation" name=
+          "financial-information-statuatory-authority-title-and-citation"
+          required="" type="text"></label>
+        </div>
+      </aside>
+
+      <div class="field field-expiry-date">
+        <label for="financial-information-expiry-date"><span class=
+        "label-text">When will these funds expire?</span> <input id=
+        "financial-information-expiry-date" name=
+        "financial-information-expiry-date" required="" type="date"></label>
+      </div>
+
+      <div class="field field-cancellation-date">
+        <label for="financial-information-cancellation-date"><span class=
+        "label-text">When will these funds cancel?</span> <input id=
+        "financial-information-expiry-date" name=
+        "financial-information-expiry-date" required="" type="date">
+        <span class="description-text" id=
+        "description-text-financial-information-expiry-date">The cancellation
+        date is the fifth year from the expiration date (the last date the
+        payment must be disbursed).</span></label>
+      </div>
+
+      <div class="field field-alc">
+        <label for="financial-information-alc"><span class="label-text">Agency
+        Location Code (<abbr title="Agency Location Code">ALC</abbr>)</span>
+        <input id="financial-information-alc" name="financial-information-alc"
+        required="" type="text"> <span class="description-text" id=
+        "description-text-financial-information-alc">For additional
+        information, see the <a href=
+        "http://tfm.fiscal.treasury.gov/v1/p2/c330.html" target=
+        "_blank">Treasury Financial Manual, Volume I, Part 2, Chapter 3300
+        (concerning Agency Location Codes)</a>.</span></label>
+      </div>
+
+      <div class="field field-component-tas">
+        <label for="financial-information-component-tas"><span class=
+        "label-text">Component TAS number</span> <input id=
+        "financial-information-component-tas" name=
+        "financial-information-component-tas" required="" type="text"></label>
+      </div>
+
+      <div class="field field-betc">
+        <label for="financial-information-betc"><span class=
+        "label-text">Business Type Event Code (<abbr title=
+        "Business Type Event Code">BETC</abbr>)</span> <input id=
+        "financial-information-betc" name="financial-information-betc"
+        required="" type="text"> <span class="description-text" id=
+        "description-text-financial-information-betc">The BETC must be related
+        to the TAS.</span></label>
+      </div>
+
+      <div class="field field-object-class-code">
+        <label for="financial-information-object-class-code"><span class=
+        "label-text">Object Class Code (optional)</span> <input id=
+        "financial-information-object-class-code" name=
+        "financial-information-object-class-code" type="text"></label>
+      </div>
+
+      <div class="field field-bpn">
+        <label for="financial-information-bpn"><span class=
+        "label-text">Business Partner Number (<abbr title=
+        "Business Partner Number">BPN</abbr>)</span> <input id=
+        "financial-information-bpn" name="financial-information-bpn" required=
+        "" type="text"> <span class="description-text" id=
+        "description-text-financial-information-bpn">BPN is the standard name
+        for this data element; however, this may be a trading partner&rsquo;s
+        DUNS or the Department of Defense Activity Address Code (<abbr title=
+        "Department of Defense Activity Address Code">DoDAAC</abbr>).</span></label>
+      </div>
+
+      <div class="field field-bpn-4">
+        <label for="financial-information-bpn-4"><span class=
+        "label-text">Business Partner Number (<abbr title=
+        "Business Partner Number">BPN</abbr>) + 4 (optional)</span> <input id=
+        "financial-information-bpn-4" name="financial-information-bpn-4" type=
+        "text"> <span class="description-text" id=
+        "description-text-financial-information-bpn-4">BPN+4 is the standard
+        name for this data element; however, this may be a trading
+        partner&rsquo;s DUNS + 4 or the Department of Defense Activity Address
+        Code (<abbr title=
+        "Department of Defense Activity Address Code">DoDAAC</abbr>) +
+        4.</span></label>
+      </div>
+
+      <div class="field field-additional-classification">
+        <label for=
+        "financial-information-additional-classification"><span class=
+        "label-text">Additional accounting classification/information
+        (optional)</span> <input id=
+        "financial-information-additional-classification" name=
+        "financial-information-additional-classification" type="text"></label>
+      </div>
+
+      <fieldset class="fieldset-funding-official">
+        <legend>Funding official</legend>
+
+        <p>The funding official is the person in your office or organization
+        who has the authority to obligate funds (this person will sign Treasury
+        form 7600B). Usually this is someone in the Office of the Chief
+        Financial Officer.</p>
+
+        <div class="field field-name">
+          <label for="financial-information-funding-official-name"><span class=
+          "label-text">Name</span> <input id=
+          "financial-information-funding-official-name" name=
+          "financial-information-funding-official-name" required="" type=
+          "text"></label>
+        </div>
+
+        <div class="field field-title">
+          <label for=
+          "financial-information-funding-official-title"><span class="label-text">
+          Title</span> <input id="financial-information-funding-official-title"
+          name="financial-information-funding-official-title" required="" type=
+          "text"></label>
+        </div>
+
+        <div class="field field-telephone-number">
+          <label for=
+          "financial-information-funding-official-telephone-number"><span class="label-text">
+          Telephone number</span> <input id=
+          "financial-information-funding-official-telephone-number" name=
+          "financial-information-funding-official-telephone-number" required=""
+          type="tel"></label>
+        </div>
+
+        <div class="field field-email-address">
+          <label for=
+          "financial-information-funding-official-email-address"><span class=
+          "label-text">Email address</span> <input id=
+          "financial-information-funding-official-email-address" name=
+          "financial-information-funding-official-email-address" required=""
+          type="email"></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fieldset-program-official">
+        <legend>Point of contact</legend>
+
+        <p>The finance point of contact should ensure that payments are
+        accurate and timely.</p>
+
+        <div class="field field-name">
+          <label for="financial-information-point-of-contact-name"><span class=
+          "label-text">Name</span> <input id=
+          "financial-information-point-of-contact-name" name=
+          "financial-information-point-of-contact-name" required="" type=
+          "text"></label>
+        </div>
+
+        <div class="field field-title">
+          <label for=
+          "financial-information-point-of-contact-title"><span class="label-text">
+          Title</span> <input id="financial-information-point-of-contact-title"
+          name="financial-information-point-of-contact-title" required="" type=
+          "text"></label>
+        </div>
+
+        <div class="field field-telephone-number">
+          <label for=
+          "financial-information-point-of-contact-telephone-number"><span class="label-text">
+          Telephone number</span> <input id=
+          "financial-information-point-of-contact-telephone-number" name=
+          "financial-information-point-of-contact-telephone-number" required=""
+          type="tel"></label>
+        </div>
+
+        <div class="field field-email-address">
+          <label for=
+          "financial-information-point-of-contact-email-address"><span class=
+          "label-text">Email address</span> <input id=
+          "financial-information-point-of-contact-email-address" name=
+          "financial-information-point-of-contact-email-address" required=""
+          type="email"></label>
+        </div>
+
+        <fieldset class="fieldset-mailing-address">
+          <legend>Mailing address</legend>
+
+          <div class="field field-street-address">
+            <label for=
+            "financial-information-point-of-contact-mailing-address-street-address">
+            <span class="label-text">Street address</span> <input id=
+            "financial-information-point-of-contact-mailing-address-street-address"
+            name=
+            "financial-information-point-of-contact-mailing-address-street-address"
+            required="" type="text"></label>
+          </div>
+
+          <div class="field-city-state-zip">
+            <div class="field field-city">
+              <label for=
+              "financial-information-point-of-contact-mailing-address-city"><span class="label-text">
+              City</span> <input id=
+              "financial-information-point-of-contact-mailing-address-city"
+              name=
+              "financial-information-point-of-contact-mailing-address-city"
+              required="" type="text"></label>
+            </div>
+
+            <div class="field field-state field-select">
+              <label for=
+              "financial-information-point-of-contact-state"><span class=
+              "label-text">State</span> <select id=
+              "financial-information-point-of-contact-state" name=
+              "financial-information-point-of-contact-state">
+                <option value="AL">
+                  Alabama
+                </option>
+
+                <option value="AK">
+                  Alaska
+                </option>
+
+                <option value="AZ">
+                  Arizona
+                </option>
+
+                <option value="AR">
+                  Arkansas
+                </option>
+
+                <option value="CA">
+                  California
+                </option>
+
+                <option value="CO">
+                  Colorado
+                </option>
+
+                <option value="CT">
+                  Connecticut
+                </option>
+
+                <option value="DE">
+                  Delaware
+                </option>
+
+                <option value="DC">
+                  District of Columbia
+                </option>
+
+                <option value="FL">
+                  Florida
+                </option>
+
+                <option value="GA">
+                  Georgia
+                </option>
+
+                <option value="HI">
+                  Hawaii
+                </option>
+
+                <option value="ID">
+                  Idaho
+                </option>
+
+                <option value="IL">
+                  Illinois
+                </option>
+
+                <option value="IN">
+                  Indiana
+                </option>
+
+                <option value="IA">
+                  Iowa
+                </option>
+
+                <option value="KS">
+                  Kansas
+                </option>
+
+                <option value="KY">
+                  Kentucky
+                </option>
+
+                <option value="LA">
+                  Louisiana
+                </option>
+
+                <option value="ME">
+                  Maine
+                </option>
+
+                <option value="MD">
+                  Maryland
+                </option>
+
+                <option value="MA">
+                  Massachusetts
+                </option>
+
+                <option value="MI">
+                  Michigan
+                </option>
+
+                <option value="MN">
+                  Minnesota
+                </option>
+
+                <option value="MS">
+                  Mississippi
+                </option>
+
+                <option value="MO">
+                  Missouri
+                </option>
+
+                <option value="MT">
+                  Montana
+                </option>
+
+                <option value="NE">
+                  Nebraska
+                </option>
+
+                <option value="NV">
+                  Nevada
+                </option>
+
+                <option value="NH">
+                  New Hampshire
+                </option>
+
+                <option value="NJ">
+                  New Jersey
+                </option>
+
+                <option value="NM">
+                  New Mexico
+                </option>
+
+                <option value="NY">
+                  New York
+                </option>
+
+                <option value="NC">
+                  North Carolina
+                </option>
+
+                <option value="ND">
+                  North Dakota
+                </option>
+
+                <option value="OH">
+                  Ohio
+                </option>
+
+                <option value="OK">
+                  Oklahoma
+                </option>
+
+                <option value="OR">
+                  Oregon
+                </option>
+
+                <option value="PA">
+                  Pennsylvania
+                </option>
+
+                <option value="RI">
+                  Rhode Island
+                </option>
+
+                <option value="SC">
+                  South Carolina
+                </option>
+
+                <option value="SD">
+                  South Dakota
+                </option>
+
+                <option value="TN">
+                  Tennessee
+                </option>
+
+                <option value="TX">
+                  Texas
+                </option>
+
+                <option value="UT">
+                  Utah
+                </option>
+
+                <option value="VT">
+                  Vermont
+                </option>
+
+                <option value="VA">
+                  Virginia
+                </option>
+
+                <option value="WA">
+                  Washington
+                </option>
+
+                <option value="WV">
+                  West Virginia
+                </option>
+
+                <option value="WI">
+                  Wisconsin
+                </option>
+
+                <option value="WY">
+                  Wyoming
+                </option>
+              </select></label>
+            </div>
+
+            <div class="field field-zip">
+              <label for=
+              "financial-information-point-of-contact-zip"><span class=
+              "label-text">Zip</span> <input id=
+              "financial-information-point-of-contact-zip" name=
+              "financial-information-point-of-contact-zip" required="" type=
+              "text"></label>
+            </div>
+          </div>
+        </fieldset>
+      </fieldset>
+    </section>
+
+    <footer>
+      <button type="submit">Submit</button>
+    </footer>
+  </form>
+</template>
