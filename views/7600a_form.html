@@ -1,5 +1,6 @@
-<template name='7600a_form'>
-  <form class="form-7600a">
+<template name='form_7600a'>
+  {{#with formValues}}
+  <form class="form-7600a" novalidate>
     <header>
       <h1>7600A</h1>
       <div class="field field-iaa-number">
@@ -9,6 +10,7 @@
         </label>
       </div>
     </header>
+    <input type="hidden" name="formId" value={{ _id }} />
     <section class="section-form section-parties">
       <header>
         <h1>Parties</h1>
@@ -18,7 +20,7 @@
         <div class="field field-name">
           <label for="parties-requesting-agency-name">
             <span class="label-text">Name</span>
-            <input required name="parties-requesting-agency-name" id="parties-requesting-agency-name" type="text">
+            <input required name="parties_requesting_agency_name" id="parties_requesting_agency_name" type="text" value="{{ parties_requesting_agency_name }}">
           </label>
         </div>
         <fieldset class="fieldset-mailing-address">
@@ -799,4 +801,5 @@
       <button type="submit">Submit</button>
     </footer>
   </form>
+  {{/with}}
 </template>

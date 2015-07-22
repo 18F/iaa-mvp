@@ -1,13 +1,31 @@
+ApplicationController = RouteController.extend({
+  layoutTemplate: 'layout'  
+});
+
 Router.configure({
-  layoutTemplate: 'layout'
+  controller: 'ApplicationController'
+});
+
+Form7600AController = ApplicationController.extend({
+  action: function() {
+    var id = this.params._id;
+    var formValues = Form7600A.findOne(id);
+    this.state.set('formValues', formValues);
+    this.render();
+  }
 });
 
 Router.route('/', {
   template: 'index'
 });
 
-Router.route('/7600a/new', {
-  template: '7600a_form'
+Router.route('/7600a/:_id/edit', {
+  template: 'form_7600a',
+  controller: 'Form7600AController'
+});
+
+Router.route('/7600a/list', {
+  template: '7600a_list'
 });
 
 Router.route('/for-agencies', {

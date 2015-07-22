@@ -1,23 +1,37 @@
-if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
+Form7600A = new Mongo.Collection("form7600a");
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
+if (Meteor.isClient) {
+  Template.index.events({
+    'submit form': function(event) {
+      event.preventDefault();
+      var id = Form7600A.insert({});
+      Router.go('/7600a/' + id + '/edit');      
     }
   });
-
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
+  
+  Template.form_7600a.helpers({
+    formValues: function() {
+      var controller = Iron.controller();
+      return controller.state.get('formValues');
+    }
+  });
+  
+  Template.form_7600a.events({
+    'submit form': function(event) {
+      event.preventDefault();
+      var form = $('.form-7600a');
+      var formValues = form.serializeJSON();
+      var id = formValues.formId;
+      var updated = Form7600A.update(id, formValues);
     }
   });
 }
 
 if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
 }
+
+
+/*
+
+<input required="" name="parties-requesting-agency-mailing-address-street-address" id="parties-requesting-agency-mailing-address-street-address" type="text">
+*/
