@@ -13,6 +13,12 @@ if (Meteor.isClient) {
     formValues: function() {
       var controller = Iron.controller();
       return controller.state.get('formValues');
+    },
+    /*
+    Allows us to access attribute names that have dashes in them.
+    */
+    d: function(attr) {
+      return this[attr];
     }
   });
   
@@ -29,9 +35,3 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
 }
-
-
-/*
-
-<input required="" name="parties-requesting-agency-mailing-address-street-address" id="parties-requesting-agency-mailing-address-street-address" type="text">
-*/
