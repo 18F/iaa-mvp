@@ -1,6 +1,6 @@
 Form7600A = new Mongo.Collection("form7600a");
 
-if (Meteor.isClient) {
+if (Meteor.isClient) {  
   Template.index.events({
     'submit .create-new-7600a-form': function(event) {
       event.preventDefault();
@@ -29,6 +29,23 @@ if (Meteor.isClient) {
     d: function(attr) {
       return this[attr];
     }
+  });
+  
+  Template.form_7600a.onRendered(function() {
+    // overrides default implementation so shortcuts work
+    // inside of input and other elements.
+    // see: https://craig.is/killing/mice
+    Mousetrap.stopCallback = function(e, element, combo) {
+      // if the element has the class "mousetrap" then no need to stop
+      if ((' ' + element.className + ' ').indexOf(' mousetrap ') > -1) {
+        return false;
+      }
+    }
+    // sets up keyboard shortcuts
+    Mousetrap.bind(['command+s', 'ctrl+s'], function() {
+      var form = $('.form-7600a');
+      form.submit();
+    });
   });
 
   Template.form_7600a.helpers({
