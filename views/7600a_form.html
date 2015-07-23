@@ -1,4 +1,9 @@
 <template name='form_7600a'>
+  {{#if saving}}
+    <h4>{{ lastSaved }}</h4>
+  {{else}}
+    <h4>{{ lastSaved }}</h4>
+  {{/if}}
   {{#with formValues}}
   <form class="form-7600a" novalidate>
     <header>
@@ -20,7 +25,7 @@
         <div class="field field-name">
           <label for="parties-requesting-agency-name">
             <span class="label-text">Name</span>
-            <input required name="parties-requesting-agency_name" id="parties-requesting-agency_name" type="text" value="{{d 'parties-requesting-agency_name'}}">
+            <input required name="parties-requesting-agency-name" id="parties-requesting-agency-name" type="text" value="{{d 'parties-requesting-agency-name'}}">
           </label>
         </div>
         <fieldset class="fieldset-mailing-address">

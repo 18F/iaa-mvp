@@ -11,6 +11,7 @@ Form7600AController = ApplicationController.extend({
     var id = this.params._id;
     var formValues = Form7600A.findOne(id);
     this.state.set('formValues', formValues);
+    this.state.set('lastSaved', '');
     this.render();
   }
 });

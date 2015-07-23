@@ -11,3 +11,6 @@ iron:router
 jquery
 underscore
 pcel:serialize
+matb33:collection-hooks
+sewdn:collection-behaviours
+mousetrap:mousetrap
