@@ -148,19 +148,30 @@
                    name="gtc-action" 
                    id="gtc-action-new" 
                    type="radio"
-                   value="new">
+                   value="new"
+                   {{radioIsChecked 'gtc-action' 'new'}}>
             <span class="label-text">New</span>
           </label>
         </div>
         <div class="field field-radio">
           <label for="gtc-action-amendment">
-            <input required name="gtc-action" id="gtc-action-amendment" type="radio" value="amendment" selected>
+            <input required 
+                   name="gtc-action" 
+                   id="gtc-action-amendment" 
+                   type="radio" 
+                   value="amendment"
+                   {{radioIsChecked 'gtc-action' 'amendment'}}>
             <span class="label-text">Amendment</span>
           </label>
         </div>
         <div class="field field-radio">
           <label for="gtc-action-cancellation">
-            <input required name="gtc-action" id="gtc-action-cancellation" type="radio" value="cancellation">
+            <input required 
+                   name="gtc-action" 
+                   id="gtc-action-cancellation" 
+                   type="radio" 
+                   value="cancellation"
+                   {{radioIsChecked 'gtc-action' 'cancellation'}}>
             <span class="label-text">Cancellation</span>
           </label>
         </div>
