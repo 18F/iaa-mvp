@@ -1,5 +1,11 @@
-<template name='7600a_form'>
-  <form class="form-7600a">
+<template name='form_7600a'>
+  {{#if saving}}
+    <h4>{{ lastSaved }}</h4>
+  {{else}}
+    <h4>{{ lastSaved }}</h4>
+  {{/if}}
+  {{#with formValues}}
+  <form class="form-7600a" novalidate>
     <header>
       <h1>7600A</h1>
       <div class="field field-iaa-number">
@@ -9,6 +15,7 @@
         </label>
       </div>
     </header>
+    <input type="hidden" name="formId" value={{ _id }} />
     <section class="section-form section-parties">
       <header>
         <h1>Parties</h1>
@@ -18,7 +25,7 @@
         <div class="field field-name">
           <label for="parties-requesting-agency-name">
             <span class="label-text">Name</span>
-            <input required name="parties-requesting-agency-name" id="parties-requesting-agency-name" type="text">
+            <input required name="parties-requesting-agency-name" id="parties-requesting-agency-name" type="text" value="{{d 'parties-requesting-agency-name'}}">
           </label>
         </div>
         <fieldset class="fieldset-mailing-address">
@@ -26,20 +33,20 @@
           <div class="field field-street-address">
             <label for="parties-requesting-agency-mailing-address-street-address">
               <span class="label-text">Street address</span>
-              <input required name="parties-requesting-agency-mailing-address-street-address" id="parties-requesting-agency-mailing-address-street-address" type="text">
+              <input required name="parties-requesting-agency-mailing-address-street-address" id="parties-requesting-agency-mailing-address-street-address" type="text" value="{{d 'parties-requesting-agency-mailing-address-street-address'}}">
             </label>
           </div>
           <div class="field-city-state-zip">
           <div class="field field-city">
             <label for="parties-requesting-agency-mailing-address-city">
               <span class="label-text">City</span>
-              <input required name="parties-requesting-agency-mailing-address-city" id="parties-requesting-agency-mailing-address-city" type="text">
+              <input required name="parties-requesting-agency-mailing-address-city" id="parties-requesting-agency-mailing-address-city" value="{{d 'parties-requesting-agency-mailing-address-city'}}" type="text">
             </label>
           </div>
           <div class="field field-state field-select">
             <label for="parties-requesting-agency-mailing-address-state">
               <span class="label-text">State</span>
-              <select name="parties-requesting-agency-mailing-address-state" id="parties-requesting-agency-mailing-address-state" type="text">
+              <select name="parties-requesting-agency-mailing-address-state" id="parties-requesting-agency-mailing-address-state" type="text" value="{{d 'parties-requesting-agency-mailing-address-state'}}">
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
@@ -97,7 +104,7 @@
           <div class="field field-zip">
             <label for="parties-requesting-agency-mailing-address-zip">
               <span class="label-text">Zip</span>
-              <input required name="parties-requesting-agency-mailing-address-zip" id="parties-requesting-agency-mailing-address-zip" type="text">
+              <input required name="parties-requesting-agency-mailing-address-zip" id="parties-requesting-agency-mailing-address-zip" type="text" values="{{d 'parties-requesting-agency-mailing-address-zip'}}">
             </label>
           </div>
           </div>
@@ -108,7 +115,7 @@
         <div class="field field-name">
           <label for="parties-servicing-agency-name">
             <span class="label-text">Name</span>
-            <input required name="parties-servicing-agency-name" id="parties-servicing-agency-name" type="text">
+            <input required name="parties_servicing_agency_name" id="parties_servicing_agency_name" type="text" value="{{d 'parties_servicing_agency_name'}}">
           </label>
         </div>
         <fieldset class="fieldset-mailing-address">
@@ -116,14 +123,14 @@
           <div class="field field-street-address">
             <label for="parties-servicing-agency-mailing-address-street-address">
               <span class="label-text">Street address</span>
-              <input required name="parties-servicing-agency-mailing-address-street-address" id="parties-servicing-agency-mailing-address-street-address" type="text">
+              <input required name="parties-servicing-agency-mailing-address-street-address" id="parties-servicing-agency-mailing-address-street-address" type="text" value="{{d 'parties-servicing-agency-mailing-address-street-address'}}">
             </label>
           </div>
           <div class="field-city-state-zip">
             <div class="field field-city">
               <label for="parties-servicing-agency-mailing-address-city">
                 <span class="label-text">City</span>
-                <input required name="parties-servicing-agency-mailing-address-city" id="parties-servicing-agency-mailing-address-city" type="text">
+                <input required name="parties-servicing-agency-mailing-address-city" id="parties-servicing-agency-mailing-address-city" type="text" value="{{d 'parties-servicing-agency-mailing-address-city'}}" >
               </label>
             </div>
             <div class="field field-state field-select">
@@ -187,7 +194,7 @@
             <div class="field field-zip">
               <label for="parties-servicing-agency-mailing-address-zip">
                 <span class="label-text">Zip</span>
-                <input required name="parties-servicing-agency-mailing-address-zip" id="parties-servicing-agency-mailing-address-zip" type="text">
+                <input required name="parties-servicing-agency-mailing-address-zip" id="parties-servicing-agency-mailing-address-zip" type="text" value="{{d 'parties-servicing-agency-mailing-address-zip'}}">
               </label>
             </div>
           </div>
@@ -201,7 +208,7 @@
       <div class="field field-servicing-agency-tracking-number">
         <label for="office-name">
           <span class="label-text">Servicing agency tracking number (optional)</span>
-          <input required name="servicing-agency-tracking-number" id="servicing-agency-tracking-number" type="text">
+          <input required name="servicing-agency-tracking-number" id="servicing-agency-tracking-number" type="text" value="{{d 'servicing-agency-tracking-number'}}">
         </label>
       </div>
     </section>
@@ -270,7 +277,7 @@
         <div class="field">
           <label for="gtc-action-cancellation-explanation">
             <span class="label-text">Explanation</span>
-            <textarea name="gtc-action-cancellation-explanation" id="gtc-action-cancellation-explanation"></textarea>
+            <textarea name="gtc-action-cancellation-explanation" id="gtc-action-cancellation-explanation">{{d 'gtc-action-cancellation-explanation'}}</textarea>
           </label>
         </div>              
       </aside>
@@ -282,13 +289,13 @@
         <div class="field field-date field-start-date field-agreement-period-start-date">
           <label for="agreement-period-start-date">
             <span class="label-text">Start date</span>
-            <input type="date" id="agreement-period-start-date" name="agreement-period-start-date"> 
+            <input type="date" id="agreement-period-start-date" name="agreement-period-start-date" value="{{d 'agreement-period-start-date'}}"> 
           </label>
         </div>
         <div class="field field-date field-end-date field-agreement-period-end-date">
           <label for="agreement-period-end-date">
             <span class="label-text">End date</span>
-            <input type="date" id="agreement-period-end-date" name="agreement-period-end-date">
+            <input type="date" id="agreement-period-end-date" name="agreement-period-end-date" value="{{d 'agreement-period-end-date'}}">
           </label>
         </div>
       </fieldset>
@@ -353,7 +360,8 @@
               <input required 
                      name="recurring-agreement-period-other-description" 
                      id="recurring-agreement-period-other-description" 
-                     type="text">
+                     type="text"
+                     value="{{d 'recurring-agreement-period-other-description'}}">
             </label>
           </div>
         </aside>
@@ -422,7 +430,8 @@
             <span class="label-text">Requesting agency&rsquo;s statutory authority title and citation</span>
             <input name="advance-payments-authority" 
                    id="advance-payments-authority" 
-                   type="text">
+                   type="text"
+                   value="{{d 'advance-payments-authority'}}">
           </label>
         </div>
       </aside>
@@ -434,25 +443,25 @@
       <div class="field field-cost">
         <label for="estimated-cost">
           <span class="label-text">Direct cost</span>
-          <input name="estimated-cost" id="estimated-cost" type="text">
+          <input name="estimated-cost" id="estimated-cost" type="text" value="{{d 'estimated-cost'}}">
         </label>
       </div>
       <div class="field field-overhead">
         <label for="estimated-overhead">
           <span class="label-text">Overhead fees and charges</span>
-          <input name="estimated-overhead" id="estimated-overhead" type="text">
+          <input name="estimated-overhead" id="estimated-overhead" type="text" value="{{d 'estimated-overhead'}}">
         </label>
       </div>
       <div class="field field-total">
         <label for="estimated-total">
           <span class="label-text">Total estimated amount</span>
-          <input name="estimated-total" id="estimated-total" type="text">
+          <input name="estimated-total" id="estimated-total" type="text" value="{{d 'estimated-total'}}">
         </label>
       </div>
       <div class="field field-overhead-explanation">
         <label for="estimated-overhead-explanation">
           <span class="label-text">General explanation of overhead fees and charges</span>
-          <textarea name="estimated-overhead-explanation" id="estimated-overhead-explanation">The stimated agreement amount is based on GSA&rsquo;s actual costs of providing the services under this IAA. Reimbursement of GSA&rsquo;s actual costs is described further in the statement of work.</textarea>
+          <textarea name="estimated-overhead-explanation" id="estimated-overhead-explanation">{{d 'estimated-overhead-explanation'}}</textarea>
         </label>
       </div>
     </section>
@@ -515,7 +524,8 @@
             <span class="label-text">Requesting agency&rsquo;s statutory authority title and citation</span>
             <input name="statutory-authority-requesting-agency-authority" 
                    id="statutory-authority-requesting-agency-authority" 
-                   type="text">
+                   type="text"
+                   value="{{d 'statutory-authority-requesting-agency-authority'}}">
           </label>
         </div>
       </aside>
@@ -574,7 +584,8 @@
             <span class="label-text">Servicing agency&rsquo;s statutory authority title and citation</span>
             <input name="statutory-authority-servicing-agency-authority" 
                    id="statutory-authority-servicing-agency-authority" 
-                   type="text">
+                   type="text"
+                   value="{{d 'statutory-authority-servicing-agency-authority'}}">
           </label>
         </div>
       </aside>
@@ -586,7 +597,7 @@
       <div class="field field-textarea field-scope">
         <label for="scope">
           <span class="label-text">Requesting agency&rsquo;s scope</span>
-          <textarea name="scope" id="scope"></textarea>
+          <textarea name="scope" id="scope">{{d 'scope'}}</textarea>
         </label>
       </div>
     </section>
@@ -597,7 +608,7 @@
       <div class="field field-textarea field-roles-and-responsibilities">
         <label for="roles-and-responsibilities">
           <span class="label-text">Roles and responsibilities for the parties</span>
-          <textarea name="roles-and-responsibilities" id="roles-and-responsibilities"></textarea>
+          <textarea name="roles-and-responsibilities" id="roles-and-responsibilities">{{d 'roles-and-responsibilities'}}</textarea>
         </label>
       </div>
     </section>
@@ -608,7 +619,7 @@
       <div class="field field-textarea">
         <label for="restrictions">
           <span class="label-text">Restrictions</span>
-          <textarea name="restrictions" id="restrictions"></textarea>
+          <textarea name="restrictions" id="restrictions">{{d 'restrictions'}}</textarea>
         </label>
       </div>
     </section>
@@ -619,7 +630,7 @@
       <div class="field field-textarea field-assisted-acquisition-small-business-credit-clause">
         <label for="assisted-acquisition-small-business-credit-clause">
           <span class="label-text">Assisted acquisition small business credit clause</span>
-          <textarea name="assisted-acquisition-small-business-credit-clause" id="assisted-acquisition-small-business-credit-clause">The servicing agency will allocate the socio-economic credit to the requesting agency for any contract actions it has executed on behalf of the requesting agency.</textarea>
+          <textarea name="assisted-acquisition-small-business-credit-clause" id="assisted-acquisition-small-business-credit-clause">{{d 'assisted-acquisition-small-business-credit-clause'}}</textarea>
         </label>
       </div>
     </section>
@@ -630,7 +641,7 @@
       <div class="field field-textarea field-disputes">
         <label for="disputes">
           <span class="label-text">Disputes</span>
-          <textarea name="disputes" id="disputes">Disputes related to this IAA shall be resolved in accordance with instructions provided in the Treasure Financial Manual (TFM) Volume I, Part 2, Chapter 4700, Appendix 10; Intragovernmental Business Rules.</textarea>
+          <textarea name="disputes" id="disputes">{{d 'disputes'}}</textarea>
         </label>
       </div>
     </section>
@@ -641,13 +652,13 @@
       <div class="field field-textarea field-termination-days">
         <label for="termination-days">
           <span class="label-text">Number of days this IAA may be terminated by written notice by either party.</span>
-          <input name="termination-days" id="termination-days" value="30" type="text">
+          <input name="termination-days" id="termination-days" type="text" value="{{d 'termination-days'}}">
         </label>
       </div>
       <div class="field field-textarea field-termination-additional-terms">
         <label for="termination-additional-terms">
           <span class="label-text">If this agreement is cancelled, any implementing contract/order may also be cancelled. If the IAA is terminated, the agencies shall agree to the terms of the termination, including costs attributable to each part and the disposition of awarded and pending actions.</span>
-          <textarea name="termination-additional-terms" id="termination-additional-terms">If the servicing agency incurs costs due to the requesting agency&rsquo;s failure to give the requisite notice of its intent to terminate the IAA, the requesting agency shall pay any actual costs incurred by the servicing agency as a result of the delay in notification, provided such costs are directly attributable to the failure to give notice.</textarea>
+          <textarea name="termination-additional-terms" id="termination-additional-terms">{{d 'termination-additional-terms'}}</textarea>
         </label>
       </div>
     </section>
@@ -658,7 +669,7 @@
       <div class="field field-textarea">
         <label for="authorized-assistants-requesting-agency">
           <span class="label-text">Requesting agency&rsquo;s organizations authorized to request acquisition assistance for this IAA</span>
-          <textarea name="authorized-assistants-requesting-agency" id="authorized-assistants-requesting-agency"></textarea>
+          <textarea name="authorized-assistants-requesting-agency" id="authorized-assistants-requesting-agency">{{d 'authorized-assistants-requesting-agency'}}</textarea>
         </label>
       </div>
     </section>
@@ -669,7 +680,7 @@
       <div class="field field-textarea">
         <label for="authorized-assistants-servicing-agency">
           <span class="label-text">Servicing agency&rsquo;s organizations authorized to request acquisition assistance for this IAA</span>
-          <textarea name="authorized-assistants-servicing-agency" id="authorized-assistants-servicing-agency"></textarea>
+          <textarea name="authorized-assistants-servicing-agency" id="authorized-assistants-servicing-agency">{{d 'authorized-assistants-servicing-agency'}}</textarea>
         </label>
       </div>
     </section>
@@ -680,7 +691,7 @@
       <div class="field field-textarea">
         <label for="clauses-requesting-agency">
           <span class="label-text">Requesting agency&rsquo;s clause(s)</span>
-          <textarea name="clauses-requesting-agency" id="clauses-requesting-agency"></textarea>
+          <textarea name="clauses-requesting-agency" id="clauses-requesting-agency">{{d 'clauses-requesting-agency'}}</textarea>
         </label>
       </div>
     </section>
@@ -691,7 +702,7 @@
       <div class="field field-textarea">
         <label for="clauses-servicing-agency">
           <span class="label-text">Servicing agency&rsquo;s clause(s)</span>
-          <textarea name="clauses-servicing-agency" id="clauses-servicing-agency"></textarea>
+          <textarea name="clauses-servicing-agency" id="clauses-servicing-agency">{{d 'clauses-servicing-agency'}}</textarea>
         </label>
       </div>
     </section>
@@ -702,7 +713,7 @@
       <div class="field field-textarea field-additional-agency-attachments">
         <label for="additional-agency-attachments">
           <span class="label-text">Additional agency attachments</span>
-          <textarea name="additional-agency-attachments" id="additional-agency-attachments"></textarea>
+          <textarea name="additional-agency-attachments" id="additional-agency-attachments">{{d 'additional-agency-attachments'}}</textarea>
         </label>
       </div>
     </section>
@@ -721,37 +732,37 @@
         <div class="field field-name">
           <label for="agency-official-requesting-agency-name">
             <span class="label-text">Name</span>
-            <input required name="agency-official-requesting-agency-name" id="agency-official-requesting-agency-name" type="text">
+            <input required name="agency-official-requesting-agency-name" id="agency-official-requesting-agency-name" type="text" value="{{d 'agency-official-requesting-agency-name'}}">
           </label>
         </div>
         <div class="field field-title">
           <label for="agency-official-requesting-agency-title">
             <span class="label-text">Title</span>
-            <input required name="agency-official-requesting-agency-title" id="agency-official-requesting-agency-title" type="text">
+            <input required name="agency-official-requesting-agency-title" id="agency-official-requesting-agency-title" type="text" value="{{d 'agency-official-requesting-agency-title'}}">
           </label>
         </div>
         <div class="field field-telephone-number">
           <label for="agency-official-requesting-agency-telephone-number">
             <span class="label-text">Telephone number</span>
-            <input required name="agency-official-requesting-agency-telephone-number" id="agency-official-requesting-agency-telephone-number" type="tel">
+            <input required name="agency-official-requesting-agency-telephone-number" id="agency-official-requesting-agency-telephone-number" type="tel" value="{{d 'agency-official-requesting-agency-telephone-number'}}">
           </label>
         </div>
         <div class="field field-fax-number">
           <label for="agency-official-requesting-agency-fax-number">
             <span class="label-text">Fax number</span>
-            <input required name="agency-official-requesting-agency-fax-number" id="agency-official-requesting-agency-fax-number" type="tel">
+            <input required name="agency-official-requesting-agency-fax-number" id="agency-official-requesting-agency-fax-number" type="tel" value="{{d 'agency-official-requesting-agency-fax-number'}}">
           </label>
         </div>
         <div class="field field-email-address">
           <label for="agency-official-requesting-agency-email-address">
             <span class="label-text">Email address</span>
-            <input required name="agency-official-requesting-agency-email-address" id="agency-official-requesting-agency-email-address" type="email">
+            <input required name="agency-official-requesting-agency-email-address" id="agency-official-requesting-agency-email-address" type="email" value="{{d 'agency-official-requesting-agency-email-address'}}">
           </label>
         </div>
         <div class="field field-date field-approval-date">
           <label for="agency-official-requesting-agency-approval-date">
             <span class="label-text">Approval date</span>
-            <input required name="agency-official-requesting-agency-approval-date" id="agency-official-requesting-agency-approval-date" type="date">
+            <input required name="agency-official-requesting-agency-approval-date" id="agency-official-requesting-agency-approval-date" type="date" value="{{d 'agency-official-requesting-agency-approval-date'}}">
           </label>
         </div>
       </fieldset>
@@ -760,37 +771,37 @@
         <div class="field field-name">
           <label for="agency-official-servicing-agency-name">
             <span class="label-text">Name</span>
-            <input required name="agency-official-servicing-agency-name" id="agency-official-servicing-agency-name" type="text">
+            <input required name="agency-official-servicing-agency-name" id="agency-official-servicing-agency-name" type="text" value="{{d 'agency-official-servicing-agency-name'}}">
           </label>
         </div>
         <div class="field field-title">
           <label for="agency-official-servicing-agency-title">
             <span class="label-text">Title</span>
-            <input required name="agency-official-servicing-agency-title" id="agency-official-servicing-agency-title" type="text">
+            <input required name="agency-official-servicing-agency-title" id="agency-official-servicing-agency-title" type="text" value="{{d 'agency-official-servicing-agency-title'}}">
           </label>
         </div>
         <div class="field field-telephone-number">
           <label for="agency-official-servicing-agency-telephone-number">
             <span class="label-text">Telephone number</span>
-            <input required name="agency-official-servicing-agency-telephone-number" id="agency-official-servicing-agency-telephone-number" type="tel">
+            <input required name="agency-official-servicing-agency-telephone-number" id="agency-official-servicing-agency-telephone-number" type="tel" value="{{d 'agency-official-servicing-agency-telephone-number'}}">
           </label>
         </div>
         <div class="field field-fax-number">
           <label for="agency-official-servicing-agency-fax-number">
             <span class="label-text">Fax number</span>
-            <input required name="agency-official-servicing-agency-fax-number" id="agency-official-servicing-agency-fax-number" type="tel">
+            <input required name="agency-official-servicing-agency-fax-number" id="agency-official-servicing-agency-fax-number" type="tel" value="{{d 'agency-official-servicing-agency-fax-number'}}">
           </label>
         </div>
         <div class="field field-email-address">
           <label for="agency-official-servicing-agency-email-address">
             <span class="label-text">Email address</span>
-            <input required name="agency-official-servicing-agency-email-address" id="agency-official-servicing-agency-email-address" type="email">
+            <input required name="agency-official-servicing-agency-email-address" id="agency-official-servicing-agency-email-address" type="email" value="{{d 'agency-official-servicing-agency-email-address'}}">
           </label>
         </div>
         <div class="field field-date field-approval-date">
           <label for="agency-official-requesting-agency-approval-date">
             <span class="label-text">Approval date</span>
-            <input required name="agency-official-requesting-agency-approval-date" id="agency-official-requesting-agency-approval-date" type="date">
+            <input required name="agency-official-requesting-agency-approval-date" id="agency-official-requesting-agency-approval-date" type="date" value="{{d 'agency-official-requesting-agency-approval-date'}}">
           </label>
         </div>
       </fieldset>
@@ -799,4 +810,5 @@
       <button type="submit">Submit</button>
     </footer>
   </form>
+  {{/with}}
 </template>

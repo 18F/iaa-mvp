@@ -1,0 +1,25 @@
+<template name='index'>
+  <h2>IAA Manager</h2>
+  
+  <h3><a href="/for-agencies">For Agencies</a></h3>
+  
+  <form>
+    <input type="submit" class="button" value="Create A New 7600A">
+  </form>
+  <hr />
+  {{#each form7600as}}
+    <article class="form-7600a">
+      <dl>
+        <dt>IAA number</dt>
+        <dd>{{ _id }} {{d 'gtc-number'}} - 0000 - {{d 'mod-number'}}</dd>
+        <dt>Requesting agency</dt>
+        <dd>{{d 'parties-requesting-agency-name'}}</dd>
+      </dl>
+      <a href="/7600a/{{_id}}/edit">Show/edit</a>
+      <form action="">
+        <button>Generate PDF</button>
+      </form>
+      <hr />
+    </article>
+  {{/each}}
+</template>
