@@ -62,9 +62,18 @@ if (Meteor.isClient) {
     isStateSelected: function(v1, v2) {
       var controller = Iron.controller();
       var formValues = controller.state.get('formValues');
-      console.log("v1: "+ formValues[v1] + " | v2: " + v2);
       if (formValues[v1] === v2) {
         return 'selected';
+      } else {
+        return '';
+      };
+    },
+    radioIsChecked: function(v1, v2) {
+      var controller = Iron.controller();
+      var formValues = controller.state.get('formValues');
+      console.log(formValues);
+      if (formValues[v1] === v2) {
+        return 'checked';
       } else {
         return '';
       };

@@ -124,13 +124,13 @@
         <legend>Is this agreement part of an assisted acquision agreement?</legend>
         <div class="field field-radio">
           <label for="assisted-acquisition-agreement-yes">
-            <input required name="assisted-acquisition-agreement" id="assisted-acquisition-agreement-yes" type="radio" value="yes">
+            <input required name="assisted-acquisition-agreement" id="assisted-acquisition-agreement-yes" type="radio" value="yes" {{radioIsChecked 'assisted-acquisition-agreement' 'yes'}}>
             <span class="label-text">Yes</span>
           </label>
         </div>
         <div class="field field-radio">
           <label for="assisted-acquisition-agreement-no">
-            <input required name="assisted-acquisition-agreement" id="assisted-acquisition-agreement-no" type="radio" value="no">
+            <input required name="assisted-acquisition-agreement" id="assisted-acquisition-agreement-no" type="radio" value="no" {{radioIsChecked 'assisted-acquisition-agreement' 'no'}}>
             <span class="label-text">No</span>
           </label>
         </div>
