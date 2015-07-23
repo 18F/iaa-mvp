@@ -2,11 +2,23 @@ Form7600A = new Mongo.Collection("form7600a");
 
 if (Meteor.isClient) {
   Template.index.events({
-    'submit form': function(event) {
+    'submit .create-new-7600a-form': function(event) {
       event.preventDefault();
-      var id = Form7600A.insert({});
-      //Router.go('/7600a/' + id + '/edit');
+      var form = $('.create-new-7600a-form');
+      var formValues = form.serializeJSON();
+      console.log(formValues);
+      var id = Form7600A.insert(formValues);
+      form[0].reset();
       window.open('/7600a/' + id + '/edit');
+    },
+    'submit .delete-7600a-form': function(event) {
+      event.preventDefault();
+      var id = event.target.id.value;
+      Form7600A.remove(id);
+    },
+    'submit .generate-7600a-pdf': function(event) {
+      event.preventDefault();
+      alert("Coming soon!");
     }
   });
 
