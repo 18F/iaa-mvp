@@ -6,7 +6,6 @@ if (Meteor.isClient) {
       event.preventDefault();
       var form = $('.create-new-7600a-form');
       var formValues = form.serializeJSON();
-      console.log(formValues);
       var id = Form7600A.insert(formValues);
       form[0].reset();
       window.open('/7600a/' + id + '/edit');
@@ -32,6 +31,12 @@ if (Meteor.isClient) {
   });
   
   Template.form_7600a.onRendered(function() {
+    // set autosave timer
+    var timer =  setInterval(function() {
+      var form = $('.form-7600a');
+      form.submit();
+    }, 10000);
+    
     // overrides default implementation so shortcuts work
     // inside of input and other elements.
     // see: https://craig.is/killing/mice
@@ -40,11 +45,22 @@ if (Meteor.isClient) {
       if ((' ' + element.className + ' ').indexOf(' mousetrap ') > -1) {
         return false;
       }
+      
+      return false;
     }
     // sets up keyboard shortcuts
-    Mousetrap.bind(['command+s', 'ctrl+s'], function() {
-      var form = $('.form-7600a');
-      form.submit();
+    // see https://craig.is/killing/mice for preventDefault docs
+    Mousetrap.bind(['command+s', 'ctrl+s'], function(e) {
+      if (e.preventDefault) {
+          e.preventDefault();
+          var form = $('.form-7600a');
+          form.submit();
+      } else {
+          // internet explorer
+          e.returnValue = false;
+          var form = $('.form-7600a');
+          form.submit();
+      }
     });
   });
 
