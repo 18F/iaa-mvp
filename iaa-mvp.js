@@ -5,11 +5,11 @@ if (Meteor.isClient) {
     'submit form': function(event) {
       event.preventDefault();
       var id = Form7600A.insert({});
-      //Router.go('/7600a/' + id + '/edit');   
-      window.open('/7600a/' + id + '/edit');   
+      //Router.go('/7600a/' + id + '/edit');
+      window.open('/7600a/' + id + '/edit');
     }
   });
-  
+
   Template.index.helpers({
     form7600as: function() {
       return Form7600A.find();
@@ -18,7 +18,7 @@ if (Meteor.isClient) {
       return this[attr];
     }
   });
-  
+
   Template.form_7600a.helpers({
     lastSaved: function() {
       if (!Session.get('lastSaved')) {
@@ -26,7 +26,7 @@ if (Meteor.isClient) {
         var lastSaved = controller.state.get('lastSaved');
         Session.set('lastSaved', lastSaved);
       }
-      
+
       return Session.get('lastSaved');
     },
     formValues: function() {
@@ -40,7 +40,7 @@ if (Meteor.isClient) {
       return this[attr];
     }
   });
-  
+
   var updateForm7600A = function(event) {
     Session.set('lastSaved', 'Saving...');
     event.preventDefault();
@@ -51,7 +51,7 @@ if (Meteor.isClient) {
     var currentTime = new Date().toString();
     Session.set('lastSaved', 'Last saved at ' + currentTime);
   }
-  
+
   Template.form_7600a.events({
     'submit form': function(event) {
       updateForm7600A(event);
