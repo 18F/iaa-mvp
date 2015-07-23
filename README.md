@@ -1,6 +1,6 @@
 # iaa-mvp
 
-A minimum viable product for filling our MVPs.
+A minimum viable product for filling out IAAs.
 
 Very much in alpha.
 
@@ -8,13 +8,13 @@ Very much in alpha.
 
 ### Milestone 1
 
-- Stand up site on Cloud Foundry
-- CRUD for Form 7600A
-- Stretch goal: generate the actual PDF (move to milestone 2 if not accomplished)
+- ~~Stand up site on Cloud Foundry~~
+- ~~CRUD for Form 7600A~~
 
 ### Milestone 2
 
 - CRUD for Form 7600B
+- Stretch goal: generate the actual PDF (move to milestone 2 if not accomplished)
 
 ### Milestone 3
 
