@@ -1,4 +1,45 @@
+// define collection
 Form7600A = new Mongo.Collection("form7600a");
+
+var createForm7600A = function(formValues) {
+  // merge in default values
+  var mergedFormValues = $.extend(Form7600ADefaults, formValues)
+  // hacky timestamps
+  var currentTime = new Date();
+  mergedFormValues['createdAt'] = currentTime;
+  mergedFormValues['updatedAt'] = currentTime;
+  return Form7600A.insert(mergedFormValues);
+};
+
+var updateForm7600A = function(formValues) {
+  // another hacky timestamp
+  var currentTime = new Date();
+  formValues['updatedAt'] = currentTime;
+  var id = formValues.formId;
+  // using findAndModify to ensure createdAt and other fields
+  // remain unchanged.
+  // see: https://github.com/fongandrew/meteor-find-and-modify
+  return Form7600A.findAndModify({
+    query: {_id: id},
+    update: {$set: formValues}
+  });
+};
+
+var submitForm7600A = function() {
+  return $('.form-7600a').submit();
+};
+
+var isSelected = function(returnString) {
+  return function(v1, v2) {
+    var controller = Iron.controller();
+    var formValues = controller.state.get('formValues');
+    if (formValues[v1] === v2) {
+      return returnString;
+    } else {
+      return '';
+    };
+  };
+};
 
 if (Meteor.isClient) {  
   Template.index.events({
@@ -6,13 +47,7 @@ if (Meteor.isClient) {
       event.preventDefault();
       var form = $('.create-new-7600a-form');
       var formValues = form.serializeJSON();
-      // merge formValues with some defaults
-      var mergedFormValues = $.extend(Form7600ADefaults, formValues)
-      // hacky timestamps
-      var currentTime = new Date();
-      mergedFormValues['createdAt'] = currentTime;
-      mergedFormValues['updatedAt'] = currentTime;
-      var id = Form7600A.insert(mergedFormValues);
+      var id = createForm7600A(formValues);
       form[0].reset();
       window.open('/7600a/' + id + '/edit');
     },
@@ -38,48 +73,28 @@ if (Meteor.isClient) {
   
   Template.form_7600a.onRendered(function() {
     // set autosave timer
-    var timer =  setInterval(function() {
-      var form = $('.form-7600a');
-      form.submit();
-    }, 10000);
+    var timer =  setInterval(submitForm7600A, 10000);
     
     // overrides default implementation so shortcuts work
     // inside of input and other elements.
     // see: https://craig.is/killing/mice
     Mousetrap.stopCallback = function(e, element, combo) {
-      // if the element has the class "mousetrap" then no need to stop
-      if ((' ' + element.className + ' ').indexOf(' mousetrap ') > -1) {
-        return false;
-      }
-      
+      // never stop callback
       return false;
     }
     // sets up keyboard shortcuts
     // see https://craig.is/killing/mice for preventDefault docs
     Mousetrap.bind(['command+s', 'ctrl+s'], function(e) {
       if (e.preventDefault) {
-          e.preventDefault();
-          var form = $('.form-7600a');
-          form.submit();
+        e.preventDefault();
       } else {
-          // internet explorer
-          e.returnValue = false;
-          var form = $('.form-7600a');
-          form.submit();
+        e.returnValue = false; // Internet Explorer
       }
+      submitForm7600A();
     });
   });
 
   Template.form_7600a.helpers({
-    lastSaved: function() {
-      if (!Session.get('lastSaved')) {
-        var controller = Iron.controller();
-        var lastSaved = controller.state.get('lastSaved');
-        Session.set('lastSaved', lastSaved);
-      }
-
-      return Session.get('lastSaved');
-    },
     formValues: function() {
       var controller = Iron.controller();
       return controller.state.get('formValues');
@@ -98,49 +113,20 @@ if (Meteor.isClient) {
         }
       });
     },
-    isStateSelected: function(v1, v2) {
-      var controller = Iron.controller();
-      var formValues = controller.state.get('formValues');
-      if (formValues[v1] === v2) {
-        return 'selected';
-      } else {
-        return '';
-      };
-    },
-    radioIsChecked: function(v1, v2) {
-      var controller = Iron.controller();
-      var formValues = controller.state.get('formValues');
-      if (formValues[v1] === v2) {
-        return 'checked';
-      } else {
-        return '';
-      };
-    }
+    isStateSelected: isSelected('selected'),
+    isRadioChecked: isSelected('checked')
   });
 
-  var updateForm7600A = function(event) {
+  var updateForm7600AEvent = function(event) {
     Session.set('lastSaved', 'Saving...');
     event.preventDefault();
     var form = $('.form-7600a');
     var formValues = form.serializeJSON();
-    // another hacky timestamp
-    var currentTime = new Date();
-    formValues['updatedAt'] = currentTime;
-    var id = formValues.formId;
-    // using findAndModify to ensure createdAt and other fields
-    // remain unchanged.
-    // see: https://github.com/fongandrew/meteor-find-and-modify
-    var updated = Form7600A.findAndModify({
-      query: {_id: id},
-      update: {$set: formValues}
-    });
-    Session.set('lastSaved', 'Last saved at ' + currentTime);
+    updateForm7600A(formValues);
   }
 
   Template.form_7600a.events({
-    'submit form': function(event) {
-      updateForm7600A(event);
-    }
+    'submit form': updateForm7600AEvent
   });
 }
 

@@ -120,13 +120,13 @@
         <legend>Is this agreement part of an assisted acquision agreement?</legend>
         <div class="field field-radio">
           <label for="assisted-acquisition-agreement-yes">
-            <input required name="assisted-acquisition-agreement" id="assisted-acquisition-agreement-yes" type="radio" value="yes" {{radioIsChecked 'assisted-acquisition-agreement' 'yes'}}>
+            <input required name="assisted-acquisition-agreement" id="assisted-acquisition-agreement-yes" type="radio" value="yes" {{isRadioChecked 'assisted-acquisition-agreement' 'yes'}}>
             <span class="label-text">Yes</span>
           </label>
         </div>
         <div class="field field-radio">
           <label for="assisted-acquisition-agreement-no">
-            <input required name="assisted-acquisition-agreement" id="assisted-acquisition-agreement-no" type="radio" value="no" {{radioIsChecked 'assisted-acquisition-agreement' 'no'}}>
+            <input required name="assisted-acquisition-agreement" id="assisted-acquisition-agreement-no" type="radio" value="no" {{isRadioChecked 'assisted-acquisition-agreement' 'no'}}>
             <span class="label-text">No</span>
           </label>
         </div>
@@ -145,7 +145,7 @@
                    id="gtc-action-new" 
                    type="radio"
                    value="new"
-                   {{radioIsChecked 'gtc-action' 'new'}}>
+                   {{isRadioChecked 'gtc-action' 'new'}}>
             <span class="label-text">New</span>
           </label>
         </div>
@@ -156,7 +156,7 @@
                    id="gtc-action-amendment" 
                    type="radio" 
                    value="amendment"
-                   {{radioIsChecked 'gtc-action' 'amendment'}}>
+                   {{isRadioChecked 'gtc-action' 'amendment'}}>
             <span class="label-text">Amendment</span>
           </label>
         </div>
@@ -167,7 +167,7 @@
                    id="gtc-action-cancellation" 
                    type="radio" 
                    value="cancellation"
-                   {{radioIsChecked 'gtc-action' 'cancellation'}}>
+                   {{isRadioChecked 'gtc-action' 'cancellation'}}>
             <span class="label-text">Cancellation</span>
           </label>
         </div>
@@ -224,7 +224,7 @@
                    id="recurring-agreement-yes" 
                    type="radio"
                    value="yes"
-                   {{radioIsChecked 'recurring-agreement' 'yes'}}>
+                   {{isRadioChecked 'recurring-agreement' 'yes'}}>
             <span class="label-text">Yes</span>
           </label>
         </div>
@@ -235,7 +235,7 @@
                    id="recurring-agreement-no" 
                    type="radio"
                    value="no"
-                   {{radioIsChecked 'recurring-agreement' 'no'}}>
+                   {{isRadioChecked 'recurring-agreement' 'no'}}>
             <span class="label-text">No</span>
           </label>
         </div>
@@ -251,7 +251,7 @@
                      id="recurring-agreement-period-annual" 
                      type="radio"
                      value="annual"
-                     {{radioIsChecked 'recurring-agreement-period' 'annual'}}>
+                     {{isRadioChecked 'recurring-agreement-period' 'annual'}}>
               <span class="label-text">Annual renewal</span>
             </label>
           </div>
@@ -262,7 +262,7 @@
                      id="recurring-agreement-period-other" 
                      type="radio"
                      value="other"
-                     {{radioIsChecked 'recurring-agreement-period' 'other'}}>
+                     {{isRadioChecked 'recurring-agreement-period' 'other'}}>
               <span class="label-text">Other renewal</span>
             </label>
           </div>
@@ -295,7 +295,7 @@
                    id="agreement-type-single-order" 
                    type="radio"
                    value="single-order"
-                   {{radioIsChecked 'agreement-type' 'single-order'}}>
+                   {{isRadioChecked 'agreement-type' 'single-order'}}>
             <span class="label-text">Single order</span>
           </label>
         </div>
@@ -306,7 +306,7 @@
                    id="agreement-type-multiple-order" 
                    type="radio"
                    value="multiple-order"
-                   {{radioIsChecked 'agreement-type' 'multiple-order'}}>
+                   {{isRadioChecked 'agreement-type' 'multiple-order'}}>
             <span class="label-text">Multiple order</span>
           </label>
         </div>
@@ -325,7 +325,7 @@
                    id="advance-payments-yes" 
                    type="radio"
                    value="yes"
-                   {{radioIsChecked 'advance-payments' 'yes'}}>
+                   {{isRadioChecked 'advance-payments' 'yes'}}>
             <span class="label-text">Yes</span>
           </label>
         </div>
@@ -337,7 +337,7 @@
                    id="advance-payments-no" 
                    type="radio"
                    value="no"
-                   {{radioIsChecked 'advance-payments' 'no'}}>
+                   {{isRadioChecked 'advance-payments' 'no'}}>
             <span class="label-text">No</span>
           </label>
         </div>
@@ -396,7 +396,7 @@
                    id="statutory-authority-requesting-agency-franchise-fund" 
                    type="radio"
                    value="franchise-fund"
-                   {{radioIsChecked 'statutory-authority-requesting-agency' 'franchise-fund'}}>
+                   {{isRadioChecked 'statutory-authority-requesting-agency' 'franchise-fund'}}>
             <span class="label-text">Franchise fund</span>
           </label>
         </div>
@@ -406,7 +406,7 @@
                    id="statutory-authority-requesting-agency-revolving-fund" 
                    type="radio"
                    value="revolving-fund"
-                   {{radioIsChecked 'statutory-authority-requesting-agency' 'revolving-fund'}}>
+                   {{isRadioChecked 'statutory-authority-requesting-agency' 'revolving-fund'}}>
             <span class="label-text">Revolving fund</span>
           </label>
         </div>
@@ -416,7 +416,7 @@
                    id="statutory-authority-requesting-agency-working-capital-fund" 
                    type="radio"
                    value="working-capital-fund"
-                   {{radioIsChecked 'statutory-authority-requesting-agency' 'working-capital-fund'}}>
+                   {{isRadioChecked 'statutory-authority-requesting-agency' 'working-capital-fund'}}>
             <span class="label-text">Working capital fund</span>
           </label>
         </div>
@@ -426,7 +426,7 @@
                    id="statutory-authority-requesting-agency-economy-act" 
                    type="radio"
                    value="economy-act"
-                   {{radioIsChecked 'statutory-authority-requesting-agency' 'economy-act'}}>
+                   {{isRadioChecked 'statutory-authority-requesting-agency' 'economy-act'}}>
             <span class="label-text">Economy act (31 U.S.C. 1535/FAR 17.5)</span>
           </label>
         </div>
@@ -436,7 +436,7 @@
                    id="statutory-authority-requesting-agency-other" 
                    type="radio"
                    value="other"
-                   {{radioIsChecked 'statutory-authority-requesting-agency' 'other'}}>
+                   {{isRadioChecked 'statutory-authority-requesting-agency' 'other'}}>
             <span class="label-text">Other</span>
           </label>
         </div>
@@ -461,7 +461,7 @@
                    id="statutory-authority-servicing-agency-franchise-fund" 
                    type="radio"
                    value="franchise-fund"
-                   {{radioIsChecked 'statutory-authority-servicing-agency' 'franchise-fund'}}>
+                   {{isRadioChecked 'statutory-authority-servicing-agency' 'franchise-fund'}}>
             <span class="label-text">Franchise fund</span>
           </label>
         </div>
@@ -471,7 +471,7 @@
                    id="statutory-authority-servicing-agency-revolving-fund" 
                    type="radio"
                    value="revolving-fund"
-                   {{radioIsChecked 'statutory-authority-servicing-agency' 'revolving-fund'}}>
+                   {{isRadioChecked 'statutory-authority-servicing-agency' 'revolving-fund'}}>
             <span class="label-text">Revolving fund</span>
           </label>
         </div>
@@ -481,7 +481,7 @@
                    id="statutory-authority-servicing-agency-working-capital-fund" 
                    type="radio"
                    value="working-capital-fund"
-                   {{radioIsChecked 'statutory-authority-servicing-agency' 'working-capital-fund'}}>
+                   {{isRadioChecked 'statutory-authority-servicing-agency' 'working-capital-fund'}}>
             <span class="label-text">Working capital fund</span>
           </label>
         </div>
@@ -491,7 +491,7 @@
                    id="statutory-authority-servicing-agency-economy-act" 
                    type="radio"
                    value="economy-act"
-                   {{radioIsChecked 'statutory-authority-servicing-agency' 'economy-act'}}>
+                   {{isRadioChecked 'statutory-authority-servicing-agency' 'economy-act'}}>
             <span class="label-text">Economy act (31 U.S.C. 1535/FAR 17.5)</span>
           </label>
         </div>
@@ -501,7 +501,7 @@
                    id="statutory-authority-servicing-agency-other" 
                    type="radio"
                    value="other"
-                  {{radioIsChecked 'statutory-authority-servicing-agency' 'other'}}>
+                  {{isRadioChecked 'statutory-authority-servicing-agency' 'other'}}>
             <span class="label-text">Other</span>
           </label>
         </div>
