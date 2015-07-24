@@ -1,10 +1,6 @@
 <template name='form_7600a'>
-  {{#if saving}}
-    <h4>{{ lastSaved }}</h4>
-  {{else}}
-    <h4>{{ lastSaved }}</h4>
-  {{/if}}
   {{#with formValues}}
+  <h4>Last updated: {{ updatedAt }}</h4>
   <form class="form-7600a" novalidate>
     <header>
       <h1>7600A</h1>

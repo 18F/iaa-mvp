@@ -8,6 +8,10 @@ if (Meteor.isClient) {
       var formValues = form.serializeJSON();
       // merge formValues with some defaults
       var mergedFormValues = $.extend(Form7600ADefaults, formValues)
+      // hacky timestamps
+      var currentTime = new Date();
+      mergedFormValues['createdAt'] = currentTime;
+      mergedFormValues['updatedAt'] = currentTime;
       var id = Form7600A.insert(mergedFormValues);
       form[0].reset();
       window.open('/7600a/' + id + '/edit');
@@ -119,9 +123,17 @@ if (Meteor.isClient) {
     event.preventDefault();
     var form = $('.form-7600a');
     var formValues = form.serializeJSON();
+    // another hacky timestamp
+    var currentTime = new Date();
+    formValues['updatedAt'] = currentTime;
     var id = formValues.formId;
-    var updated = Form7600A.update(id, formValues);
-    var currentTime = new Date().toString();
+    // using findAndModify to ensure createdAt and other fields
+    // remain unchanged.
+    // see: https://github.com/fongandrew/meteor-find-and-modify
+    var updated = Form7600A.findAndModify({
+      query: {_id: id},
+      update: {$set: formValues}
+    });
     Session.set('lastSaved', 'Last saved at ' + currentTime);
   }
 
