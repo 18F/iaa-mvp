@@ -15,3 +15,6 @@ mousetrap:mousetrap
 fongandrew:find-and-modify
 accounts-ui
 accounts-github
+service-configuration
+github
+bruz:github-api
