@@ -2,15 +2,20 @@
 Form7600A = new Mongo.Collection("form7600a");
 
 Meteor.methods({
+  findForm7600AById: function(id) {
+    return Form7600A.findOne(id);
+  },
   createForm7600A: function(formValues) {
-    // merge in default values
-    var mergedFormValues = _.extend(Form7600ADefaults, formValues)
-    // hacky timestamps
-    var currentTime = new Date();
-    mergedFormValues['createdAt'] = currentTime;
-    mergedFormValues['updatedAt'] = currentTime;
-    // returns the _id
-    return Form7600A.insert(mergedFormValues);
+    if (userIsLoggedInWithGitHub(this.userId)) {
+      // merge in default values
+      var mergedFormValues = _.extend(Form7600ADefaults, formValues)
+      // hacky timestamps
+      var currentTime = new Date();
+      mergedFormValues['createdAt'] = currentTime;
+      mergedFormValues['updatedAt'] = currentTime;
+      // returns the _id
+      return Form7600A.insert(mergedFormValues);
+    }
   },
   updateForm7600A: function(formValues) {
     // another hacky timestamp
@@ -146,40 +151,44 @@ if (Meteor.isClient) {
   });
 }
 
-// from: https://gist.github.com/pyrtsa/8270927
-function getIn(x, ks) {
-  for (var i = 0, n = ks.length; x != null && i < n; i++) x = x[ks[i]];
-  return x;
-}
 
-function get(x, path) {
-  if (path == '') return x;
-  if (path[0] != '.') return;
-  return getIn(x, path.slice(1).split(/\./i));
-}
-
-
-if (Meteor.isServer) {  
-  
-  // In the real world, get this list from the GitHub API ...
-  // ... and like maybe cache it somewhere.
-  var usernameWhitelist = [
-    'adelevie',
-    'batemapf',
-    'vzvenyach',
-    'joshuabailes',
-    'andrewmaier'
-  ];
-  
-  Meteor.publish("all_form7600as", function () {
-    if (this.userId) {
-      var user = Meteor.users.findOne(this.userId);
-      var username = get(user, ".services.github.username");
-      if (_.contains(usernameWhitelist, username)) {
-        return Form7600A.find();
-      }
+if (Meteor.isServer) {
+  var userIsLoggedInWithGitHub = function(userId) {
+    // from: https://gist.github.com/pyrtsa/8270927
+    var getIn = function(x, ks) {
+      for (var i = 0, n = ks.length; x != null && i < n; i++) x = x[ks[i]];
+      return x;
+    }
+    var get = function(x, path) {
+      if (path == '') return x;
+      if (path[0] != '.') return;
+      return getIn(x, path.slice(1).split(/\./i));
+    }
+    // In the real world, get this list from the GitHub API ...
+    // ... and like maybe cache it somewhere.
+    var usernameWhitelist = [
+      'adelevie',
+      'batemapf',
+      'vzvenyach',
+      'joshuabailes',
+      'andrewmaier'
+    ];
+    var user = Meteor.users.findOne(userId);
+    var username = get(user, ".services.github.username");
+    console.log(username);
+    if (_.contains(usernameWhitelist, username)) {
+      console.log('Logged in: '+username);
+      return true;
     } else {
-      return this.stop();
+      console.log('Logged out');
+      return false;
+    }
+  };
+  Meteor.publish("all_form7600as", function () {
+    if (userIsLoggedInWithGitHub(this.userId)) {
+      Form7600A.find();
+    } else {
+      this.stop();
     }
   });
 }
