@@ -11,6 +11,8 @@ Meteor.methods({
       var mergedFormValues = _.extend(Form7600ADefaults, formValues)
       // hacky timestamps
       var currentTime = new Date();
+      mergedFormValues['owner'] = this.userId;
+      mergedFormValues['sharedWith'] = [this.userId];
       mergedFormValues['createdAt'] = currentTime;
       mergedFormValues['updatedAt'] = currentTime;
       // returns the _id
@@ -84,6 +86,11 @@ if (Meteor.isClient) {
   });
 
   Template.index.helpers({
+    forms: function() {
+      var controller = Iron.controller();
+      var foo = controller.state.get('forms');
+      return foo;
+    },
     form7600as: function() {
       return Form7600A.find();
     },
@@ -175,20 +182,18 @@ if (Meteor.isServer) {
     ];
     var user = Meteor.users.findOne(userId);
     var username = get(user, ".services.github.username");
-    console.log(username);
     if (_.contains(usernameWhitelist, username)) {
-      console.log('Logged in: '+username);
       return true;
     } else {
-      console.log('Logged out');
       return false;
     }
   };
   Meteor.publish("all_form7600as", function () {
-    if (userIsLoggedInWithGitHub(this.userId)) {
-      Form7600A.find();
-    } else {
-      this.stop();
-    }
+    return Form7600A.find();
+    // if (userIsLoggedInWithGitHub(this.userId)) {
+    //   return Form7600A.find();
+    // } else {
+    //   this.stop();
+    // }
   });
 }

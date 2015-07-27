@@ -1,28 +1,31 @@
- <template name='index'>
-  <div class="page-form-7600a-index">
-    <header>
-      <h1 class="page-title">7600A</h1>
-      <form class="create-new-7600a-form">
-        <input type="submit" class="button button-new" value="New">
+<template name='index'>  
+  <form class="create-new-7600a-form">
+    <div class="field field-name">
+      <label for="parties-requesting-agency-name">
+        <span class="label-text">Requesting Agency Name</span>
+        <input required name="parties-requesting-agency-name" id="parties-requesting-agency-name" type="text">
+      </label>
+    </div>
+    <input type="submit" class="button" value="Create A New 7600A">
+  </form>
+  <hr />
+  {{#each forms}}
+    <article class="form-7600a">
+      <dl>
+        <dt><b>Requesting agency:</b></dt>
+        <dd>{{d 'parties-requesting-agency-name'}}</dd>
+        <dt>Database ID</dt>
+        <dd>{{ _id }}</dd>
+      </dl>
+      <a href="/7600a/{{_id}}/edit">View/edit</a>
+      <form class="delete-7600a-form">
+        <input type="hidden" name="id" value="{{_id}}">
+        <input type="submit" class="button" value="Delete">
       </form>
-    </header>
-    {{#each form7600as}}
-      <article class="form-7600a">
-        <dl>
-          <dt class="requesting-agency">Requesting agency</dt>
-          <dd class="requesting-agency">{{d 'parties-requesting-agency-name'}}</dd>
-          <dt class="id-number">Database ID</dt>
-          <dd class="id-number">{{ _id }}</dd>
-        </dl>
-        <div class="form-7600a-actions">
-          <a class="edit" href="/7600a/{{_id}}/edit">View/edit</a>
-          <form class="delete-7600a-form">
-            <input type="hidden" name="id" value="{{_id}}">
-            <input type="submit" class="button button-delete" value="Delete">
-          </form>
-          <form class="generate-7600a-pdf"><button class="button button-pdf">Generate PDF</button></form>
-        </div>
-      </article>
-    {{/each}}    
-  </div>
+      <form class="generate-7600a-pdf">
+        <button>Generate PDF</button>
+      </form>
+      <hr />
+    </article>
+  {{/each}}
 </template>
