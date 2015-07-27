@@ -7,46 +7,43 @@ Router.configure({
   notFoundTemplate: 'not_found' 
 });
 
-Router.plugin('dataNotFound', {notFoundTemplate: 'not_found'});
+Router.onBeforeAction(function () {
+  // all properties available in the route function
+  // are also available here such as this.params
 
+  if (!Meteor.userId()) {
+    // if the user is not logged in, render the Login template
+    this.render('landing_page');
+  } else {
+    // otherwise don't hold up the rest of hooks or our route/action function
+    // from running
+    this.next();
+  }
+});
+
+Router.plugin('dataNotFound', {notFoundTemplate: 'not_found'});
 
 Form7600AController = ApplicationController.extend({
   action: function() {
     var id = this.params._id;
-    var ctx = this;
-    Meteor.call('findForm7600AById', id, function(error, formValues) {
-      if (error) {
-        ctx.state.set('error', error);
-      } else {
-        ctx.state.set('formValues', formValues);
-        ctx.render();
-      }
-    });
+    var formValues = Form7600A.findOne(id);
+    this.state.set('formValues', formValues);
+    this.render();
   }
 });
 
 IndexController = ApplicationController.extend({
   action: function() {
-    //var ctx = this;
-    // Meteor.call('findAllForm7600As', function(error, forms) {
-    //   if (error) {
-    //     ctx.state.set('error', error);
-    //   } else {
-    //     ctx.state.set('forms', forms);
-    //     ctx.render();
-    //   }
-    // });
-    // Meteor.call('getAll7600AForms', function(error, result) {
-    //   ctx.state.set('forms', result);
-    //   ctx.render();
-    // });
-    var forms = Form7600A.find();
+    var forms = Form7600A.find().fetch();
     console.log(forms);
-    this.state.set('forms', forms)
+    this.state.set('forms', forms);
     this.render();
   }
 });
 
+/* 
+  Two primary routes:
+*/
 Router.route('/', {
   template: 'index',
   controller: 'IndexController'
@@ -57,10 +54,9 @@ Router.route('/7600a/:_id/edit', {
   controller: 'Form7600AController'
 });
 
-Router.route('/7600a/list', {
-  template: '7600a_list'
-});
-
+/* 
+  'static' pages: 
+*/
 Router.route('/for-agencies', {
   template: 'for-agencies_index'
 });
