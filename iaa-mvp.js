@@ -6,7 +6,7 @@ Meteor.methods({
     return Form7600A.findOne(id);
   },
   createForm7600A: function(formValues) {
-    if (userIsLoggedInWithGitHub(this.userId)) {
+    if (this.userId) {
       // merge in default values
       var mergedFormValues = _.extend(Form7600ADefaults, formValues)
       // hacky timestamps
@@ -160,40 +160,7 @@ if (Meteor.isClient) {
 
 
 if (Meteor.isServer) {
-  var userIsLoggedInWithGitHub = function(userId) {
-    // from: https://gist.github.com/pyrtsa/8270927
-    var getIn = function(x, ks) {
-      for (var i = 0, n = ks.length; x != null && i < n; i++) x = x[ks[i]];
-      return x;
-    }
-    var get = function(x, path) {
-      if (path == '') return x;
-      if (path[0] != '.') return;
-      return getIn(x, path.slice(1).split(/\./i));
-    }
-    // In the real world, get this list from the GitHub API ...
-    // ... and like maybe cache it somewhere.
-    var usernameWhitelist = [
-      'adelevie',
-      'batemapf',
-      'vzvenyach',
-      'joshuabailes',
-      'andrewmaier'
-    ];
-    var user = Meteor.users.findOne(userId);
-    var username = get(user, ".services.github.username");
-    if (_.contains(usernameWhitelist, username)) {
-      return true;
-    } else {
-      return false;
-    }
-  };
   Meteor.publish("all_form7600as", function () {
     return Form7600A.find();
-    // if (userIsLoggedInWithGitHub(this.userId)) {
-    //   return Form7600A.find();
-    // } else {
-    //   this.stop();
-    // }
   });
 }
