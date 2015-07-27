@@ -61,7 +61,7 @@ if (Meteor.isClient) {
     }
   });
 
-  Meteor.subscribe("all_form7600as");
+  // Meteor.subscribe("Form7600A");
   
   Template.index.events({
     'submit .create-new-7600a-form': function(event) {
@@ -160,7 +160,7 @@ if (Meteor.isClient) {
 
 
 if (Meteor.isServer) {
-  Meteor.publish("all_form7600as", function () {
-    return Form7600A.find();
+  Meteor.publish("Form7600A", function () {
+    return Form7600A.find({owner: this.userId});
   });
 }
