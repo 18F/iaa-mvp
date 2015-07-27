@@ -4,6 +4,5 @@ applications:
   memory: 128M
   instances: 1
   domain: 18f.gov
-env:
-  FORCE_HTTPS: true
-  MONGO_URL: mongodb://nowhere
+  buildpack: https://github.com/18F/cf-meteor-buildpack.git
+

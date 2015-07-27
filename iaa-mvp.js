@@ -60,8 +60,6 @@ if (Meteor.isClient) {
       github: ['repo', 'read:org']
     }
   });
-
-  // Meteor.subscribe("Form7600A");
   
   Template.index.events({
     'submit .create-new-7600a-form': function(event) {
