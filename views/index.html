@@ -12,20 +12,21 @@
   {{#each forms}}
     <article class="form-7600a">
       <dl>
-        <dt><b>Requesting agency:</b></dt>
-        <dd>{{d 'parties-requesting-agency-name'}}</dd>
-        <dt>Database ID</dt>
-        <dd>{{ _id }}</dd>
+        <dt class="requesting-agency">Requesting agency</dt>
+        <dd class="requesting-agency"><a href="edit.html">{{d 'parties-requesting-agency-name'}}</a></dd>
+        <dt class="id-number">ID number</dt>
+        <dd class="id-number">{{d 'gtc-number'}} - 0000 - {{d 'mod-number'}}</dd>
       </dl>
-      <a href="/7600a/{{_id}}/edit">View/edit</a>
-      <form class="delete-7600a-form">
-        <input type="hidden" name="id" value="{{_id}}">
-        <input type="submit" class="button" value="Delete">
-      </form>
-      <form class="generate-7600a-pdf">
-        <button>Generate PDF</button>
-      </form>
-      <hr />
+      <div class="form-7600a-actions">
+          <a class="edit" href="/7600a/{{_id}}/edit">Show/edit</a>
+          <form class="generate-7600a-pdf pdf">
+            <button>Generate PDF</button>
+          </form>
+          <form class="delete-7600a-form">
+            <input type="hidden" name="id" value="{{_id}}">
+            <button class="button button-delete">Delete</button>
+          </form>
+      </div>
     </article>
   {{/each}}
 </template>

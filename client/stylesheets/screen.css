@@ -1,11 +1,5 @@
 /* @override http://localhost:4000/iaa-forms/stylesheets/screen.css */
 
-/* @override http://localhost:4000/iaa-forms/stylesheets/screen.css */
-
-/* @override http://localhost:4000/iaa-forms/stylesheets/screen.css */
-
-/* @override http://localhost:4000/iaa-forms/stylesheets/screen.css */
-
 /* @group bootstrap */
 
 body{
@@ -19,8 +13,34 @@ a:hover{ color: #003c72; }
 a.a-back{
 	color: #555;
 	font-size: 14px;
+	margin-top: -1em;
+	margin-bottom: 2em;
 	display: block;
 }
+
+a.a-return{ 
+	color: #666; 
+	font-size: 14px;
+	display: block;
+	padding-top: 8px;
+}
+
+a.a-return::before{
+	content: "\2190";
+	color: #888;
+	margin-left: 4px;
+	margin-right: 10px;
+	display: inline-block;
+	background: #f3f3f3;
+	width: 24px;
+	height: 24px;
+	line-height: 24px;
+	border-radius: 100%;
+	text-align: center;
+	
+}
+a.a-return:hover{ color: #333; }
+a.a-return:hover::before{ color: #444; background: #eee;}
 
 p, li, dd, dt {
 	line-height: 1.5em;
@@ -39,16 +59,6 @@ div.wrap::after{
 	content: "";
 	display: table;
 	clear: both;
-}
-
-html h1.page-title {
-	font-family: Roboto;
-	font-weight: 600;
-	font-size: 32px;
-	line-height: 36px;
-	margin-top: 0;
-	margin-bottom: 0.4em;
-	color: inherit;
 }
 
 /* @end */
@@ -182,16 +192,14 @@ button,
 	vertical-align: middle;
 }
 
-button:hover,
-.button:hover {
+button:hover {
 	background: #00834d;
 	border-color: #00834d;
 	color: white;
 	box-shadow: 0 1px 0 #f3f3f3;
 }
 
-button:active,
-.button:active {
+button:active {
 	color: #7aa79d;
 	background: #006e52;
 	border-color: #006e52;
@@ -340,16 +348,13 @@ fieldset > legend,
 
 .field.field-radio label{
 	display: inline-block;
-	padding: 8px 12px 8px 12px;
+	padding: 0 12px 4px 12px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
 	min-height: 32px;
-	line-height: 1;
+	line-height: 32px;
 	vertical-align: middle;
 }
-
-.field.field-radio input,
-.field.field-checkbox input{ margin-right: 0.4em; }
 
 .field input:focus,
 .field select:focus,
@@ -623,16 +628,18 @@ main form footer p button{
 	margin-left: 0.2em;
  }
 
+
 /* @end */
 
 /* @group header.banner */
 
 header.banner{
 	background: #f3f3f3;
+	line-height: 64px;
 	height: 48px;
-	line-height: 48px;
 	font-size: 16px;
-	color: #888;
+	color: #555;
+	margin-bottom: 1em;
 }
 
 header.banner a{
@@ -654,17 +661,16 @@ header.banner .logo {
 
 @media screen and (min-width: 568.88px){
 	header.banner{
-		padding-top: 16px;
 		line-height: 96px;
-		height: 96px;
-		font-size: 24px;
-		color: #888;
-	}
+		height: 72px;
+		font-size: 24px;	}
 	
 	header.banner .logo{
-		margin-top: -16px;
-		width: 96px;
-		height: 96px;
+		width: 72px;
+		height: 72px;
+		padding-right: 8px;
+		font-size: 32px;
+		margin-right: 24px;
 	}
 
 }
@@ -1156,7 +1162,16 @@ div.field-funding-clauses span.label-text{
 
 /* @end */
 
+.page { padding-top: 1em; }
 
+main h1.page-title {
+	font-family: Roboto;
+	font-size: 32px;
+	line-height: 36px;
+	margin-top: 0;
+	margin-bottom: 0.4em;
+	color: inherit;
+}
 
 .page h1 {
 	font-family: Playfair Display, PT Serif, georgia;
@@ -1169,7 +1184,7 @@ div.field-funding-clauses span.label-text{
 }
 
 
-p.synopsis {
+main p.synopsis {
 	font-family: PT Serif, georgia;
 	font-size: 20px;
 	line-height: 1.3em;
@@ -1197,7 +1212,7 @@ main ol {
 	margin-left: 1.4em;
 }
 
-.h-card {
+.page .h-card {
 	padding-left: 72px;	
 	min-height: 72px;
 	position: relative;
@@ -1206,7 +1221,7 @@ main ol {
 	margin-top: 2em;
 }
 
-.h-card img{
+.page .h-card img{
 	width: 64px;
 	border-radius: 4px;
 	position: absolute;
@@ -1214,8 +1229,8 @@ main ol {
 	top: 0;	
 }
 
-.h-card .p-name{ font-weight: 700;}
-.h-card a{ color: #666; }
+.page .h-card .p-name{ font-weight: 700;}
+.page .h-card a{ color: #666; }
 
 ol.table-of-contents{
 	list-style-type: none;
@@ -1257,33 +1272,33 @@ body.welcome ol ol { list-style-type: lower-latin; margin-bottom: 1.2em;}
 
 @media screen and (min-width: 568.88px){
 
-	html h1.page-title{ margin-bottom: 0.4em; }
-	p.synopsis { line-height: 1.45em; }
-	
-	ol.table-of-contents{
-		margin-top: 2.4em;
-		padding: 0;
-		margin-left: 0;
-		margin-bottom: 1.5em;
-		border: 0;
-		border-top: 2px solid #f3f3f3;
-	}
-	
-	
-	ol.table-of-contents li::before{
-		position: absolute;
-		left: 0;
-		top: 0;
-		text-align: center;
-		width: 36px;
-		padding-top: 4px;
-		padding-bottom: 12px;
-		background: #f3f3f3;
-		color: #555;
-		font-family: Playfair Display, PT Serif;
-		font-size: 24px;
-		text-indent: -0.05em;
-	}
+main h1.page-title{ margin-bottom: 0.4em; }
+main p.synopsis { line-height: 1.45em; }
+
+ol.table-of-contents{
+	margin-top: 2.4em;
+	padding: 0;
+	margin-left: 0;
+	margin-bottom: 1.5em;
+	border: 0;
+	border-top: 2px solid #f3f3f3;
+}
+
+
+ol.table-of-contents li::before{
+	position: absolute;
+	left: 0;
+	top: 0;
+	text-align: center;
+	width: 36px;
+	padding-top: 4px;
+	padding-bottom: 12px;
+	background: #f3f3f3;
+	color: #555;
+	font-family: Playfair Display, PT Serif;
+	font-size: 24px;
+	text-indent: -0.05em;
+}
 
 ol.table-of-contents::after{
 	content: "";
@@ -1306,13 +1321,12 @@ ol.table-of-contents::after{
   }
 
 	main { font-size: 18px; }
-	html h1.page-title { 
+	main h1 { font-size: 28px; }
+	main h1.page-title { 
 		font-size: 36px; 
 		margin-bottom: 0.5em;
 	}
-	p.synopsis { 
-		font-size: 24px; 
-	}
+	main p.synopsis { font-size: 24px; }
 	
 	figure{
 		width: 100%;
@@ -1333,16 +1347,16 @@ ol.table-of-contents::after{
 	}
 
 
-.h-card {
+main .h-card {
 	padding-left: 112px;	
 	min-height: 112px;
 	position: relative;
-	line-height: 1.4em;
+	line-height: 1.33em;
 	font-size: 16px;
 	padding-top: 4px;
 }
 
-.h-card img{
+main .h-card img{
 	width: 96px;
 	border-radius: 4px;
 	position: absolute;
@@ -1357,7 +1371,73 @@ ol.table-of-contents::after{
 
 /* @end */
 
+
+
+/* @group header.banner */
+
+header.banner{
+	background: #f3f3f3;
+	line-height: 64px;
+	height: 48px;
+	font-size: 16px;
+	color: #888;
+}
+
+header.banner a{
+	color: inherit;
+	text-decoration: none;
+}
+
+header.banner .logo {
+	float: left;
+	width: 48px;
+	height: 48px;
+	background: #18F;
+	color: white;
+	text-align: right;
+	padding-right: 6px;
+	font-size: 16px;
+	margin-right: 12px;
+}
+
+@media screen and (min-width: 568.88px){
+	header.banner{
+		line-height: 112px;
+		height: 96px;
+		font-size: 24px;
+		color: #888;
+	}
+	
+	header.banner .logo{
+		width: 96px;
+		height: 96px;
+		padding-right: 8px;
+		font-size: 32px;
+		margin-right: 24px;
+	}
+
+}
+
+/* @end */
+
 /* @group article.form-7600a */
+
+.form-7600a-index main header{
+	margin-bottom: 1em;
+	
+}
+.form-7600a-index h1.page-title{
+	display: inline-block;
+}
+
+h1.page-title+.button-new{
+	margin-top: -12px;
+	margin-left: 1em;
+	font-size: 16px;
+	min-height: 0;
+	padding: 6px 12px;
+}
+
 
 article.form-7600a{
 	padding-bottom: 1em;
@@ -1392,7 +1472,7 @@ article.form-7600a .form-7600a-actions{
 }
 
 article.form-7600a a.edit,
-article.form-7600a .button{
+article.form-7600a form button{
 	border: none;
 	background: none;
 	display: inline;
@@ -1408,19 +1488,17 @@ article.form-7600a form.pdf{
 	margin-right: 0.4em;
 }
 
-article.form-7600a .button-delete{ color: #ef5331; }
-article.form-7600a .button-delete:hover{ color: #e20044; }
+article.form-7600a button.button-delete{ color: #ef5331; }
+article.form-7600a button.button-delete:hover{ color: #e20044; }
 
 article.form-7600a a,
-article.form-7600a .button{
+article.form-7600a button{
 	text-decoration: underline;
-	cursor: pointer;
 }
 
 article.form-7600a a:hover,
-article.form-7600a .button:hover{
+article.form-7600a button:hover{
 	color: #003c72;
-	background: none;
 }
 
 article.form-7600a dl dd,
@@ -1684,46 +1762,6 @@ table.table-funding-modification-summary-by-line thead{
 
 /* @end */
 
-/* @end */
 
-/* @group .page-welcome */
-
-.page-welcome{ padding-top: 2em; }
-
-/* @end */
-
-
-/* @group .page-iaa-preparation-survey */
-
-.page-iaa-preparation-survey{ 
-	padding-top: 1em;
-	margin-bottom: 32px; 
-}
-
-.page-iaa-preparation-survey h1.page-title{ 
-	padding-top: 24px;
-}
-
-/* @end */
-
-/* @group .page-form-7600a-index */
-
-.page-form-7600a-index{ padding-top: 2em; }
-.page-form-7600a-index header{ margin-bottom: 1em; }
-.page-form-7600a-index h1.page-title,
-.page-form-7600a-index header form{ display: inline-block; }
-.page-form-7600a-index header .button-new{
-	margin-top: -14px;
-	margin-left: 0.4em;
-	padding: 6px 12px;
-}
-
-
-/* @end */
-
-/* @group .page-primer */
-
-.page-primer{ padding-top: 1em; }
-.page-primer .page-title{ padding-top: 24px; }
 
 /* @end */
