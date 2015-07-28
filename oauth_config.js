@@ -7,7 +7,7 @@ if (Meteor.isServer) {
     return process.env.NODE_ENV === "production";
   };
     
-  if (inDevelopment) {
+  if (inDevelopment()) {
     ServiceConfiguration.configurations.upsert(
       { service: "github" },
       {
@@ -20,8 +20,7 @@ if (Meteor.isServer) {
     );
   }
 
-  if (inProduction) {
-    var vcap_services = JSON.parse(process.env.VCAP_SERVICES)
+  if (inProduction()) {
     ServiceConfiguration.configurations.upsert(
       { service: "github" },
       {

@@ -18,3 +18,4 @@ accounts-github
 service-configuration
 github
 bruz:github-api
+force-ssl
