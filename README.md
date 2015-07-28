@@ -34,8 +34,51 @@ To run this app locally, copy `settingsDev.json.sample` (rename to `settingsDev.
 
 See devops for Cloud Foundry help/setup if you don't have an account (18F staff only).
 
+### Initial setup
+
+Clone the repo, and run `cf push` to intialize your application. The deploy will likely fail, but that is ok.
+
+Create a GitHub application and set the following environment variables:
+
+```bash
+cf set-env iaa-mvp GITHUB_CLIENT_ID thegithubclientid
+cf set-env iaa-mvp GITHUB_SECRET thegithubsecret
 ```
-$ cf push
+
+Ensure you have access to MongoDB by running `cf marketplace`. If you don't, contact #devops in Slack. The output should look like:
+
+```bash
+service             plans                                    description   
+elasticsearch       free                                     Elasticsearch search service   
+elasticsearch-new   free                                     Elasticsearch 1.5 service for application development and testing   
+mongodb-new         free                                     MongoDB service for application development and testing   
+postgresql          default                                  PostgreSQL database   
+rds                 shared-psql, micro-psql*, medium-psql*   RDS Database Broker   
+```
+
+Here, we're using the `mongodb-new` service. To see the plans, run `cf marketplace -s mongodb-new`, which returns:
+
+```
+service plan   description   free or paid   
+free           medium        free   
+```
+
+There's only one plan, `free`, which is what we'll use here. Create the service:
+
+```bash
+cf create-service mongodb-new free iaa-mongo
+```
+
+Then bind the service:
+
+```bash
+cf bind-service iaa-mvp iaa-mongo
+```
+
+### Deploy
+
+```bash
+cf push
 ```
 
 
