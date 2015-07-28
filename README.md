@@ -75,6 +75,12 @@ Then bind the service:
 cf bind-service iaa-mvp iaa-mongo
 ```
 
+Finally, restage:
+
+```bash
+cf restage iaa-mvp
+```
+
 ### Deploy
 
 ```bash
