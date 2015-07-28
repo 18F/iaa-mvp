@@ -1,29 +1,41 @@
 // define collection
 Form7600A = new Mongo.Collection("form7600a");
 
-var createForm7600A = function(formValues) {
-  // merge in default values
-  var mergedFormValues = $.extend(Form7600ADefaults, formValues)
-  // hacky timestamps
-  var currentTime = new Date();
-  mergedFormValues['createdAt'] = currentTime;
-  mergedFormValues['updatedAt'] = currentTime;
-  return Form7600A.insert(mergedFormValues);
-};
-
-var updateForm7600A = function(formValues) {
-  // another hacky timestamp
-  var currentTime = new Date();
-  formValues['updatedAt'] = currentTime;
-  var id = formValues.formId;
-  // using findAndModify to ensure createdAt and other fields
-  // remain unchanged.
-  // see: https://github.com/fongandrew/meteor-find-and-modify
-  return Form7600A.findAndModify({
-    query: {_id: id},
-    update: {$set: formValues}
-  });
-};
+Meteor.methods({
+  findForm7600AById: function(id) {
+    return Form7600A.findOne(id);
+  },
+  createForm7600A: function(formValues) {
+    if (this.userId) {
+      // merge in default values
+      var mergedFormValues = _.extend(Form7600ADefaults, formValues)
+      // hacky timestamps
+      var currentTime = new Date();
+      mergedFormValues['owner'] = this.userId;
+      mergedFormValues['sharedWith'] = [this.userId];
+      mergedFormValues['createdAt'] = currentTime;
+      mergedFormValues['updatedAt'] = currentTime;
+      // returns the _id
+      return Form7600A.insert(mergedFormValues);
+    }
+  },
+  updateForm7600A: function(formValues) {
+    // another hacky timestamp
+    var currentTime = new Date();
+    formValues['updatedAt'] = currentTime;
+    var id = formValues.formId;
+    // using findAndModify to ensure createdAt and other fields
+    // remain unchanged.
+    // see: https://github.com/fongandrew/meteor-find-and-modify
+    return Form7600A.findAndModify({
+      query: {_id: id},
+      update: {$set: formValues}
+    });
+  },
+  deleteForm7600A: function(id) {
+    Form7600A.remove(id);
+  }
+});
 
 var submitForm7600A = function() {
   return $('.form-7600a').submit();
@@ -42,19 +54,28 @@ var isSelected = function(returnString) {
 };
 
 if (Meteor.isClient) {  
+  
+  Accounts.ui.config({
+    requestPermissions: {
+      github: ['repo', 'read:org']
+    }
+  });
+  
   Template.index.events({
     'submit .create-new-7600a-form': function(event) {
       event.preventDefault();
       var form = $('.create-new-7600a-form');
       var formValues = form.serializeJSON();
-      var id = createForm7600A(formValues);
-      form[0].reset();
-      window.open('/7600a/' + id + '/edit');
+      Meteor.call('createForm7600A', formValues, function(err, id) {
+        if (err) { console.log(err); }
+        form[0].reset();
+        window.open('/7600a/' + id + '/edit');
+      });
     },
     'submit .delete-7600a-form': function(event) {
       event.preventDefault();
       var id = event.target.id.value;
-      Form7600A.remove(id);
+      Meteor.call('deleteForm7600A', id);
     },
     'submit .generate-7600a-pdf': function(event) {
       event.preventDefault();
@@ -63,6 +84,11 @@ if (Meteor.isClient) {
   });
 
   Template.index.helpers({
+    forms: function() {
+      var controller = Iron.controller();
+      var foo = controller.state.get('forms');
+      return foo;
+    },
     form7600as: function() {
       return Form7600A.find();
     },
@@ -118,11 +144,11 @@ if (Meteor.isClient) {
   });
 
   var updateForm7600AEvent = function(event) {
-    Session.set('lastSaved', 'Saving...');
+    Session.set('lastSaved', 'Shaving...');
     event.preventDefault();
     var form = $('.form-7600a');
     var formValues = form.serializeJSON();
-    updateForm7600A(formValues);
+    Meteor.call('updateForm7600A', formValues);
   }
 
   Template.form_7600a.events({
@@ -130,5 +156,9 @@ if (Meteor.isClient) {
   });
 }
 
+
 if (Meteor.isServer) {
+  Meteor.publish("Form7600A", function () {
+    return Form7600A.find({owner: this.userId});
+  });
 }

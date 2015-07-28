@@ -3,21 +3,49 @@ ApplicationController = RouteController.extend({
 });
 
 Router.configure({
-  controller: 'ApplicationController'
+  controller: 'ApplicationController',
+  notFoundTemplate: 'not_found' 
 });
 
+Router.onBeforeAction(function () {
+  if (!Meteor.userId()) {
+    this.render('landing_page');
+  } else {
+    this.next();
+  }
+});
+
+Router.plugin('dataNotFound', {notFoundTemplate: 'not_found'});
+
 Form7600AController = ApplicationController.extend({
+  subscriptions: function() {
+    return Meteor.subscribe("Form7600A");
+  },
   action: function() {
     var id = this.params._id;
     var formValues = Form7600A.findOne(id);
     this.state.set('formValues', formValues);
-    this.state.set('lastSaved', '');
     this.render();
   }
 });
 
+IndexController = ApplicationController.extend({
+  subscriptions: function() {
+    return Meteor.subscribe("Form7600A");
+  }, 
+  action: function() {
+    var forms = Form7600A.find().fetch();
+    this.state.set('forms', forms);
+    this.render();
+  }
+});
+
+/* 
+  Two primary routes:
+*/
 Router.route('/', {
-  template: 'index'
+  template: 'index',
+  controller: 'IndexController'
 });
 
 Router.route('/7600a/:_id/edit', {
@@ -25,10 +53,9 @@ Router.route('/7600a/:_id/edit', {
   controller: 'Form7600AController'
 });
 
-Router.route('/7600a/list', {
-  template: '7600a_list'
-});
-
+/* 
+  'static' pages: 
+*/
 Router.route('/for-agencies', {
   template: 'for-agencies_index'
 });
