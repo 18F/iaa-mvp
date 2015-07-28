@@ -99,7 +99,8 @@ if (Meteor.isClient) {
   
   Template.form_7600a.onRendered(function() {
     // set autosave timer
-    var timer =  setInterval(submitForm7600A, 10000);
+    // Disabling per bug report from Eric Mill
+    // var timer =  setInterval(submitForm7600A, 10000);
     
     // overrides default implementation so shortcuts work
     // inside of input and other elements.
