@@ -79,7 +79,7 @@ if (Meteor.isClient) {
     },
     'submit .generate-7600a-pdf': function(event) {
       event.preventDefault();
-      alert("Coming soon!");
+      window.open('https://github.com/18F/iaa-forms/raw/master/lib/7600A.pdf');
     }
   });
 
