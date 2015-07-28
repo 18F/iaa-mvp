@@ -26,14 +26,16 @@ It's just Meteor.
 
 ### GitHub API
 
-This applicatioh uses the `acounts-ui` and `acounts-github` Meteor packages to handle logins (meaning you log in with your GitHub account). To run this app locally (or on a server), you'll need to create a new GitHub application, copy `oauth_config.js.sample` as `oauth_config.js` and add your application token and secret.
+This applicatioh uses the `accounts-ui` and `accounts-github` Meteor packages to handle logins (meaning you log in with your GitHub account). 
+
+To run this app locally, copy `settingsDev.json.sample` (rename to `settingsDev.json`) and add the appropriate API keys.
 
 ## Deployment
 
 See devops for Cloud Foundry help/setup if you don't have an account (18F staff only).
 
 ```
-$ cf push iaa-mvp -b https://github.com/csterwa/cf-meteor-buildpack.git
+$ cf push
 ```
 
 
