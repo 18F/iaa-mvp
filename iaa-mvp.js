@@ -166,6 +166,16 @@ if (Meteor.isClient) {
 
 
 if (Meteor.isServer) {
+  WebApp.connectHandlers.use(function(req, res, next) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    return next();
+  });
+
+  StreamServer.connectHandlers.use(function(req, res, next) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    return next();
+  });
+  
   Meteor.publish("Form7600A", function () {
     return Form7600A.find({owner: this.userId});
   });
