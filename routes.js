@@ -31,12 +31,12 @@ Form7600AController = ApplicationController.extend({
 IndexController = ApplicationController.extend({
   subscriptions: function() {
     return Meteor.subscribe("Form7600A");
-  }, 
-  action: function() {
-    var forms = Form7600A.find().fetch();
-    this.state.set('forms', forms);
-    this.render();
-  }
+  }//, 
+  // action: function() {
+  //   var forms = Form7600A.find().fetch();
+  //   this.state.set('forms', forms);
+  //   this.render();
+  // }
 });
 
 /* 
