@@ -23,8 +23,7 @@ Form7600AController = ApplicationController.extend({
   },
   action: function() {
     var id = this.params._id;
-    var formValues = Form7600A.findOne(id);
-    this.state.set('formValues', formValues);
+    this.state.set('formId', id);
     this.render();
   }
 });
