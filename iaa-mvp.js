@@ -44,7 +44,9 @@ var submitForm7600A = function() {
 var isSelected = function(returnString) {
   return function(v1, v2) {
     var controller = Iron.controller();
-    var formValues = controller.state.get('formValues');
+    //var formValues = controller.state.get('formValues');
+    var formId = controller.state.get('formId');
+    var formValues = Form7600A.findOne(formId);
     if (formValues[v1] === v2) {
       return returnString;
     } else {
@@ -84,11 +86,6 @@ if (Meteor.isClient) {
   });
 
   Template.index.helpers({
-    forms: function() {
-      var controller = Iron.controller();
-      var foo = controller.state.get('forms');
-      return foo;
-    },
     form7600as: function() {
       return Form7600A.find();
     },
@@ -124,7 +121,8 @@ if (Meteor.isClient) {
   Template.form_7600a.helpers({
     formValues: function() {
       var controller = Iron.controller();
-      return controller.state.get('formValues');
+      var formId = controller.state.get('formId');
+      return Form7600A.findOne(formId);
     },
     /*
     Allows us to access attribute names that have dashes in them.
@@ -145,11 +143,20 @@ if (Meteor.isClient) {
   });
 
   var updateForm7600AEvent = function(event) {
-    Session.set('lastSaved', 'Shaving...');
     event.preventDefault();
     var form = $('.form-7600a');
     var formValues = form.serializeJSON();
-    Meteor.call('updateForm7600A', formValues);
+    // another hacky timestamp
+    var currentTime = new Date();
+    formValues['updatedAt'] = currentTime;
+    var id = formValues.formId;
+    // using findAndModify to ensure createdAt and other fields
+    // remain unchanged.
+    // see: https://github.com/fongandrew/meteor-find-and-modify
+    var result = Form7600A.findAndModify({
+      query: {_id: id},
+      update: {$set: formValues}
+    });
   }
 
   Template.form_7600a.events({
@@ -162,4 +169,10 @@ if (Meteor.isServer) {
   Meteor.publish("Form7600A", function () {
     return Form7600A.find({owner: this.userId});
   });
+  
+  Form7600A.allow({
+    update: function(userId, doc, fields, modifier) {
+      return doc.owner === userId;
+    }
+  })
 }
