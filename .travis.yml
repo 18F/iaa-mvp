@@ -1,3 +1,5 @@
+sudo: true
+
 language: node_js
 
 before_script:
@@ -10,8 +12,8 @@ services:
   - mongodb
 
 deploy:
-  provider:
-    provider: cloudfoundry
+  provider: cloudfoundry
+  edge: true
   api: https://api.18f.gov
   username: deploy-agile-bpa
   password:
