@@ -1,11 +1,17 @@
 language: node_js
-
 script:
 - exit 0
-
 deploy:
-  provider: script
-  script: deploy.sh
-
+  edge: true
+  provider:
+    provider: cloudfoundry
+  api: https://api.18f.gov
+  username: agile-bpa-deploy
+  password:
+    secure: inF2hBp2J+lRtPtFgJrHgkXrcrY0nl1E2HMo3RMJmSqbF9nKNfea9fctMb63ApU/RsGyrs/jRr6WmWmADs/ACgiJKIZdV17m7DVcGHbEir5vv/eogHIuLhOH5qj0lyLSYeDVB5n+a1v7bJzMBT2KJpitQBxzHo2BvFkDgWyB074sOwA1jnORl96+1IRR6iyv/HScEwkyMV+oe7r3vDhyow8kMC2f+GlcWiv83gTJtqCcggU8/ObImWOc6WUb0LE8PffjM4G+szyTNGDqWkiebWx3DKM1XANe006dfCiIEhakX8sYxT0wpSBMh6qzbSv1j0YDW+qCwRKeI0aN8PeKNXxnAONfceOVeJB1gSbgR70CrotK8W38y7owIusAZNP78kybUJwPS/GOm5Ik5hx7OBd81zbj5h/HYiZG7nxyx95gaarMKe/5sIyv0qFZfivMIITmAK0Gbk4+7wxC9WtfpJxiTQ0iy0VrLn/dQj2DL30f4tkUNiOQdtiU34jxGJMALlU0i93BQFtEk9NYCyhpvjHLw7TZlmDOMV6rLUii/56HSI+vz9CZcddKYgBNyCFUDWho6CrqsHiyBGY2ZwyDy/krZJ4tPh/d7JdAGYd2ZN7AXSQpcqjpHJXM9cbDSbNU0r3lYaOLKHqokV0c6Hdy8o/it7N+JcpIQLjX287/wJc=
+  organization: agile-bpa
+  space: production
+  on:
+    repo: 18F/iaa-mvp
 after_success:
-  - echo "success!"
+- echo "success!"
