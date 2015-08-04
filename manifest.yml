@@ -7,3 +7,5 @@ applications:
   hostname: iaa-mvp
   buildpack: https://github.com/18F/cf-meteor-buildpack.git
 
+env:
+  DISABLE_WEBSOCKETS: 1
