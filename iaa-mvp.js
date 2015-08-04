@@ -57,7 +57,7 @@ var isSelected = function(returnString) {
 
 if (Meteor.isClient) {  
   
-  console.log('deployed from travis');
+  console.log('deployed from travis...');
   
   Accounts.ui.config({
     requestPermissions: {
