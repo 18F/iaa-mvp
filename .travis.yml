@@ -1,4 +1,5 @@
 language: node_js
+sudo: true
 script:
 - exit 0
 deploy:
@@ -13,5 +14,6 @@ deploy:
   space: production
   on:
     repo: 18F/iaa-mvp
+    branch: master
 after_success:
 - echo "success!"
