@@ -1,17 +1,10 @@
-language: node_js
-node_js:
-  - "0.12"
-before_install:
-  - "curl -L https://raw.githubusercontent.com/arunoda/travis-ci-laika/master/configure.sh | /bin/sh"
-services:
-  - mongodb
-env:
-  - LAIKA_OPTIONS="-t 5000"
-
 env:
   global:
   - secure: QTI80VqSfjCxdjGLkbDg6EhMO7G5WhvhEL2DSlDkcO8tPl2IawHlAcl0uX3B8PMbVjqMZ+RZo9mKbUaNUJEgOSQXpLChPYkd5RZ1rypYDKu882TYFGyhXk8ztcdYreq3Z5QvXE06K4PtXMqvWKABZSxqJzro/IcAOvlcHEyhk10It1xsLWqTJggQgJHONEtilK3LZGh3+Z7/JE90K2LUpDytdJ+K2AJUvXeZqY9ydabtSzGMfkbXc5og0ZTg4wdVbMCTd7auT69Hbg15Yjj5SIU+M7Ihd71urhQUcPfe16/Ty2UCs6GJ6/opzhUxvdJ6oOXzihcmE3BnprCcSdQw9qA9ph2UrxJ3SdNd3oPseK4tebnUVdrVy1xYlUJxyVhKy5ZKF9q4IxfZpYbQJImoC8Z43tX0uga2vWY+iyTEtdCevmZtkLZ+FKRSr95LWNmhZ0sLl3ILtNK5qjM2k9BE5TvJmbiF8u0QxsybBBx84q+Ek4tJYbJe6WpmVtGCLVXnnMgOKOTeE6fn6BfStyjcAYt42QaM3kRI6wvKoDhRXTd/9LfT3PHE0Ee36I+JGCm0/0yXGIP5TS+XDUiAon1Ss0ro9K1bxSdEB6LTR1M8qPGLiZ/pyIUjJN8bOzlXK/9xsIFnhLnL5fOj9GwFRJfBN6wYyb42C7tZADeC3Gb39kU=
   - secure: BFWuQcl3RzVD9CZt4esZTyGA3ADr6Tef6BGuJguHVvB64GqlnAdHZx+mFhOWJ+CPvVKQC5W9p85ftNUweYoFtxL4Zgvr/8sU9KK/LaYDshpqlZOyx9jB7s9ps2UzTNhUzO/Dmy8sM6nv1tSSAVqG5RT2so3i4iS5lRan3k8fs5WeifvqPGsqTsuO2GrsbC59agtI40posUDS1JygbtghMi6aeycmf8mm9wXMF4cGlss6auPTuDz0KpWXSqFFYy7ZOIx+VWq9+x1tb4Tv5t3zf0nJRG06re3xJuOSp2rgGTkHPGFEY1++yznss/ahM6u8KFokB029sxexhEm1ik0YBX0B6asALRrlJx/Lt0yEQhx6goLANn+vXvOmq6eZYQzk5QHAoDUxflWY863JdgOZ3h5QdmTOq+WjVm8dHbWPcccU7IzpdqkRE/1A7eqAdsRno/Oyk2VSfw2A0GYckvOtkz6S6jYEuPW8hmEqUd92/DcPkuHI4/ooZGCd+kQIByrMB6W3lN4fDaOJsQ+36es0v+XJau0mMI1bqLjUQ8k6TAKAh8g4dws2cY6RfB8/wk4uq5EbWr3httVxihQFrzVljhQo4gBUFmNSxr8o65TohLRRlJoRirVlqAWHzhhXLj0C10jivJv0yFbgzPsbzvuDPzvFZCv9lTlK9ZH6dwP0m1U=
+
+script:
+  - exit 0
 
 deploy:
   provider:
@@ -24,3 +17,5 @@ deploy:
   space: production
   on:
     repo: 18F/iaa-mvp
+    
+
