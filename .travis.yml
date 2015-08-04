@@ -2,14 +2,14 @@ sudo: true
 
 language: node_js
 
-before_script:
-  - curl https://install.meteor.com/ | sh
-
-script:
-  - exit 0
-  
-services:
-  - mongodb
+# before_script:
+#   - curl https://install.meteor.com/ | sh
+#
+# script:
+#   - exit 0
+#
+# services:
+#   - mongodb
 
 deploy:
   provider: cloudfoundry
