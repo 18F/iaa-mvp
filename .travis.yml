@@ -1,32 +1,5 @@
-sudo: true
-
+sudo: required
 language: node_js
 
-# before_script:
-#   - curl https://install.meteor.com/ | sh
-#
-# script:
-#   - exit 0
-#
-# services:
-#   - mongodb
-
-deploy:
-  provider: cloudfoundry
-  edge: true
-  api: https://api.18f.gov
-  username: deploy-agile-bpa
-  password:
-    secure: Br4uNMC2riykuqkO8z01WpIO0C1UgPzomMhwvMGbpBm2EnV1Jk6og+zFaWHZ1i0TdP8NIwOy82Ifcqdz22tp+TyvpDRoNCgW0V/sBpF/3gDJvfHGlIJSbAG0qGS+7EpdvIaGjrMcsBThjPaiVrt3XiCdT74r3D75CpWd7OpUja08xQET2ofxF/pC25ZTNv7j1ZSzriPzV+O6i0RE6qv/POV9y3bB/EKhWKVFekgwf+NOCFublWdGQM9v4Iradw/llPFALByEoAlzuw2xPdXKQT931BpyslKafEOr/iK196xdGuWRxhVw6ddIbTsq0rsNsm7iLOJ8s+Zz4nQcKwpJdp3USXstMZeis9dmZcmJKexL9nhmmjjT7tf1bHWbo6D56TPhPIBaNZxOMVj5T8QN0pwuRzS1koup/dnvpK2sNzEcdZrsqCQXR9XxD/G99F0T8rNXfl5cpeF9TNoUmw+3yrTxISno18MRXKRHvyuZxMGDVW0UPGuAsLAHkdmUuWBfjXWYTP0xUtqYUVUdeh8Cb7MUxcM43CfF528HVaJA7mXHr/Z8gvGkr9q6y/FBRUJStJNXuIFqgME7wpXXWymX1/Yp5FyWNqNp584O/EVChKROLvLPwLOS2xpXXepu0mPAqYQksz+aNkVtaHd6Pr3WsXUdGFf+k3aQRxwScCQ/r6s=
-  organization: agile-bpa
-  space: production
-  on:
-    repo: 18F/iaa-mvp
-    branch: master
-
-env:
-  global:
-  - secure: QTI80VqSfjCxdjGLkbDg6EhMO7G5WhvhEL2DSlDkcO8tPl2IawHlAcl0uX3B8PMbVjqMZ+RZo9mKbUaNUJEgOSQXpLChPYkd5RZ1rypYDKu882TYFGyhXk8ztcdYreq3Z5QvXE06K4PtXMqvWKABZSxqJzro/IcAOvlcHEyhk10It1xsLWqTJggQgJHONEtilK3LZGh3+Z7/JE90K2LUpDytdJ+K2AJUvXeZqY9ydabtSzGMfkbXc5og0ZTg4wdVbMCTd7auT69Hbg15Yjj5SIU+M7Ihd71urhQUcPfe16/Ty2UCs6GJ6/opzhUxvdJ6oOXzihcmE3BnprCcSdQw9qA9ph2UrxJ3SdNd3oPseK4tebnUVdrVy1xYlUJxyVhKy5ZKF9q4IxfZpYbQJImoC8Z43tX0uga2vWY+iyTEtdCevmZtkLZ+FKRSr95LWNmhZ0sLl3ILtNK5qjM2k9BE5TvJmbiF8u0QxsybBBx84q+Ek4tJYbJe6WpmVtGCLVXnnMgOKOTeE6fn6BfStyjcAYt42QaM3kRI6wvKoDhRXTd/9LfT3PHE0Ee36I+JGCm0/0yXGIP5TS+XDUiAon1Ss0ro9K1bxSdEB6LTR1M8qPGLiZ/pyIUjJN8bOzlXK/9xsIFnhLnL5fOj9GwFRJfBN6wYyb42C7tZADeC3Gb39kU=
-  - secure: BFWuQcl3RzVD9CZt4esZTyGA3ADr6Tef6BGuJguHVvB64GqlnAdHZx+mFhOWJ+CPvVKQC5W9p85ftNUweYoFtxL4Zgvr/8sU9KK/LaYDshpqlZOyx9jB7s9ps2UzTNhUzO/Dmy8sM6nv1tSSAVqG5RT2so3i4iS5lRan3k8fs5WeifvqPGsqTsuO2GrsbC59agtI40posUDS1JygbtghMi6aeycmf8mm9wXMF4cGlss6auPTuDz0KpWXSqFFYy7ZOIx+VWq9+x1tb4Tv5t3zf0nJRG06re3xJuOSp2rgGTkHPGFEY1++yznss/ahM6u8KFokB029sxexhEm1ik0YBX0B6asALRrlJx/Lt0yEQhx6goLANn+vXvOmq6eZYQzk5QHAoDUxflWY863JdgOZ3h5QdmTOq+WjVm8dHbWPcccU7IzpdqkRE/1A7eqAdsRno/Oyk2VSfw2A0GYckvOtkz6S6jYEuPW8hmEqUd92/DcPkuHI4/ooZGCd+kQIByrMB6W3lN4fDaOJsQ+36es0v+XJau0mMI1bqLjUQ8k6TAKAh8g4dws2cY6RfB8/wk4uq5EbWr3httVxihQFrzVljhQo4gBUFmNSxr8o65TohLRRlJoRirVlqAWHzhhXLj0C10jivJv0yFbgzPsbzvuDPzvFZCv9lTlK9ZH6dwP0m1U=
-    
-
+script:
+  - exit 0
