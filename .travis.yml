@@ -1,16 +1,11 @@
 sudo: required
 language: node_js
+
 script:
 - exit 0
 
 deploy:
-  edge: true
-  provider: cloudfoundry
-  api: https://api.18f.gov
-  username: deploy-agile-bpa
-  password:
-    secure: v2nN0NeXdBT6Bpc3wPDL1Uo7ShU1fX9L9oegtP97GoYf2A9vV7f262Sp/jiK/IqkBLOtzTAE6EqGiLPcAwhap6VopSb53Eq2ruoxoBSpkDImEHg0Dxm5AmlZ28m0CcoMbqzvzZEZqKU8zN3g7BGtiZP1L3aXKYsWTvD033Nmk/KEPE2hPV2qLgQ39NKBvTZsRpC2YI360LVv5DlRXg8Mj7WgBm1cPJmwq7l/CRbNL852YBwt6LjxuUrQHzTejC29OyNI5NFyFIOHpYneSVaNdj344olXP9MvCOWS6lm2ly+pCKjj8WuT7IcSgRQNoj9g2g1KPfw3k858Cb10hHJnBJUTXdhxb3oheAvJFbdHhthFteU0TAKFeF+PSmS7qOYpSsk1dJO/6v/fL5xphopUDAXtN5rw4cIZBWlQwd8QNa1I/L8Ze3zYux1ru7wT6VYtlK4ItgJudxryvLwdtP6HpUrcHVRh9YAWxEo1YdKYEpAEo28avM/XNGdhr9qa+MsLA3B8FMGzmI4v9y7UsesJBa57NosJ1r+QS6p9OwlVmqbn2JUwbhPZ0pUWUsoXzSl+ESnns+B7XQAQsI0yC0NCzakWtfRDiVSIo112m0ksW+j/0vfBS+kiXBbzwesbFISzS2AnEZOQC1nb230rguaLcbIkhsLCSpiGutwh35w8jdk=
-  organization: agile-bpa
-  space: production
+  provider: script
+  script: deploy.sh
   on:
-    repo: 18F/iaa-mvp
+    branch: master
