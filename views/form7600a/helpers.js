@@ -15,8 +15,12 @@ if (Meteor.isClient) {
   Template.form_7600a.helpers({
     formValues: function() {
       var controller = Iron.controller();
-      var formId = controller.state.get('formId');
-      return Form7600A.findOne(formId);
+      var formId = controller.state.get('formId');      
+      var form = Form7600A.findOne(formId);
+      
+      console.log(form);
+      
+      return form;
     },
     /*
     Allows us to access attribute names that have dashes in them.
