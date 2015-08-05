@@ -2,9 +2,6 @@
 Form7600A = new Mongo.Collection("form7600a");
 
 Meteor.methods({
-  findForm7600AById: function(id) {
-    return Form7600A.findOne(id);
-  },
   createForm7600A: function(formValues) {
     if (this.userId) {
       // merge in default values
@@ -18,19 +15,6 @@ Meteor.methods({
       // returns the _id
       return Form7600A.insert(mergedFormValues);
     }
-  },
-  updateForm7600A: function(formValues) {
-    // another hacky timestamp
-    var currentTime = new Date();
-    formValues['updatedAt'] = currentTime;
-    var id = formValues.formId;
-    // using findAndModify to ensure createdAt and other fields
-    // remain unchanged.
-    // see: https://github.com/fongandrew/meteor-find-and-modify
-    return Form7600A.findAndModify({
-      query: {_id: id},
-      update: {$set: formValues}
-    });
   },
   deleteForm7600A: function(id) {
     Form7600A.remove(id);
