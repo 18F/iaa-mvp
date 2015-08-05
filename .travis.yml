@@ -11,7 +11,8 @@ deploy:
   organization: agile-bpa
   space: production
   on:
-    repo: 18F/iaa-mvp
     branch: master
+before_deploy:
+- echo "deploy on the way"
 after_success:
 - echo "success!"
