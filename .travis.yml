@@ -1,6 +1,6 @@
 sudo: true
 script:
-- exit 0
+- echo 'Hi there. I am a placeholder for tests.'
 deploy:
   edge: true
   provider: cloudfoundry
