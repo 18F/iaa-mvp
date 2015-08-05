@@ -126,7 +126,7 @@ Timestamps = {
   }
 };
 
-Form7600AOwnership = {
+Ownership = {
   owner: {
     type: String,
     optional: false
@@ -142,6 +142,10 @@ _.each(Form7600AAttributes, function(attribute) {
   schemaHash[attribute] = { type: String };
 });
 
-_.extend(schemaHash, Timestamps, Form7600AOwnership);
+_.extend(
+  schemaHash, 
+  Timestamps, 
+  Ownership
+);
 
 Form7600ASchema = new SimpleSchema(schemaHash);
