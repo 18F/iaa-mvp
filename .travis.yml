@@ -3,8 +3,7 @@ script:
 - exit 0
 deploy:
   edge: true
-  provider:
-    provider: cloudfoundry
+  provider: cloudfoundry
   api: https://api.18f.gov
   username: agile-bpa-deploy
   password:
