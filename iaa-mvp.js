@@ -1,6 +1,3 @@
-// define collection
-Form7600A = new Mongo.Collection("form7600a");
-
 var submitForm7600A = function() {
   return $('.form-7600a').submit();
 };
@@ -32,16 +29,8 @@ if (Meteor.isClient) {
       event.preventDefault();
       var form = $('.create-new-7600a-form');
       var formValues = form.serializeJSON();
+      var id = CreateForm7600A(formValues);
       
-      // merge in default values
-      var mergedFormValues = _.extend(Form7600ADefaults, formValues)
-      // hacky timestamps
-      var currentTime = new Date();
-      mergedFormValues['owner'] = Meteor.userId();
-      mergedFormValues['sharedWith'] = [Meteor.userId()];
-      mergedFormValues['createdAt'] = currentTime;
-      mergedFormValues['updatedAt'] = currentTime;
-      var id = Form7600A.insert(mergedFormValues);   
       form[0].reset();
       window.open('/7600a/' + id + '/edit');
     },
@@ -49,7 +38,6 @@ if (Meteor.isClient) {
       event.preventDefault();
       var id = event.target.id.value;
       Form7600A.remove(id);
-      //Meteor.call('deleteForm7600A', id);
     },
     'submit .generate-7600a-pdf': function(event) {
       event.preventDefault();
@@ -114,25 +102,15 @@ if (Meteor.isClient) {
     isRadioChecked: isSelected('checked')
   });
 
-  var updateForm7600AEvent = function(event) {
-    event.preventDefault();
-    var form = $('.form-7600a');
-    var formValues = form.serializeJSON();
-    // another hacky timestamp
-    var currentTime = new Date();
-    formValues['updatedAt'] = currentTime;
-    var id = formValues.formId;
-    // using findAndModify to ensure createdAt and other fields
-    // remain unchanged.
-    // see: https://github.com/fongandrew/meteor-find-and-modify
-    var result = Form7600A.findAndModify({
-      query: {_id: id},
-      update: {$set: formValues}
-    });
-  }
-
   Template.form_7600a.events({
-    'submit form': updateForm7600AEvent
+    'submit form': function(event) {
+      event.preventDefault();
+      var form = $('.form-7600a');
+      var formValues = form.serializeJSON();
+      var id = formValues.formId;
+    
+      UpdateForm7600A(id, formValues);
+    }
   });
 }
 
