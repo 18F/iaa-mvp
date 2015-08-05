@@ -27,7 +27,7 @@ It's just Meteor.
 To run locally, have the GitHub API set up, and run:
 
 ```bash
-meteor run --settings /config/settingsDev.json
+meteor run --settings config/settingsDev.json
 ```
 
 ### GitHub API
