@@ -41,16 +41,9 @@ if (Meteor.isClient) {
       mergedFormValues['sharedWith'] = [Meteor.userId()];
       mergedFormValues['createdAt'] = currentTime;
       mergedFormValues['updatedAt'] = currentTime;
-      
-      var id = Form7600A.insert(mergedFormValues);
-      
+      var id = Form7600A.insert(mergedFormValues);   
       form[0].reset();
       window.open('/7600a/' + id + '/edit');
-      // Meteor.call('createForm7600A', formValues, function(err, id) {
-      //   if (err) { console.log(err); }
-      //   form[0].reset();
-      //   window.open('/7600a/' + id + '/edit');
-      // });
     },
     'submit .delete-7600a-form': function(event) {
       event.preventDefault();
