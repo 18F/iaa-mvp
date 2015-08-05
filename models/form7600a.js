@@ -57,3 +57,91 @@ if (Meteor.isServer) {
     }
   });
 }
+
+Form7600AAttributes = [  
+  "parties-requesting-agency-mailing-address-state",
+  "parties-requesting-agency-mailing-address-city",
+  "parties-servicing-agency-name",
+  "parties-servicing-agency-mailing-address-street-address",
+  "parties-servicing-agency-mailing-address-city",
+  "parties-servicing-agency-mailing-address-state",
+  "parties-servicing-agency-mailing-address-zip",
+  "parties-requesting-agency-name",
+  "iaa-number",
+  "formId",
+  "parties-requesting-agency-mailing-address-street-address",
+  "parties-requesting-agency-mailing-address-zip",
+  "servicing-agency-tracking-number",
+  "assisted-acquisition-agreement",
+  "gtc-action",
+  "gtc-action-amendment-explanation",
+  "gtc-action-cancellation-explanation",
+  "agreement-period-start-date",
+  "agreement-period-end-date",
+  "recurring-agreement",
+  "recurring-agreement-period",
+  "recurring-agreement-period-other-description",
+  "agreement-type",
+  "advance-payments",
+  "advance-payments-authority",
+  "estimated-cost",
+  "estimated-overhead",
+  "estimated-total",
+  "estimated-overhead-explanation",
+  "statutory-authority-requesting-agency",
+  "statutory-authority-requesting-agency-authority",
+  "statutory-authority-servicing-agency",
+  "statutory-authority-servicing-agency-authority",
+  "scope",
+  "roles-and-responsibilities",
+  "restrictions",
+  "assisted-acquisition-small-business-credit-clause",
+  "disputes",
+  "termination-days",
+  "termination-additional-terms",
+  "authorized-assistants-requesting-agency",
+  "authorized-assistants-servicing-agency",
+  "clauses-requesting-agency",
+  "clauses-servicing-agency",
+  "additional-agency-attachments",
+  "agency-official-requesting-agency-name",
+  "agency-official-requesting-agency-title",
+  "agency-official-requesting-agency-telephone-number",
+  "agency-official-requesting-agency-fax-number",
+  "agency-official-requesting-agency-email-address",
+  "agency-official-requesting-agency-approval-date",
+  "agency-official-servicing-agency-name",
+  "agency-official-servicing-agency-title",
+  "agency-official-servicing-agency-telephone-number",
+  "agency-official-servicing-agency-fax-number",
+  "agency-official-servicing-agency-email-address"
+];
+
+Timestamps = {
+  createdAt: {
+    type: Date
+  },
+  updatedAt: {
+    type: Date
+  }
+};
+
+Form7600AOwnership = {
+  owner: {
+    type: String,
+    optional: false
+  },
+  sharedWith: {
+    type: [Object]
+  }
+};
+
+var schemaHash = {};
+
+_.each(Form7600AAttributes, function(attribute) {
+  schemaHash[attribute] = { type: String };
+});
+
+_.extend(schemaHash, Timestamps, Form7600AOwnership);
+
+Form7600ASchema = new SimpleSchema(schemaHash);
