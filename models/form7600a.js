@@ -10,23 +10,37 @@ CreateForm7600A = function(formValues) {
   mergedFormValues['createdAt'] = currentTime;
   mergedFormValues['updatedAt'] = currentTime;
   
+  // ownership fields
   mergedFormValues['owner'] = Meteor.userId();
   mergedFormValues['sharedWith'] = [Meteor.userId()];
+
+  // versioning fields
+  // start with an empty revisions history
+  var clone = _.clone(mergedFormValues);
+  mergedFormValues['history'] = [];
 
   // returns the id
   return Form7600A.insert(mergedFormValues);
 };
 
 UpdateForm7600A = function(id, formValues) {
+  // get current revision history
+  var form = Form7600A.findOne(id);  
+  var historyGlob = form.history;
+  
+  // add the soon-to-be-outdated form to revision history
+  // omit the history so we don't infinitely nest it
+  historyGlob.push(_.omit(form, 'history'));
+  
+  // add the history to the formValues object
+  formValues['history'] = historyGlob;
+  
   // another hacky timestamp
   var currentTime = new Date();
   formValues['updatedAt'] = currentTime;
-  // using findAndModify to ensure createdAt and other fields
-  // remain unchanged.
-  // see: https://github.com/fongandrew/meteor-find-and-modify
-  return Form7600A.findAndModify({
-    query: {_id: id},
-    update: {$set: formValues}
+  
+  return Form7600A.update(id, {
+    "$set": formValues
   });
 };
 
@@ -136,16 +150,22 @@ Ownership = {
   }
 };
 
+Revisions = {
+  history: {
+    type: [Object]
+  }
+}
+
 var schemaHash = {};
 
 _.each(Form7600AAttributes, function(attribute) {
   schemaHash[attribute] = { type: String };
 });
 
-_.extend(
-  schemaHash, 
+_.extend(schemaHash, 
   Timestamps, 
-  Ownership
+  Ownership,
+  Revisions
 );
 
 Form7600ASchema = new SimpleSchema(schemaHash);
