@@ -27,14 +27,14 @@ It's just Meteor.
 To run locally, have the GitHub API set up, and run:
 
 ```bash
-meteor run --settings settingsDev.json
+meteor run --settings /config/settingsDev.json
 ```
 
 ### GitHub API
 
 This applicatioh uses the `accounts-ui` and `accounts-github` Meteor packages to handle logins (meaning you log in with your GitHub account). 
 
-To run this app locally, copy `settingsDev.json.sample` (rename to `settingsDev.json`) and add the appropriate API keys.
+To run this app locally, copy `config/settingsDev.json.sample` (rename to `settingsDev.json`) and add the appropriate API keys.
 
 ## Deployment
 
