@@ -39,3 +39,21 @@ Form7600ADefaults = {
   'parties-servicing-agency-mailing-address-state': 'DC',
   'parties-servicing-agency-mailing-address-zip': '20006'
 };
+
+if (Meteor.isServer) {
+  Meteor.publish("Form7600A", function () {
+    return Form7600A.find({owner: this.userId});
+  });
+  
+  Form7600A.allow({
+    update: function(userId, doc, fields, modifier) {
+      return doc.owner === userId;
+    },
+    insert: function (userId, doc) {
+      return (userId && doc.owner === userId);
+    },
+    remove: function (userId, doc) {
+      return doc.owner === userId;
+    }
+  });
+}
