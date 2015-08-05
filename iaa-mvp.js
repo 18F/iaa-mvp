@@ -1,26 +1,6 @@
 // define collection
 Form7600A = new Mongo.Collection("form7600a");
 
-Meteor.methods({
-  createForm7600A: function(formValues) {
-    if (this.userId) {
-      // merge in default values
-      var mergedFormValues = _.extend(Form7600ADefaults, formValues)
-      // hacky timestamps
-      var currentTime = new Date();
-      mergedFormValues['owner'] = this.userId;
-      mergedFormValues['sharedWith'] = [this.userId];
-      mergedFormValues['createdAt'] = currentTime;
-      mergedFormValues['updatedAt'] = currentTime;
-      // returns the _id
-      return Form7600A.insert(mergedFormValues);
-    }
-  },
-  deleteForm7600A: function(id) {
-    Form7600A.remove(id);
-  }
-});
-
 var submitForm7600A = function() {
   return $('.form-7600a').submit();
 };
@@ -54,16 +34,31 @@ if (Meteor.isClient) {
       event.preventDefault();
       var form = $('.create-new-7600a-form');
       var formValues = form.serializeJSON();
-      Meteor.call('createForm7600A', formValues, function(err, id) {
-        if (err) { console.log(err); }
-        form[0].reset();
-        window.open('/7600a/' + id + '/edit');
-      });
+      
+      // merge in default values
+      var mergedFormValues = _.extend(Form7600ADefaults, formValues)
+      // hacky timestamps
+      var currentTime = new Date();
+      mergedFormValues['owner'] = Meteor.userId();
+      mergedFormValues['sharedWith'] = [Meteor.userId()];
+      mergedFormValues['createdAt'] = currentTime;
+      mergedFormValues['updatedAt'] = currentTime;
+      
+      var id = Form7600A.insert(mergedFormValues);
+      
+      form[0].reset();
+      window.open('/7600a/' + id + '/edit');
+      // Meteor.call('createForm7600A', formValues, function(err, id) {
+      //   if (err) { console.log(err); }
+      //   form[0].reset();
+      //   window.open('/7600a/' + id + '/edit');
+      // });
     },
     'submit .delete-7600a-form': function(event) {
       event.preventDefault();
       var id = event.target.id.value;
-      Meteor.call('deleteForm7600A', id);
+      Form7600A.remove(id);
+      //Meteor.call('deleteForm7600A', id);
     },
     'submit .generate-7600a-pdf': function(event) {
       event.preventDefault();
@@ -159,6 +154,12 @@ if (Meteor.isServer) {
   Form7600A.allow({
     update: function(userId, doc, fields, modifier) {
       return doc.owner === userId;
+    },
+    insert: function (userId, doc) {
+      return (userId && doc.owner === userId);
+    },
+    remove: function (userId, doc) {
+      return doc.owner === userId;
     }
-  })
+  });
 }
