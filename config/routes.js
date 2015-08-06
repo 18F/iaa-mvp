@@ -34,9 +34,30 @@ IndexController = ApplicationController.extend({
   }
 });
 
-/* 
-  Two primary routes:
-*/
+Form7600ARevisionsListController = ApplicationController.extend({
+  subscriptions: function() {
+    return Meteor.subscribe("Form7600A");
+  },
+  action: function() {
+    var id = this.params._id;
+    this.state.set('formId', id);
+    this.render();
+  }
+});
+
+Form7600ARevisionController = ApplicationController.extend({
+  subscriptions: function() {
+    return Meteor.subscribe("Form7600A");
+  },
+  action: function() {
+    var id = this.params._id;
+    var revisionId = this.params._revision_id;
+    this.state.set('formId', id);
+    this.state.set('revisionId', revisionId);
+    this.render();
+  }
+});
+
 Router.route('/', {
   template: 'index',
   controller: 'IndexController'
@@ -45,6 +66,16 @@ Router.route('/', {
 Router.route('/7600a/:_id/edit', {
   template: 'form_7600a',
   controller: 'Form7600AController'
+});
+
+Router.route('/7600a/:_id/revisions', {
+  template: 'form_7600a_revisions_list',
+  controller: 'Form7600ARevisionsListController'
+});
+
+Router.route('/7600a/:_id/revisions/:_revision_id', {
+  template: 'form_7600a_revision',
+  controller: 'Form7600ARevisionController'
 });
 
 /* 

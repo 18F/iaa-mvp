@@ -18,8 +18,6 @@ if (Meteor.isClient) {
       var formId = controller.state.get('formId');      
       var form = Form7600A.findOne(formId);
       
-      console.log(form);
-      
       return form;
     },
     /*
