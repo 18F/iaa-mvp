@@ -5,9 +5,17 @@ if (Meteor.isClient) {
       var formId = controller.state.get('formId');
       var revisionId = controller.state.get('revisionId');
       var form = Form7600A.findOne(formId);
-      var revision = _.select(form.history, {md5: revisionId});
+      var revision = _.find(form.history, function(rev) {
+        return rev['md5'] === revisionId;
+      });
       
-      return revision;
+      var str = '';
+      
+      _.each(_.keys(revision), function(key) {
+        str = str + "<p>" + key + ": " + revision[key] +"</p>";
+      });
+      
+      return str;
     },
     formId: function() {
       var controller = Iron.controller();
