@@ -18,6 +18,11 @@ CreateForm7600A = function(formValues) {
   // start with an empty revisions history
   var clone = _.clone(mergedFormValues);
   mergedFormValues['history'] = [];
+  
+  // add md5 hash
+  // useful for tracking revisions
+  var md5 = CryptoJS.MD5(JSON.stringify(mergedFormValues));
+  mergedFormValues['md5'] = "_"+md5;
 
   // returns the id
   return Form7600A.insert(mergedFormValues);
@@ -38,6 +43,10 @@ UpdateForm7600A = function(id, formValues) {
   // another hacky timestamp
   var currentTime = new Date();
   formValues['updatedAt'] = currentTime;
+  
+  // recalculate md5 hash
+  var md5 = CryptoJS.MD5(JSON.stringify(formValues));
+  formValues['md5'] = "_"+md5;
   
   return Form7600A.update(id, {
     "$set": formValues
@@ -156,6 +165,12 @@ Revisions = {
   }
 }
 
+Meta = {
+  md5: {
+    type: String
+  }
+}
+
 var schemaHash = {};
 
 _.each(Form7600AAttributes, function(attribute) {
@@ -165,7 +180,8 @@ _.each(Form7600AAttributes, function(attribute) {
 _.extend(schemaHash, 
   Timestamps, 
   Ownership,
-  Revisions
+  Revisions,
+  Meta
 );
 
 Form7600ASchema = new SimpleSchema(schemaHash);

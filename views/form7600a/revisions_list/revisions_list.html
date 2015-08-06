@@ -1,0 +1,7 @@
+<template name='form_7600a_revisions_list'>
+  <ul>
+    {{#each revisions}}
+    <li><a href="/7600a/{{ formId }}/revisions/{{ md5 }}">{{ md5 }}</a></li>
+    {{/each}}
+  </ul>
+</template>
