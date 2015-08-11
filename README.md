@@ -2,7 +2,7 @@
 
 A minimum viable product for filling out IAAs.
 
-Very much in alpha.
+Very much in alpha. To track work in progress, visit our public Trello board: https://trello.com/b/1DeHImIq/iaa-forms
 
 ## Milestones
 
