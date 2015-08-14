@@ -34,9 +34,6 @@ IndexController = ApplicationController.extend({
   }
 });
 
-/* 
-  Two primary routes:
-*/
 Router.route('/', {
   template: 'index',
   controller: 'IndexController'
@@ -44,6 +41,11 @@ Router.route('/', {
 
 Router.route('/7600a/:_id/edit', {
   template: 'form_7600a',
+  controller: 'Form7600AController'
+});
+
+Router.route('/7600a/:_id/pdf', {
+  template: 'form_7600a_pdf',
   controller: 'Form7600AController'
 });
 
@@ -61,3 +63,20 @@ Router.route('/for-agencies/primer', {
 Router.route('/for-agencies/survey', {
   template: 'for-agencies_survey'
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

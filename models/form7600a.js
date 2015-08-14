@@ -73,62 +73,185 @@ if (Meteor.isServer) {
 }
 
 Form7600AAttributes = [  
-  "parties-requesting-agency-mailing-address-state",
-  "parties-requesting-agency-mailing-address-city",
-  "parties-servicing-agency-name",
-  "parties-servicing-agency-mailing-address-street-address",
-  "parties-servicing-agency-mailing-address-city",
-  "parties-servicing-agency-mailing-address-state",
-  "parties-servicing-agency-mailing-address-zip",
-  "parties-requesting-agency-name",
-  "iaa-number",
-  "formId",
-  "parties-requesting-agency-mailing-address-street-address",
-  "parties-requesting-agency-mailing-address-zip",
-  "servicing-agency-tracking-number",
-  "assisted-acquisition-agreement",
-  "gtc-action",
-  "gtc-action-amendment-explanation",
-  "gtc-action-cancellation-explanation",
-  "agreement-period-start-date",
-  "agreement-period-end-date",
-  "recurring-agreement",
-  "recurring-agreement-period",
-  "recurring-agreement-period-other-description",
-  "agreement-type",
-  "advance-payments",
-  "advance-payments-authority",
-  "estimated-cost",
-  "estimated-overhead",
-  "estimated-total",
-  "estimated-overhead-explanation",
-  "statutory-authority-requesting-agency",
-  "statutory-authority-requesting-agency-authority",
-  "statutory-authority-servicing-agency",
-  "statutory-authority-servicing-agency-authority",
-  "scope",
-  "roles-and-responsibilities",
-  "restrictions",
-  "assisted-acquisition-small-business-credit-clause",
-  "disputes",
-  "termination-days",
-  "termination-additional-terms",
-  "authorized-assistants-requesting-agency",
-  "authorized-assistants-servicing-agency",
-  "clauses-requesting-agency",
-  "clauses-servicing-agency",
-  "additional-agency-attachments",
-  "agency-official-requesting-agency-name",
-  "agency-official-requesting-agency-title",
-  "agency-official-requesting-agency-telephone-number",
-  "agency-official-requesting-agency-fax-number",
-  "agency-official-requesting-agency-email-address",
-  "agency-official-requesting-agency-approval-date",
-  "agency-official-servicing-agency-name",
-  "agency-official-servicing-agency-title",
-  "agency-official-servicing-agency-telephone-number",
-  "agency-official-servicing-agency-fax-number",
-  "agency-official-servicing-agency-email-address"
+  {
+    "ui": "parties-requesting-agency-mailing-address-state",
+    "pdf": "requesting_agency_address"
+  },
+  {
+    "ui": "parties-requesting-agency-mailing-address-city",
+    "pdf": "requesting_agency_address"
+  },
+  {
+    "ui": "parties-servicing-agency-name",
+    "pdf": "servicing_agency_name"
+  },
+  {
+    "ui": "parties-servicing-agency-mailing-address-street-address",
+    "pdf": "servicing_agency_address"
+  },
+  {
+    "ui": "parties-servicing-agency-mailing-address-city",
+    "pdf": "servicing_agency_address"
+  },
+  {
+    "ui": "parties-servicing-agency-mailing-address-state",
+    "pdf": "servicing_agency_address"
+  },
+  {
+    "ui": "parties-servicing-agency-mailing-address-zip",
+    "pdf": "servicing_agency_address"
+  },
+  {
+    "ui": "parties-requesting-agency-name",
+    "pdf": "requesting_agency_name_of_products_services"
+  },
+  {
+    "ui": "iaa-number"
+  },
+  {
+    "ui": "formId"
+  },
+  {
+    "ui": "parties-requesting-agency-mailing-address-street-address",
+    "pdf": "requesting_agency_address"
+  },
+  {
+    "ui": "parties-requesting-agency-mailing-address-zip",
+    "pdf": "requesting_agency_address"
+  },
+  {
+    "ui": "servicing-agency-tracking-number",
+    "pdf": "servicing_agency_tracking_number"
+  },
+  {
+    "ui": "assisted-acquisition-agreement"
+  },
+  {
+    "ui": "gtc-action"
+  },
+  {
+    "ui": "gtc-action-amendment-explanation"
+  },
+  {
+    "ui": "gtc-action-cancellation-explanation"
+  },
+  {
+    "ui": "agreement-period-start-date"
+  },
+  {
+    "ui": "agreement-period-end-date"
+  },
+  {
+    "ui": "recurring-agreement"
+  },
+  {
+    "ui": "recurring-agreement-period"
+  },
+  {
+    "ui": "recurring-agreement-period-other-description"
+  },
+  {
+    "ui": "agreement-type"
+  },
+  {
+    "ui": "advance-payments"
+  },
+  {
+    "ui": "advance-payments-authority"
+  },
+  {
+    "ui": "estimated-cost"
+  },
+  {
+    "ui": "estimated-overhead"
+  },
+  {
+    "ui": "estimated-total"
+  },
+  {
+    "ui": "estimated-overhead-explanation"
+  },
+  {
+    "ui": "statutory-authority-requesting-agency"
+  },
+  {
+    "ui": "statutory-authority-requesting-agency-authority"
+  },
+  {
+    "ui": "statutory-authority-servicing-agency"
+  },
+  {
+    "ui": "statutory-authority-servicing-agency-authority"
+  },
+  {
+    "ui": "scope"
+  },
+  {
+    "ui": "roles-and-responsibilities"
+  },
+  {
+    "ui": "restrictions"
+  },
+  {
+    "ui": "assisted-acquisition-small-business-credit-clause"
+  },
+  {
+    "ui": "disputes"
+  },
+  {
+    "ui": "termination-days"
+  },
+  {
+    "ui": "termination-additional-terms"
+  },
+  {
+    "ui": "authorized-assistants-requesting-agency"
+  },
+  {
+    "ui": "authorized-assistants-servicing-agency"
+  },
+  {
+    "ui": "clauses-requesting-agency"
+  },
+  {
+    "ui": "clauses-servicing-agency"
+  },
+  {
+    "ui": "additional-agency-attachments"
+  },
+  {
+    "ui": "agency-official-requesting-agency-name"
+  },
+  {
+    "ui": "agency-official-requesting-agency-title"
+  },
+  {
+    "ui": "agency-official-requesting-agency-telephone-number"
+  },
+  {
+    "ui": "agency-official-requesting-agency-fax-number"
+  },
+  {
+    "ui": "agency-official-requesting-agency-email-address"
+  },
+  {
+    "ui": "agency-official-requesting-agency-approval-date"
+  },
+  {
+    "ui": "agency-official-servicing-agency-name"
+  },
+  {
+    "ui": "agency-official-servicing-agency-title"
+  },
+  {
+    "ui": "agency-official-servicing-agency-telephone-number"
+  },
+  {
+    "ui": "agency-official-servicing-agency-fax-number"
+  },
+  {
+    "ui": "agency-official-servicing-agency-email-address"
+  }
 ];
 
 Timestamps = {
@@ -158,7 +281,7 @@ Revisions = {
 
 var schemaHash = {};
 
-_.each(Form7600AAttributes, function(attribute) {
+_.each(_.pluck(Form7600AAttributes, "ui"), function(attribute) {
   schemaHash[attribute] = { type: String };
 });
 
@@ -169,3 +292,8 @@ _.extend(schemaHash,
 );
 
 Form7600ASchema = new SimpleSchema(schemaHash);
+
+TransformForm7600AToPDFAttributes = function(form) {
+  
+};
+

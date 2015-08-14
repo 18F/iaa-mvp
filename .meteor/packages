@@ -20,3 +20,7 @@ github
 bruz:github-api
 force-ssl
 aldeed:collection2
+http
+cfs:standard-packages
+cfs:filesystem
+pascoual:pdfjs
