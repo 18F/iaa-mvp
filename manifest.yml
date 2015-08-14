@@ -5,7 +5,8 @@ applications:
   instances: 1
   domain: 18f.gov
   hostname: iaa-mvp
-  buildpack: https://github.com/18F/cf-meteor-buildpack.git
+  buildpack: https://github.com/ddollar/heroku-buildpack-multi.git
+
 
 env:
   DISABLE_WEBSOCKETS: 1
