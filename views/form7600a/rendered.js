@@ -1,5 +1,14 @@
 if (Meteor.isClient) {
   Template.form_7600a.onRendered(function() {
+    
+    Meteor.call('fillForm', {foo: "bar"}, function(error, result) {
+      if (!error) {
+        // console.log(result);
+      } else {
+        console.warn(error);
+      }
+    });
+    
     // set autosave timer
     // Disabling per bug report from Eric Mill
     // var timer =  setInterval(submitForm7600A, 10000);
