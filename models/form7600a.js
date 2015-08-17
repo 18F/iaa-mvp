@@ -71,23 +71,9 @@ if (Meteor.isServer) {
     }
   });
 }
-
-var requestingAgencyMailingAddress = function(form) {
-  var str = '';
-  str = str + form["parties-requesting-agency-mailing-address-state"];
-  
-  return str;
-};
-
-var template = {
-  null: function(arg) {
-    return arg;
-  },
-  requesting_agency_address: function() {
-    
-  }
-}
-
+/* 
+ merges without overwriting if key already exists
+*/
 var merge = function(obj, key, value) {
   var copy = lodash.cloneDeep(obj);
   if (_.has(copy, key)) {
