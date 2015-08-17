@@ -214,46 +214,46 @@ Form7600AAttributes = [
     "authorized-assistants-servicing-agency": null
   },
   {
-    "clauses-requesting-agency": null
+    "clauses-requesting-agency": "requesting_agency_clauses"
   },
   {
-    "clauses-servicing-agency": null
+    "clauses-servicing-agency": "servicing_agency_clauses"
   },
   {
-    "additional-agency-attachments": null
+    "additional-agency-attachments": "additional_attachments"
   },
   {
-    "agency-official-requesting-agency-name": null
+    "agency-official-requesting-agency-name": "requesting_agency_name"
   },
   {
-    "agency-official-requesting-agency-title": null
+    "agency-official-requesting-agency-title": "requesting_agency_title"
   },
   {
-    "agency-official-requesting-agency-telephone-number": null
+    "agency-official-requesting-agency-telephone-number": "requesting_agency_telephone_number"
   },
   {
-    "agency-official-requesting-agency-fax-number": null
+    "agency-official-requesting-agency-fax-number": "requesting_agency_fax_number"
   },
   {
-    "agency-official-requesting-agency-email-address": null
+    "agency-official-requesting-agency-email-address": "requesting_agency_email_address"
   },
   {
-    "agency-official-requesting-agency-approval-date": null
+    "agency-official-requesting-agency-approval-date": "requesting_agency_approval_date"
   },
   {
-    "agency-official-servicing-agency-name": null
+    "agency-official-servicing-agency-name": "servicing_agency_name"
   },
   {
-    "agency-official-servicing-agency-title": null
+    "agency-official-servicing-agency-title": "servicing_agency_title"
   },
   {
-    "agency-official-servicing-agency-telephone-number": null
+    "agency-official-servicing-agency-telephone-number": "servicing_agency_telephone_number"
   },
   {
-    "agency-official-servicing-agency-fax-number": null
+    "agency-official-servicing-agency-fax-number": "servicing_agency_fax_number"
   },
   {
-    "agency-official-servicing-agency-email-address": null
+    "agency-official-servicing-agency-email-address": "servicing_agency_email_address"
   }
 ];
 
