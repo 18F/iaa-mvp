@@ -9,7 +9,6 @@ iron:router
 jquery
 underscore
 pcel:serialize
-matb33:collection-hooks
 sewdn:collection-behaviours
 mousetrap:mousetrap
 fongandrew:find-and-modify
@@ -17,11 +16,8 @@ accounts-ui
 accounts-github
 service-configuration
 github
-bruz:github-api
 force-ssl
 aldeed:collection2
 http
-cfs:standard-packages
-cfs:filesystem
-pascoual:pdfjs
 pfafman:filesaver
+aldeed:http

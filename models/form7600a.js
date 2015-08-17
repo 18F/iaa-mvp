@@ -294,6 +294,33 @@ _.extend(schemaHash,
 Form7600ASchema = new SimpleSchema(schemaHash);
 
 TransformForm7600AToPDFAttributes = function(form) {
-  
+  return {
+    servicing_agency_tracking_number: 'staticData'
+  };
 };
+
+if (Meteor.isClient) {
+  DownloadForm7600A = function(form) {
+    
+    var savePdf = function(pdf) {
+      var blob = new Blob([pdf], {type: "application/pdf"});
+      saveAs(blob, "7600a_filled.pdf");
+    };
+    
+    var url = 'https://iaa-pdf-api.18f.gov/iaa/7600a';
+    var options = {
+      data: TransformForm7600AToPDFAttributes(form),
+      responseType: 'blob'
+    };
+    var callback = function(error, result) {
+      if (!error) {
+        savePdf(result.content);
+      } else {
+        alert('There was an error downloading the PDF: ' + error);
+      }
+    };
+
+    HTTP.post(url, options, callback);
+  };
+}
 
