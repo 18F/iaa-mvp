@@ -51,7 +51,10 @@ Form7600ADefaults = {
   'parties-servicing-agency-mailing-address-street-address': '1800 F. Street NW',
   'parties-servicing-agency-mailing-address-city': 'Washington',
   'parties-servicing-agency-mailing-address-state': 'DC',
-  'parties-servicing-agency-mailing-address-zip': '20006'
+  'parties-servicing-agency-mailing-address-zip': '20006',
+  'termination-additional-terms': "If the Servicing Agency incurs costs due to the Requesting Agency's failure to give the requisite notice of its intent to terminate the IAA, the Requesting Agency shall pay any actual costs incurred by the Servicing Agency as a result of the delay in notification, provided such costs are directly attributable to the failure to give notice.",
+  'disputes': "Disputes related to this IAA shall be resolved in accordance with instructions provided in the Treasury Financial Manual (TFM) Volume I, Part 2, Chapter 4700, Appendix 10; Intragovernmental Business Rules.",
+  'assisted-acquisition-small-business-credit-clause': "(The Servicing Agency will allocate the socio-economic credit to the Requesting Agency for any contract it has exhausted on behalf of the Requesting Agency.)"
 };
 
 if (Meteor.isServer) {
@@ -112,10 +115,7 @@ Form7600AAttributes = [
     "parties-requesting-agency-name": "requesting_agency_name_of_products_services"
   },
   {
-    "iaa-number": null
-  },
-  {
-    "formId": null
+    "iaa-number": "gt_and_c_number"
   },
   {
     "parties-requesting-agency-mailing-address-street-address": "requesting_agency_address"
@@ -196,18 +196,24 @@ Form7600AAttributes = [
     "restrictions": "restrictions"
   },
   {
-    // probably delete (boilerplate)
+    // boilerplate set in defaults object
+    // this won't actually get inserted into the pdf, 
+    // since the pdf already contains the default language
     "assisted-acquisition-small-business-credit-clause": null
   },
   {
-    // probably delete (boilerplate)
+    // boilerplate set in defaults object
+    // this won't actually get inserted into the pdf, 
+    // since the pdf already contains the default language
     "disputes": null
   },
   {
     "termination-days": "number_of_days_this_iaa_may_be_terminated"
   },
   {
-    // probably delete (boilerplate)
+    // boilerplate set in defaults object
+    // this won't actually get inserted into the pdf, 
+    // since the pdf already contains the default language
     "termination-additional-terms": null
   },
   {
