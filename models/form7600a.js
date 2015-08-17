@@ -163,55 +163,58 @@ Form7600AAttributes = [
     "advance-payments-authority": null
   },
   {
-    "estimated-cost": null
+    "estimated-cost": "direct_cost"
   },
   {
-    "estimated-overhead": null
+    "estimated-overhead": "overhead_fees_and_charges"
   },
   {
-    "estimated-total": null
+    "estimated-total": "total_estimated_amount"
   },
   {
-    "estimated-overhead-explanation": null
+    "estimated-overhead-explanation": "general_explanation_overhead_fees_and_charges"
   },
   {
-    "statutory-authority-requesting-agency": null
+    "statutory-authority-requesting-agency": "radio7"
   },
   {
-    "statutory-authority-requesting-agency-authority": null
+    "statutory-authority-requesting-agency-authority": "statory_authority"
   },
   {
-    "statutory-authority-servicing-agency": null
+    "statutory-authority-servicing-agency": "radio8"
   },
   {
-    "statutory-authority-servicing-agency-authority": null
+    "statutory-authority-servicing-agency-authority": "statutory_authority_1"
   },
   {
-    "scope": null
+    "scope": "requesting_agency_scope"
   },
   {
-    "roles-and-responsibilities": null
+    "roles-and-responsibilities": "requesting_agency_roles_and_responsibilities"
   },
   {
-    "restrictions": null
+    "restrictions": "restrictions"
   },
   {
+    // probably delete (boilerplate)
     "assisted-acquisition-small-business-credit-clause": null
   },
   {
+    // probably delete (boilerplate)
     "disputes": null
   },
   {
-    "termination-days": null
+    "termination-days": "number_of_days_this_iaa_may_be_terminated"
   },
   {
+    // probably delete (boilerplate)
     "termination-additional-terms": null
   },
   {
-    "authorized-assistants-requesting-agency": null
+    "authorized-assistants-requesting-agency": "requesting_agency_organizations_authorized"
   },
   {
-    "authorized-assistants-servicing-agency": null
+    "authorized-assistants-servicing-agency": "servicing_agency_organizations"
   },
   {
     "clauses-requesting-agency": "requesting_agency_clauses"
