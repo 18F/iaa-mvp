@@ -24,3 +24,4 @@ http
 cfs:standard-packages
 cfs:filesystem
 pascoual:pdfjs
+pfafman:filesaver
