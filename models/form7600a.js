@@ -127,40 +127,40 @@ Form7600AAttributes = [
     "servicing-agency-tracking-number": "servicing_agency_tracking_number"
   },
   {
-    "assisted-acquisition-agreement": null
+    "assisted-acquisition-agreement": "radio1"
   },
   {
-    "gtc-action": null
+    "gtc-action": "radio2"
   },
   {
-    "gtc-action-amendment-explanation": null
+    "gtc-action-amendment-explanation": "amendment"
   },
   {
-    "gtc-action-cancellation-explanation": null
+    "gtc-action-cancellation-explanation": "cancellation_explanation"
   },
   {
-    "agreement-period-start-date": null
+    "agreement-period-start-date": "start_date"
   },
   {
-    "agreement-period-end-date": null
+    "agreement-period-end-date": "end_date"
   },
   {
-    "recurring-agreement": null
+    "recurring-agreement": "radio3"
   },
   {
-    "recurring-agreement-period": null
+    "recurring-agreement-period": "radio4"
   },
   {
-    "recurring-agreement-period-other-description": null
+    "recurring-agreement-period-other-description": "other_renewal_period"
   },
   {
-    "agreement-type": null
+    "agreement-type": "radio5"
   },
   {
-    "advance-payments": null
+    "advance-payments": "radio6"
   },
   {
-    "advance-payments-authority": null
+    "advance-payments-authority": "requesting_agency_statutory_authority_title_and_citation"
   },
   {
     "estimated-cost": "direct_cost"
