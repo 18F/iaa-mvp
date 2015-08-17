@@ -22,9 +22,13 @@ Form7600AController = ApplicationController.extend({
     return Meteor.subscribe("Form7600A");
   },
   action: function() {
-    var id = this.params._id;
-    this.state.set('formId', id);
-    this.render();
+    if (this.ready()) {    
+      var id = this.params._id;
+      this.state.set('formId', id);
+      this.render();
+    } else {
+      this.render('Loading');
+    }
   }
 });
 
