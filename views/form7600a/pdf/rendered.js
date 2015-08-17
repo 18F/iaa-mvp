@@ -6,6 +6,6 @@ if (Meteor.isClient) {
     var form = Form7600A.findOne({_id: formId});
     
     DownloadForm7600A(form);
-    //Session.set('downloadPrompt', 'Your form has downloaded. You can refresh the page to download again.');
+    Session.set('downloadPrompt', 'Your form has downloaded. You can refresh the page to download again.');
   });
 }
