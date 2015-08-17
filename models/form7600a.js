@@ -72,187 +72,205 @@ if (Meteor.isServer) {
   });
 }
 
+var requestingAgencyMailingAddress = function(form) {
+  var str = '';
+  str = str + form["parties-requesting-agency-mailing-address-state"];
+  
+  return str;
+};
+
+var template = {
+  null: function(arg) {
+    return arg;
+  },
+  requesting_agency_address: function() {
+    
+  }
+}
+
+var merge = function(obj, key, value) {
+  var copy = lodash.cloneDeep(obj);
+  if (_.has(copy, key)) {
+    var oldValue = copy[key];
+    copy[key] = oldValue + ' ' + value;
+  } else {
+    copy[key] = value;
+  }
+  
+  return copy;
+};
+
 Form7600AAttributes = [  
   {
-    "ui": "parties-requesting-agency-mailing-address-state",
-    "pdf": "requesting_agency_address"
+    "parties-requesting-agency-mailing-address-state": "requesting_agency_address"
   },
   {
-    "ui": "parties-requesting-agency-mailing-address-city",
-    "pdf": "requesting_agency_address"
+    "parties-requesting-agency-mailing-address-city": "requesting_agency_address"
   },
   {
-    "ui": "parties-servicing-agency-name",
-    "pdf": "servicing_agency_name"
+    "parties-servicing-agency-name": "servicing_agency_name"
   },
   {
-    "ui": "parties-servicing-agency-mailing-address-street-address",
-    "pdf": "servicing_agency_address"
+    "parties-servicing-agency-mailing-address-street-address": "servicing_agency_address"
   },
   {
-    "ui": "parties-servicing-agency-mailing-address-city",
-    "pdf": "servicing_agency_address"
+    "parties-servicing-agency-mailing-address-city": "servicing_agency_address"
   },
   {
-    "ui": "parties-servicing-agency-mailing-address-state",
-    "pdf": "servicing_agency_address"
+    "parties-servicing-agency-mailing-address-state": "servicing_agency_address"
   },
   {
-    "ui": "parties-servicing-agency-mailing-address-zip",
-    "pdf": "servicing_agency_address"
+    "parties-servicing-agency-mailing-address-zip": "servicing_agency_address"
   },
   {
-    "ui": "parties-requesting-agency-name",
-    "pdf": "requesting_agency_name_of_products_services"
+    "parties-requesting-agency-name": "requesting_agency_name_of_products_services"
   },
   {
-    "ui": "iaa-number"
+    "iaa-number": null
   },
   {
-    "ui": "formId"
+    "formId": null
   },
   {
-    "ui": "parties-requesting-agency-mailing-address-street-address",
-    "pdf": "requesting_agency_address"
+    "parties-requesting-agency-mailing-address-street-address": "requesting_agency_address"
   },
   {
-    "ui": "parties-requesting-agency-mailing-address-zip",
-    "pdf": "requesting_agency_address"
+    "parties-requesting-agency-mailing-address-zip": "requesting_agency_address"
   },
   {
-    "ui": "servicing-agency-tracking-number",
-    "pdf": "servicing_agency_tracking_number"
+    "servicing-agency-tracking-number": "servicing_agency_tracking_number"
   },
   {
-    "ui": "assisted-acquisition-agreement"
+    "assisted-acquisition-agreement": null
   },
   {
-    "ui": "gtc-action"
+    "gtc-action": null
   },
   {
-    "ui": "gtc-action-amendment-explanation"
+    "gtc-action-amendment-explanation": null
   },
   {
-    "ui": "gtc-action-cancellation-explanation"
+    "gtc-action-cancellation-explanation": null
   },
   {
-    "ui": "agreement-period-start-date"
+    "agreement-period-start-date": null
   },
   {
-    "ui": "agreement-period-end-date"
+    "agreement-period-end-date": null
   },
   {
-    "ui": "recurring-agreement"
+    "recurring-agreement": null
   },
   {
-    "ui": "recurring-agreement-period"
+    "recurring-agreement-period": null
   },
   {
-    "ui": "recurring-agreement-period-other-description"
+    "recurring-agreement-period-other-description": null
   },
   {
-    "ui": "agreement-type"
+    "agreement-type": null
   },
   {
-    "ui": "advance-payments"
+    "advance-payments": null
   },
   {
-    "ui": "advance-payments-authority"
+    "advance-payments-authority": null
   },
   {
-    "ui": "estimated-cost"
+    "estimated-cost": null
   },
   {
-    "ui": "estimated-overhead"
+    "estimated-overhead": null
   },
   {
-    "ui": "estimated-total"
+    "estimated-total": null
   },
   {
-    "ui": "estimated-overhead-explanation"
+    "estimated-overhead-explanation": null
   },
   {
-    "ui": "statutory-authority-requesting-agency"
+    "statutory-authority-requesting-agency": null
   },
   {
-    "ui": "statutory-authority-requesting-agency-authority"
+    "statutory-authority-requesting-agency-authority": null
   },
   {
-    "ui": "statutory-authority-servicing-agency"
+    "statutory-authority-servicing-agency": null
   },
   {
-    "ui": "statutory-authority-servicing-agency-authority"
+    "statutory-authority-servicing-agency-authority": null
   },
   {
-    "ui": "scope"
+    "scope": null
   },
   {
-    "ui": "roles-and-responsibilities"
+    "roles-and-responsibilities": null
   },
   {
-    "ui": "restrictions"
+    "restrictions": null
   },
   {
-    "ui": "assisted-acquisition-small-business-credit-clause"
+    "assisted-acquisition-small-business-credit-clause": null
   },
   {
-    "ui": "disputes"
+    "disputes": null
   },
   {
-    "ui": "termination-days"
+    "termination-days": null
   },
   {
-    "ui": "termination-additional-terms"
+    "termination-additional-terms": null
   },
   {
-    "ui": "authorized-assistants-requesting-agency"
+    "authorized-assistants-requesting-agency": null
   },
   {
-    "ui": "authorized-assistants-servicing-agency"
+    "authorized-assistants-servicing-agency": null
   },
   {
-    "ui": "clauses-requesting-agency"
+    "clauses-requesting-agency": null
   },
   {
-    "ui": "clauses-servicing-agency"
+    "clauses-servicing-agency": null
   },
   {
-    "ui": "additional-agency-attachments"
+    "additional-agency-attachments": null
   },
   {
-    "ui": "agency-official-requesting-agency-name"
+    "agency-official-requesting-agency-name": null
   },
   {
-    "ui": "agency-official-requesting-agency-title"
+    "agency-official-requesting-agency-title": null
   },
   {
-    "ui": "agency-official-requesting-agency-telephone-number"
+    "agency-official-requesting-agency-telephone-number": null
   },
   {
-    "ui": "agency-official-requesting-agency-fax-number"
+    "agency-official-requesting-agency-fax-number": null
   },
   {
-    "ui": "agency-official-requesting-agency-email-address"
+    "agency-official-requesting-agency-email-address": null
   },
   {
-    "ui": "agency-official-requesting-agency-approval-date"
+    "agency-official-requesting-agency-approval-date": null
   },
   {
-    "ui": "agency-official-servicing-agency-name"
+    "agency-official-servicing-agency-name": null
   },
   {
-    "ui": "agency-official-servicing-agency-title"
+    "agency-official-servicing-agency-title": null
   },
   {
-    "ui": "agency-official-servicing-agency-telephone-number"
+    "agency-official-servicing-agency-telephone-number": null
   },
   {
-    "ui": "agency-official-servicing-agency-fax-number"
+    "agency-official-servicing-agency-fax-number": null
   },
   {
-    "ui": "agency-official-servicing-agency-email-address"
+    "agency-official-servicing-agency-email-address": null
   }
 ];
+
 
 Timestamps = {
   createdAt: {
@@ -281,7 +299,7 @@ Revisions = {
 
 var schemaHash = {};
 
-_.each(_.pluck(Form7600AAttributes, "ui"), function(attribute) {
+_.each(_.keys(Form7600AAttributes), function(attribute) {
   schemaHash[attribute] = { type: String };
 });
 
@@ -294,9 +312,21 @@ _.extend(schemaHash,
 Form7600ASchema = new SimpleSchema(schemaHash);
 
 TransformForm7600AToPDFAttributes = function(form) {
-  return {
-    servicing_agency_tracking_number: 'staticData'
-  };
+  var result = {}
+  
+  var noNulls = _.reject(Form7600AAttributes, function(obj) {
+    return _.values(obj)[0] === null;
+  });
+  _.each(noNulls, function(obj) {
+    var key = _.keys(obj)[0];
+    var value = _.values(obj)[0];
+    
+    result = merge(result, value, form[key]);
+  });
+  
+  console.log(result)
+  
+  return result;
 };
 
 if (Meteor.isClient) {
