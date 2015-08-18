@@ -130,7 +130,12 @@ Form7600AAttributes = [
     "assisted-acquisition-agreement": "radio1"
   },
   {
-    "gtc-action": "radio2"
+    "gtc-action": "radio2",
+    "radio": {
+      "new": "NEW",
+      "amendment": "AMENDMENT",
+      "cancellation": "CANCELLATION"
+    }
   },
   {
     "gtc-action-amendment-explanation": "amendment"
@@ -145,19 +150,35 @@ Form7600AAttributes = [
     "agreement-period-end-date": "end_date"
   },
   {
-    "recurring-agreement": "radio3"
+    "recurring-agreement": "radio3",
+    "radio": {
+      "no": "NO",
+      "yes": "Yes"
+    }
   },
   {
-    "recurring-agreement-period": "radio4"
+    "recurring-agreement-period": "radio4",
+    "radio": {
+      "annual": "Yes",
+      "other": "2"
+    }
   },
   {
     "recurring-agreement-period-other-description": "other_renewal_period"
   },
   {
-    "agreement-type": "radio5"
+    "agreement-type": "radio5",
+    "radio": {
+      "multiple-order": "2",
+      "single-order": "SINGLE ORDER IAA"
+    }
   },
   {
-    "advance-payments": "radio6"
+    "advance-payments": "radio6",
+    "radio": {
+      "no": "2",
+      "yes": "Yes"
+    }
   },
   {
     "advance-payments-authority": "requesting_agency_statutory_authority_title_and_citation"
@@ -175,13 +196,27 @@ Form7600AAttributes = [
     "estimated-overhead-explanation": "general_explanation_overhead_fees_and_charges"
   },
   {
-    "statutory-authority-requesting-agency": "radio7"
+    "statutory-authority-requesting-agency": "radio7",
+    "radio": {
+      "economy-act": "2",
+      "franchise-fund": "Requesting FF",
+      "other": "Requesting OA",
+      "revolving-fund": "Requesting RF",
+      "working-capital-fund": "Requesting WCF"
+    }
   },
   {
     "statutory-authority-requesting-agency-authority": "statory_authority"
   },
   {
-    "statutory-authority-servicing-agency": "radio8"
+    "statutory-authority-servicing-agency": "radio8",
+    "radio": {
+      "economy-act": "3",
+      "franchise-fund": "0",
+      "other": "Requesting 4",
+      "revolving-fund": "1",
+      "working-capital-fund": "2"
+    }
   },
   {
     "statutory-authority-servicing-agency-authority": "statutory_authority_1"
@@ -316,10 +351,18 @@ TransformForm7600AToPDFAttributes = function(form) {
     var key = _.keys(obj)[0];
     var value = _.values(obj)[0];
     
-    result = merge(result, value, form[key]);
+    var mergeValue;
+    
+    if (_.has(obj, 'radio')) {
+      mergeValue = obj['radio'][form[key]]
+    } else {
+      mergeValue = form[key]
+    }
+    
+    result = merge(result, value, mergeValue);
   });
   
-  console.log(result)
+  console.log(result);
   
   return result;
 };
