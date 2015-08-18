@@ -17,9 +17,7 @@ if (Meteor.isClient) {
       var controller = Iron.controller();
       var formId = controller.state.get('formId');      
       var form = Form7600A.findOne(formId);
-      
-      console.log(form);
-      
+            
       return form;
     },
     /*
