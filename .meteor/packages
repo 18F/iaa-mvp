@@ -9,7 +9,6 @@ iron:router
 jquery
 underscore
 pcel:serialize
-sewdn:collection-behaviours
 mousetrap:mousetrap
 fongandrew:find-and-modify
 accounts-ui
