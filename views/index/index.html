@@ -13,13 +13,13 @@
     <article class="form-7600a">
       <dl>
         <dt class="requesting-agency">Requesting agency</dt>
-        <dd class="requesting-agency"><a href="edit.html">{{d 'parties-requesting-agency-name'}}</a></dd>
+        <dd class="requesting-agency"><a href="/7600a/{{_id}}/edit">{{d 'parties-requesting-agency-name'}}</a></dd>
         <dt class="id-number">ID number</dt>
         <dd class="id-number">{{d 'gtc-number'}} - 0000 - {{d 'mod-number'}}</dd>
       </dl>
       <div class="form-7600a-actions">
           <a class="edit" href="/7600a/{{_id}}/edit">Show/edit</a>
-          <a class="edit" href="/7600a/{{_id}}/pdf">Generate PDF</a>
+          <a class="edit" href="/7600a/{{_id}}/pdf">Download PDF</a>
           <form class="delete-7600a-form">
             <input type="hidden" name="id" value="{{_id}}">
             <button class="button button-delete">Delete</button>
