@@ -1,15 +1,22 @@
 <template name='form_7600a'>
   {{#with formValues}}
-  <a href="/7600a/{{ _id }}/pdf">Download PDF</a>
-  <h4>Last updated: {{ updatedAt }}</h4>
-  <form class="form-7600a" novalidate>
-    <header>
-      <h1>7600A</h1>
-      <div class="field field-iaa-number">
-        <label for="iaa-number">
-          <span class="label-text"><abbr title="interagency agreement">IAA</abbr> number</span>
-          <input required name="iaa-number" id="iaa-number" value="18F-4A" type="text">
-        </label>
+  <form class="form-7600a form-main" novalidate>
+    <header class="page">
+    <a href="/" class="a-back">&larr; Back to index</a>
+      <h1 class="page-title">Form 7600A</h1>
+      <div class="form-metadata">
+        <div class="last-updated">Last updated: {{ updatedAt }}</div>
+        <div class="help-text">
+          This page overrides a browser default. Press <code class="code-keyboard">CTRL+S</code> to save the form.
+        </div>
+        <div class="field field-iaa-number">
+          <label for="iaa-number">
+            <span class="label-text"><abbr title="interagency agreement">IAA</abbr> number</span>
+            <input required name="iaa-number" id="iaa-number" value="18F-4A" type="text">
+          </label>
+        </div>
+        <button type="submit">Save</button>
+        <a class="button" href="/7600a/{{ _id }}/pdf">Download PDF</a>
       </div>
     </header>
     <input type="hidden" name="formId" value={{ _id }} />
@@ -736,9 +743,6 @@
         </div>
       </fieldset>
     </section>
-    <footer>
-      <button type="submit">Submit</button>
-    </footer>
   </form>
   {{/with}}
 </template>
