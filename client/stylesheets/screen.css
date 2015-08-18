@@ -173,6 +173,7 @@ sub {
 body {
   font-family: "Roboto", helvetica neue, helvetica, sans-serif;
   font-size: 16px;
+  font-weight: 300;
 }
 
 a {
@@ -315,6 +316,7 @@ input[type=search],
 select,
 textarea {
   -webkit-appearance: none;
+  -moz-appearance: none;
   padding: 4px 8px;
   border: 1px solid #ccc;
   border-radius: 3px;
@@ -358,7 +360,7 @@ input[type=checkbox] {
   position: absolute;
   right: 20px;
   bottom: 50%;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
   border-color: #aaa transparent transparent transparent;
   z-index: -1;
 }
@@ -426,6 +428,7 @@ fieldset > p {
 .p-description-text {
   margin-top: 8px;
   font-size: 12px;
+  font-weight: 400;
   line-height: 1.3;
   max-width: 28em;
   display: block;
@@ -463,7 +466,7 @@ fieldset.fieldset-component-tas,
 fieldset.fieldset-reimbursable-line-costs,
 fieldset.fieldset-assisted-acquisition-line-costs,
 fieldset.fieldset-point-of-contact {
-  border: 1px solid #cfcfcf;
+  border: 1px solid #eee;
   padding: 16px;
   padding-bottom: 19px;
   position: relative;
@@ -505,7 +508,7 @@ fieldset > header > h1 {
   padding: 0 1px;
   font-size: 14px;
   line-height: 16px;
-  font-weight: 600;
+  font-weight: 500;
   color: #777;
 }
 
@@ -665,6 +668,8 @@ fieldset.fieldset-radio.is-error span.error-message {
     left: 0;
     margin: 0;
     font-size: 12px;
+    font-weight: 400;
+    color: #666; 
   }
 }
 
@@ -679,6 +684,8 @@ fieldset.fieldset-mailing-address div.field span.label-text {
   left: 0;
   margin: 0;
   font-size: 12px;
+  font-weight: 400;
+  color: #666;
 }
 
 fieldset.fieldset-mailing-address div.field-city-state-zip::after {
@@ -2135,6 +2142,29 @@ div.field-iaa-number input[type=text] {
     top: 92px;
     width: 33%;
     max-width: 224px;
+  }
+  .l-7600a-new .form-main > header button,
+  .l-7600a-new .form-main > header .button{
+    -webkit-appearance: none;
+    -moz-appearance: none;    
+    font-size: 14px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    line-height: 1;
+    height: auto;
+    min-height: 0;
+    display: inline-block;
+    box-sizing: border-box;
+  }
+  .l-7600a-new .form-main > header button{
+    margin-right: -0.4em;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none; 
+  }
+  .l-7600a-new .form-main > header .button-pdf{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
 }
 
