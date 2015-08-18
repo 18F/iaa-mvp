@@ -1,14 +1,14 @@
-<template name='index'>  
+<template name='index'>
+  <h1 class="page-title">7600As</h1>  
   <form class="create-new-7600a-form">
     <div class="field field-name">
       <label for="parties-requesting-agency-name">
-        <span class="label-text">Requesting Agency Name</span>
+        <span class="label-text">Which agency is requesting an IAA?</span>
         <input required name="parties-requesting-agency-name" id="parties-requesting-agency-name" type="text">
       </label>
     </div>
-    <input type="submit" class="button" value="Create A New 7600A">
+    <input type="submit" class="button" value="New">
   </form>
-  <hr />
   {{#each form7600as}}
     <article class="form-7600a">
       <dl>
@@ -26,5 +26,9 @@
           </form>
       </div>
     </article>
+    {{else}}
+    <p class="boilerplate">
+      No 7600As exist yet! Use the form above to get started.
+    </p>
   {{/each}}
 </template>

@@ -11,7 +11,6 @@ underscore
 pcel:serialize
 mousetrap:mousetrap
 fongandrew:find-and-modify
-accounts-ui
 accounts-github
 service-configuration
 github
@@ -23,3 +22,4 @@ aldeed:http
 adelevie:meteor-lodash
 mike:mocha
 practicalmeteor:sinon
+accounts-ui-unstyled

@@ -1,17 +1,15 @@
 <template name='layout'>
   <head>
-    <!-- deploy from travis worked -->
     <title>7600A | Interagency Agreement Manager | 18F</title>
-    <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/forms_2.css">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <script type="text/javascript" src="javascripts/application.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:700,400,300|Roboto+Condensed:700|PT+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic,700italic' rel='stylesheet' type='text/css'>   
   </head>
   <body>
     <header class="banner" role="banner">
       <div class="wrap">
-        <h1><span class="logo">18F</span><span class="interagency-agreement-manager">Interagency Agreement Manager         {{> loginButtons}}</span></h1>
+        <h1><a href="/"><img src="/images/logo-18f.png" class="logo" alt="18F"><span class="interagency-agreement-manager">Interagency Agreement Site</span></a></h1>
+        {{> loginButtons}}
       </div>
     </header>
     <main>

@@ -1,5 +1,6 @@
 if (Meteor.isClient) {
   Template.form_7600a.onRendered(function() {
+    $('main').addClass('l-7600a-new');
     // set autosave timer
     // Disabling per bug report from Eric Mill
     // var timer =  setInterval(submitForm7600A, 10000);
@@ -21,6 +22,7 @@ if (Meteor.isClient) {
       }
       $('.form-7600a').submit();
     });
+
   });
 }
 
