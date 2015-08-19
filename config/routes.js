@@ -53,6 +53,11 @@ Router.route('/7600a/:_id/pdf', {
   controller: 'Form7600AController'
 });
 
+Router.route('/7600a/:_id/pdf/download', {
+  template: 'form_7600a_pdf_download',
+  controller: 'Form7600AController'
+});
+
 /* 
   'static' pages: 
 */

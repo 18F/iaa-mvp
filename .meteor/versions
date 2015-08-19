@@ -57,6 +57,7 @@ oauth2@1.1.3
 observe-sequence@1.0.6
 ordered-dict@1.0.3
 package-version-parser@3.0.3
+pascoual:pdfjs@1.1.114
 pcel:serialize@1.0.1
 pfafman:filesaver@0.2.0_1
 practicalmeteor:chai@2.1.0_1
