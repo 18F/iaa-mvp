@@ -1,5 +1,6 @@
 if (Meteor.isClient) {  
   Template.form_7600a_pdf.onRendered(function() {
+    
     var controller = Iron.controller();    
     var formId = controller.state.get('formId');   
     var form = Form7600A.findOne({_id: formId});
@@ -13,23 +14,19 @@ if (Meteor.isClient) {
     var callback = function(error, result) {
       if (!error) {
         var blob = result.content;
-        
-        var url = URL.createObjectURL(blob);
-        
-        var viewerUrl = encodeURIComponent(url);
-        
-        PDFJS.workerSrc = '/packages/pascoual_pdfjs/build/pdf.worker.js';
-        PDFJS.getDocument(url).then(function getPdfHelloWorld(pdf) {
-            RenderPdfPage(pdf, 1, 'pdfcanvas1');
-            RenderPdfPage(pdf, 2, 'pdfcanvas2');
-            RenderPdfPage(pdf, 3, 'pdfcanvas3');
-            RenderPdfPage(pdf, 4, 'pdfcanvas4');
-        });
+        var canvases = ['pdfcanvas1', 'pdfcanvas2', 'pdfcanvas3', 'pdfcanvas4'];
+        Render7600APDFFromBlob(blob, canvases);
       } else {
         alert('There was an error rendering the PDF: ' + error);
       }
     };
 
     HTTP.post(url, options, callback);
+    
+    var self = this;
+    
+    self.autorun(function() {
+      
+    });
   });
 }
