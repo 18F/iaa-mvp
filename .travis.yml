@@ -1,6 +1,14 @@
 sudo: true
-script:
-- echo 'Hi there. I am a placeholder for tests.'
+language: node_js
+node_js:
+  - "0.12"
+before_install:
+  - "curl -L https://raw.githubusercontent.com/arunoda/travis-ci-laika/master/configure.sh | /bin/sh"
+services:
+  - mongodb
+env:
+  - LAIKA_OPTIONS="-t 5000"
+
 deploy:
   edge: true
   provider: cloudfoundry
@@ -16,3 +24,6 @@ before_deploy:
 - echo "deploy on the way"
 after_success:
 - echo "success!"
+
+
+
