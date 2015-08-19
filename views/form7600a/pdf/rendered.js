@@ -13,22 +13,20 @@ if (Meteor.isClient) {
     var callback = function(error, result) {
       if (!error) {
         var blob = result.content;
-        var reader = new FileReader();
-        reader.readAsDataURL(blob);
-        reader.onloadend = function() {
-          var dataUri = reader.result;
-          var binaryDataUri = ConvertDataURIToBinary(dataUri);
-          
-          PDFJS.workerSrc = '/packages/pascoual_pdfjs/build/pdf.worker.js';
-          PDFJS.getDocument(url).then(function getPdfHelloWorld(pdf) {            
-              RenderPdfPage(pdf, 1, 'pdfcanvas1');
-              RenderPdfPage(pdf, 2, 'pdfcanvas2');
-              RenderPdfPage(pdf, 3, 'pdfcanvas3');
-              RenderPdfPage(pdf, 4, 'pdfcanvas4');
-          });       
-        };    
+        
+        var url = URL.createObjectURL(blob);
+        
+        var viewerUrl = encodeURIComponent(url);
+        
+        PDFJS.workerSrc = '/packages/pascoual_pdfjs/build/pdf.worker.js';
+        PDFJS.getDocument(url).then(function getPdfHelloWorld(pdf) {
+            RenderPdfPage(pdf, 1, 'pdfcanvas1');
+            RenderPdfPage(pdf, 2, 'pdfcanvas2');
+            RenderPdfPage(pdf, 3, 'pdfcanvas3');
+            RenderPdfPage(pdf, 4, 'pdfcanvas4');
+        });
       } else {
-        alert('There was an error downloading the PDF: ' + error);
+        alert('There was an error rendering the PDF: ' + error);
       }
     };
 
