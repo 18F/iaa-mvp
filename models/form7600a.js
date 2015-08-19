@@ -127,7 +127,11 @@ Form7600AAttributes = [
     "servicing-agency-tracking-number": "servicing_agency_tracking_number"
   },
   {
-    "assisted-acquisition-agreement": "radio1"
+    "assisted-acquisition-agreement": "radio1",
+    "radio": {
+      "yes": "Yes",
+      "no": "No"
+    }
   },
   {
     "gtc-action": "radio2",
