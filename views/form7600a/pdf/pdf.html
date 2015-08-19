@@ -1,3 +1,7 @@
 <template name='form_7600a_pdf'>
-  <canvas id="pdfcanvas"></canvas>
+  <h3>{{ downloadPrompt }}</h3>
+  
+  {{#with form}}
+  <a href="/7600a/{{ _id }}/edit">&lt;- Go back to editing</a>
+  {{/with}}
 </template>

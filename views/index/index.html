@@ -1,30 +1,34 @@
-<template name='index'>  
+<template name='index'>
+  <h1 class="page-title">7600As</h1>  
   <form class="create-new-7600a-form">
     <div class="field field-name">
       <label for="parties-requesting-agency-name">
-        <span class="label-text">Requesting Agency Name</span>
+        <span class="label-text">Which agency is requesting an IAA?</span>
         <input required name="parties-requesting-agency-name" id="parties-requesting-agency-name" type="text">
       </label>
     </div>
-    <input type="submit" class="button" value="Create A New 7600A">
+    <input type="submit" class="button" value="New">
   </form>
-  <hr />
   {{#each form7600as}}
     <article class="form-7600a">
       <dl>
         <dt class="requesting-agency">Requesting agency</dt>
-        <dd class="requesting-agency"><a href="edit.html">{{d 'parties-requesting-agency-name'}}</a></dd>
+        <dd class="requesting-agency"><a href="/7600a/{{_id}}/edit">{{d 'parties-requesting-agency-name'}}</a></dd>
         <dt class="id-number">ID number</dt>
         <dd class="id-number">{{d 'gtc-number'}} - 0000 - {{d 'mod-number'}}</dd>
       </dl>
       <div class="form-7600a-actions">
           <a class="edit" href="/7600a/{{_id}}/edit">Show/edit</a>
-          <a class="edit" href="/7600a/{{_id}}/pdf">Generate PDF</a>
+          <a class="edit" href="/7600a/{{_id}}/pdf">Download PDF</a>
           <form class="delete-7600a-form">
             <input type="hidden" name="id" value="{{_id}}">
             <button class="button button-delete">Delete</button>
           </form>
       </div>
     </article>
+    {{else}}
+    <p class="boilerplate">
+      No 7600As exist yet! Use the form above to get started.
+    </p>
   {{/each}}
 </template>

@@ -51,7 +51,10 @@ Form7600ADefaults = {
   'parties-servicing-agency-mailing-address-street-address': '1800 F. Street NW',
   'parties-servicing-agency-mailing-address-city': 'Washington',
   'parties-servicing-agency-mailing-address-state': 'DC',
-  'parties-servicing-agency-mailing-address-zip': '20006'
+  'parties-servicing-agency-mailing-address-zip': '20006',
+  'termination-additional-terms': "If the Servicing Agency incurs costs due to the Requesting Agency's failure to give the requisite notice of its intent to terminate the IAA, the Requesting Agency shall pay any actual costs incurred by the Servicing Agency as a result of the delay in notification, provided such costs are directly attributable to the failure to give notice.",
+  'disputes': "Disputes related to this IAA shall be resolved in accordance with instructions provided in the Treasury Financial Manual (TFM) Volume I, Part 2, Chapter 4700, Appendix 10; Intragovernmental Business Rules.",
+  'assisted-acquisition-small-business-credit-clause': "(The Servicing Agency will allocate the socio-economic credit to the Requesting Agency for any contract it has exhausted on behalf of the Requesting Agency.)"
 };
 
 if (Meteor.isServer) {
@@ -71,188 +74,233 @@ if (Meteor.isServer) {
     }
   });
 }
+/* 
+ merges without overwriting if key already exists
+*/
+var merge = function(obj, key, value) {
+  var copy = lodash.cloneDeep(obj);
+  if (_.has(copy, key)) {
+    var oldValue = copy[key];
+    copy[key] = oldValue + ' ' + value;
+  } else {
+    copy[key] = value;
+  }
+  
+  return copy;
+};
 
 Form7600AAttributes = [  
   {
-    "ui": "parties-requesting-agency-mailing-address-state",
-    "pdf": "requesting_agency_address"
+    "parties-requesting-agency-mailing-address-state": "requesting_agency_address"
   },
   {
-    "ui": "parties-requesting-agency-mailing-address-city",
-    "pdf": "requesting_agency_address"
+    "parties-requesting-agency-mailing-address-city": "requesting_agency_address"
   },
   {
-    "ui": "parties-servicing-agency-name",
-    "pdf": "servicing_agency_name"
+    "parties-servicing-agency-name": "servicing_agency_name"
   },
   {
-    "ui": "parties-servicing-agency-mailing-address-street-address",
-    "pdf": "servicing_agency_address"
+    "parties-servicing-agency-mailing-address-street-address": "servicing_agency_address"
   },
   {
-    "ui": "parties-servicing-agency-mailing-address-city",
-    "pdf": "servicing_agency_address"
+    "parties-servicing-agency-mailing-address-city": "servicing_agency_address"
   },
   {
-    "ui": "parties-servicing-agency-mailing-address-state",
-    "pdf": "servicing_agency_address"
+    "parties-servicing-agency-mailing-address-state": "servicing_agency_address"
   },
   {
-    "ui": "parties-servicing-agency-mailing-address-zip",
-    "pdf": "servicing_agency_address"
+    "parties-servicing-agency-mailing-address-zip": "servicing_agency_address"
   },
   {
-    "ui": "parties-requesting-agency-name",
-    "pdf": "requesting_agency_name_of_products_services"
+    "parties-requesting-agency-name": "requesting_agency_name_of_products_services"
   },
   {
-    "ui": "iaa-number"
+    "iaa-number": "gt_and_c_number"
   },
   {
-    "ui": "formId"
+    "parties-requesting-agency-mailing-address-street-address": "requesting_agency_address"
   },
   {
-    "ui": "parties-requesting-agency-mailing-address-street-address",
-    "pdf": "requesting_agency_address"
+    "parties-requesting-agency-mailing-address-zip": "requesting_agency_address"
   },
   {
-    "ui": "parties-requesting-agency-mailing-address-zip",
-    "pdf": "requesting_agency_address"
+    "servicing-agency-tracking-number": "servicing_agency_tracking_number"
   },
   {
-    "ui": "servicing-agency-tracking-number",
-    "pdf": "servicing_agency_tracking_number"
+    "assisted-acquisition-agreement": "radio1"
   },
   {
-    "ui": "assisted-acquisition-agreement"
+    "gtc-action": "radio2",
+    "radio": {
+      "new": "NEW",
+      "amendment": "AMENDMENT",
+      "cancellation": "CANCELLATION"
+    }
   },
   {
-    "ui": "gtc-action"
+    "gtc-action-amendment-explanation": "amendment"
   },
   {
-    "ui": "gtc-action-amendment-explanation"
+    "gtc-action-cancellation-explanation": "cancellation_explanation"
   },
   {
-    "ui": "gtc-action-cancellation-explanation"
+    "agreement-period-start-date": "start_date"
   },
   {
-    "ui": "agreement-period-start-date"
+    "agreement-period-end-date": "end_date"
   },
   {
-    "ui": "agreement-period-end-date"
+    "recurring-agreement": "radio3",
+    "radio": {
+      "no": "NO",
+      "yes": "Yes"
+    }
   },
   {
-    "ui": "recurring-agreement"
+    "recurring-agreement-period": "radio4",
+    "radio": {
+      "annual": "Yes",
+      "other": "2"
+    }
   },
   {
-    "ui": "recurring-agreement-period"
+    "recurring-agreement-period-other-description": "other_renewal_period"
   },
   {
-    "ui": "recurring-agreement-period-other-description"
+    "agreement-type": "radio5",
+    "radio": {
+      "multiple-order": "2",
+      "single-order": "SINGLE ORDER IAA"
+    }
   },
   {
-    "ui": "agreement-type"
+    "advance-payments": "radio6",
+    "radio": {
+      "no": "2",
+      "yes": "Yes"
+    }
   },
   {
-    "ui": "advance-payments"
+    "advance-payments-authority": "requesting_agency_statutory_authority_title_and_citation"
   },
   {
-    "ui": "advance-payments-authority"
+    "estimated-cost": "direct_cost"
   },
   {
-    "ui": "estimated-cost"
+    "estimated-overhead": "overhead_fees_and_charges"
   },
   {
-    "ui": "estimated-overhead"
+    "estimated-total": "total_estimated_amount"
   },
   {
-    "ui": "estimated-total"
+    "estimated-overhead-explanation": "general_explanation_overhead_fees_and_charges"
   },
   {
-    "ui": "estimated-overhead-explanation"
+    "statutory-authority-requesting-agency": "radio7",
+    "radio": {
+      "economy-act": "2",
+      "franchise-fund": "Requesting FF",
+      "other": "Requesting OA",
+      "revolving-fund": "Requesting RF",
+      "working-capital-fund": "Requesting WCF"
+    }
   },
   {
-    "ui": "statutory-authority-requesting-agency"
+    "statutory-authority-requesting-agency-authority": "statory_authority"
   },
   {
-    "ui": "statutory-authority-requesting-agency-authority"
+    "statutory-authority-servicing-agency": "radio8",
+    "radio": {
+      "economy-act": "3",
+      "franchise-fund": "0",
+      "other": "Requesting 4",
+      "revolving-fund": "1",
+      "working-capital-fund": "2"
+    }
   },
   {
-    "ui": "statutory-authority-servicing-agency"
+    "statutory-authority-servicing-agency-authority": "statutory_authority_1"
   },
   {
-    "ui": "statutory-authority-servicing-agency-authority"
+    "scope": "requesting_agency_scope"
   },
   {
-    "ui": "scope"
+    "roles-and-responsibilities": "requesting_agency_roles_and_responsibilities"
   },
   {
-    "ui": "roles-and-responsibilities"
+    "restrictions": "restrictions"
   },
   {
-    "ui": "restrictions"
+    // boilerplate set in defaults object
+    // this won't actually get inserted into the pdf, 
+    // since the pdf already contains the default language
+    "assisted-acquisition-small-business-credit-clause": null
   },
   {
-    "ui": "assisted-acquisition-small-business-credit-clause"
+    // boilerplate set in defaults object
+    // this won't actually get inserted into the pdf, 
+    // since the pdf already contains the default language
+    "disputes": null
   },
   {
-    "ui": "disputes"
+    "termination-days": "number_of_days_this_iaa_may_be_terminated"
   },
   {
-    "ui": "termination-days"
+    // boilerplate set in defaults object
+    // this won't actually get inserted into the pdf, 
+    // since the pdf already contains the default language
+    "termination-additional-terms": null
   },
   {
-    "ui": "termination-additional-terms"
+    "authorized-assistants-requesting-agency": "requesting_agency_organizations_authorized"
   },
   {
-    "ui": "authorized-assistants-requesting-agency"
+    "authorized-assistants-servicing-agency": "servicing_agency_organizations"
   },
   {
-    "ui": "authorized-assistants-servicing-agency"
+    "clauses-requesting-agency": "requesting_agency_clauses"
   },
   {
-    "ui": "clauses-requesting-agency"
+    "clauses-servicing-agency": "servicing_agency_clauses"
   },
   {
-    "ui": "clauses-servicing-agency"
+    "additional-agency-attachments": "additional_attachments"
   },
   {
-    "ui": "additional-agency-attachments"
+    "agency-official-requesting-agency-name": "requesting_agency_name"
   },
   {
-    "ui": "agency-official-requesting-agency-name"
+    "agency-official-requesting-agency-title": "requesting_agency_title"
   },
   {
-    "ui": "agency-official-requesting-agency-title"
+    "agency-official-requesting-agency-telephone-number": "requesting_agency_telephone_number"
   },
   {
-    "ui": "agency-official-requesting-agency-telephone-number"
+    "agency-official-requesting-agency-fax-number": "requesting_agency_fax_number"
   },
   {
-    "ui": "agency-official-requesting-agency-fax-number"
+    "agency-official-requesting-agency-email-address": "requesting_agency_email_address"
   },
   {
-    "ui": "agency-official-requesting-agency-email-address"
+    "agency-official-requesting-agency-approval-date": "requesting_agency_approval_date"
   },
   {
-    "ui": "agency-official-requesting-agency-approval-date"
+    "agency-official-servicing-agency-name": "servicing_agency_name"
   },
   {
-    "ui": "agency-official-servicing-agency-name"
+    "agency-official-servicing-agency-title": "servicing_agency_title"
   },
   {
-    "ui": "agency-official-servicing-agency-title"
+    "agency-official-servicing-agency-telephone-number": "servicing_agency_telephone_number"
   },
   {
-    "ui": "agency-official-servicing-agency-telephone-number"
+    "agency-official-servicing-agency-fax-number": "servicing_agency_fax_number"
   },
   {
-    "ui": "agency-official-servicing-agency-fax-number"
-  },
-  {
-    "ui": "agency-official-servicing-agency-email-address"
+    "agency-official-servicing-agency-email-address": "servicing_agency_email_address"
   }
 ];
+
 
 Timestamps = {
   createdAt: {
@@ -281,7 +329,7 @@ Revisions = {
 
 var schemaHash = {};
 
-_.each(_.pluck(Form7600AAttributes, "ui"), function(attribute) {
+_.each(_.keys(Form7600AAttributes), function(attribute) {
   schemaHash[attribute] = { type: String };
 });
 
@@ -294,6 +342,53 @@ _.extend(schemaHash,
 Form7600ASchema = new SimpleSchema(schemaHash);
 
 TransformForm7600AToPDFAttributes = function(form) {
+  var result = {}
   
+  var noNulls = _.reject(Form7600AAttributes, function(obj) {
+    return _.values(obj)[0] === null;
+  });
+  _.each(noNulls, function(obj) {
+    var key = _.keys(obj)[0];
+    var value = _.values(obj)[0];
+    
+    var mergeValue;
+    
+    if (_.has(obj, 'radio')) {
+      mergeValue = obj['radio'][form[key]]
+    } else {
+      mergeValue = form[key]
+    }
+    
+    result = merge(result, value, mergeValue);
+  });
+  
+  console.log(result);
+  
+  return result;
 };
+
+if (Meteor.isClient) {
+  DownloadForm7600A = function(form) {
+    
+    var savePdf = function(pdf) {
+      var blob = new Blob([pdf], {type: "application/pdf"});
+      saveAs(blob, "7600a_filled.pdf");
+    };
+    
+    var url = 'https://iaa-pdf-api.18f.gov/iaa/7600a';
+    var options = {
+      data: TransformForm7600AToPDFAttributes(form),
+      responseType: 'blob'
+    };
+    var callback = function(error, result) {
+      if (!error) {
+        savePdf(result.content);
+      } else {
+        alert('There was an error downloading the PDF: ' + error);
+      }
+    };
+
+    HTTP.post(url, options, callback);
+  };
+}
 

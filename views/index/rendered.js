@@ -1,5 +1,5 @@
 if (Meteor.isClient) {
   Template.index.onRendered(function() {
-    // onRendered stuff goes here
+    $('main').addClass('l-7600a-index page');
   });
 }
