@@ -371,6 +371,17 @@ TransformForm7600AToPDFAttributes = function(form) {
   return result;
 };
 
+Render7600APDFFromBlob = function(blob, canvases) {
+  var url = URL.createObjectURL(blob);
+  var viewerUrl = encodeURIComponent(url);
+  PDFJS.workerSrc = '/packages/pascoual_pdfjs/build/pdf.worker.js';
+  PDFJS.getDocument(url).then(function getPdfHelloWorld(pdf) {
+    _.each(canvases, function(myCanvas, index) {
+      RenderPdfPage(pdf, index, myCanvas);
+    });
+  });
+};
+
 if (Meteor.isClient) {
   DownloadForm7600A = function(form) {
     
