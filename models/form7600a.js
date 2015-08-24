@@ -40,7 +40,7 @@ Form7600A.update = function(id, formValues) {
   var currentTime = new Date();
   formValues['updatedAt'] = currentTime;
   
-  return Form7600A.update(id, {
+  return Form7600A.collection.update(id, {
     "$set": formValues
   });
 };
