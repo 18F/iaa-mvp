@@ -1,9 +1,10 @@
-// define collection
-Form7600A = new Mongo.Collection("form7600a");
+Form7600A = {};
 
-CreateForm7600A = function(formValues) {
+Form7600A.collection = new Mongo.Collection("form7600a");
+
+Form7600A.create = function(formValues) {
   // merge in default values
-  var mergedFormValues = _.extend(Form7600ADefaults, formValues)
+  var mergedFormValues = _.extend(Form7600A.defaults, formValues)
   
   // hacky timestamps
   var currentTime = new Date();
@@ -20,12 +21,12 @@ CreateForm7600A = function(formValues) {
   mergedFormValues['history'] = [];
 
   // returns the id
-  return Form7600A.insert(mergedFormValues);
+  return Form7600A.collection.insert(mergedFormValues);
 };
 
-UpdateForm7600A = function(id, formValues) {
+Form7600A.update = function(id, formValues) {
   // get current revision history
-  var form = Form7600A.findOne(id);  
+  var form = Form7600A.collection.findOne(id);  
   var historyGlob = form.history;
   
   // add the soon-to-be-outdated form to revision history
@@ -39,12 +40,12 @@ UpdateForm7600A = function(id, formValues) {
   var currentTime = new Date();
   formValues['updatedAt'] = currentTime;
   
-  return Form7600A.update(id, {
+  return Form7600A.collection.update(id, {
     "$set": formValues
   });
 };
 
-Form7600ADefaults = {
+Form7600A.defaults = {
   'parties-requesting-agency-mailing-address-state': 'DC',
   'parties-requesting-agency-mailing-address-city': 'Washington',
   'parties-servicing-agency-name': 'General Services Administration',
@@ -59,10 +60,10 @@ Form7600ADefaults = {
 
 if (Meteor.isServer) {
   Meteor.publish("Form7600A", function () {
-    return Form7600A.find({owner: this.userId});
+    return Form7600A.collection.find({owner: this.userId});
   });
   
-  Form7600A.allow({
+  Form7600A.collection.allow({
     update: function(userId, doc, fields, modifier) {
       return doc.owner === userId;
     },
@@ -89,7 +90,11 @@ var merge = function(obj, key, value) {
   return copy;
 };
 
-Form7600AAttributes = [  
+/* 
+  Maps Mongo fields to field names expected by the iaa-gem.
+  (https://github.com/18f/iaa-gem) 
+*/
+Form7600A.attributes = [  
   {
     "parties-requesting-agency-mailing-address-state": "requesting_agency_address"
   },
@@ -305,8 +310,7 @@ Form7600AAttributes = [
   }
 ];
 
-
-Timestamps = {
+Form7600A.timestamps = {
   createdAt: {
     type: Date
   },
@@ -315,7 +319,7 @@ Timestamps = {
   }
 };
 
-Ownership = {
+Form7600A.ownership = {
   owner: {
     type: String,
     optional: false
@@ -325,7 +329,7 @@ Ownership = {
   }
 };
 
-Revisions = {
+Form7600A.revisions = {
   history: {
     type: [Object]
   }
@@ -333,22 +337,22 @@ Revisions = {
 
 var schemaHash = {};
 
-_.each(_.keys(Form7600AAttributes), function(attribute) {
+_.each(_.keys(Form7600A.attributes), function(attribute) {
   schemaHash[attribute] = { type: String };
 });
 
 _.extend(schemaHash, 
-  Timestamps, 
-  Ownership,
-  Revisions
+  Form7600A.timestamps, 
+  Form7600A.ownership,
+  Form7600A.revisions
 );
 
-Form7600ASchema = new SimpleSchema(schemaHash);
+Form7600A.Schema = new SimpleSchema(schemaHash);
 
-TransformForm7600AToPDFAttributes = function(form) {
+Form7600A.transformToPDFAttributes = function(form) {
   var result = {}
   
-  var noNulls = _.reject(Form7600AAttributes, function(obj) {
+  var noNulls = _.reject(Form7600A.attributes, function(obj) {
     return _.values(obj)[0] === null;
   });
   _.each(noNulls, function(obj) {
@@ -366,12 +370,10 @@ TransformForm7600AToPDFAttributes = function(form) {
     result = merge(result, value, mergeValue);
   });
   
-  console.log(result);
-  
   return result;
 };
 
-Render7600APDFFromBlob = function(blob, canvases) {
+Form7600A.renderPDFFromBlob = function(blob, canvases) {
   var url = URL.createObjectURL(blob);
   var viewerUrl = encodeURIComponent(url);
   PDFJS.workerSrc = '/packages/pascoual_pdfjs/build/pdf.worker.js';
@@ -383,7 +385,7 @@ Render7600APDFFromBlob = function(blob, canvases) {
 };
 
 if (Meteor.isClient) {
-  DownloadForm7600A = function(form) {
+  Form7600A.download = function(form) {
     
     var savePdf = function(pdf) {
       var blob = new Blob([pdf], {type: "application/pdf"});
@@ -392,9 +394,10 @@ if (Meteor.isClient) {
     
     var url = 'https://iaa-pdf-api.18f.gov/iaa/7600a';
     var options = {
-      data: TransformForm7600AToPDFAttributes(form),
+      data: Form7600A.transformToPDFAttributes(form),
       responseType: 'blob'
     };
+
     var callback = function(error, result) {
       if (!error) {
         savePdf(result.content);
@@ -406,4 +409,3 @@ if (Meteor.isClient) {
     HTTP.post(url, options, callback);
   };
 }
-

@@ -2,7 +2,7 @@ var isSelected = function(returnString) {
   return function(v1, v2) {
     var controller = Iron.controller();
     var formId = controller.state.get('formId');
-    var formValues = Form7600A.findOne(formId);
+    var formValues = Form7600A.collection.findOne(formId);
     if (formValues[v1] === v2) {
       return returnString;
     } else {
@@ -16,7 +16,7 @@ if (Meteor.isClient) {
     formValues: function() {
       var controller = Iron.controller();
       var formId = controller.state.get('formId');      
-      var form = Form7600A.findOne(formId);
+      var form = Form7600A.collection.findOne(formId);
             
       return form;
     },

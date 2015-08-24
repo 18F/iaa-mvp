@@ -6,7 +6,7 @@ if (Meteor.isClient) {
       var formValues = form.serializeJSON();
       var id = formValues.formId;
   
-      UpdateForm7600A(id, formValues);
+      Form7600A.update(id, formValues);
     }
   });
 }
