@@ -4,7 +4,7 @@ if (Meteor.isClient) {
       event.preventDefault();
       var form = $('.create-new-7600a-form');
       var formValues = form.serializeJSON();
-      var id = CreateForm7600A(formValues);
+      var id = Form7600A.create(formValues);
       
       form[0].reset();
       window.open('/7600a/' + id + '/edit');

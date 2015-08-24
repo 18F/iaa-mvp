@@ -33,7 +33,7 @@ if (!(typeof MochaWeb === 'undefined')) {
                         "parties-requesting-agency-mailing-address-zip" : requestingAgencyZip
                     };
 
-                    actual = TransformForm7600AToPDFAttributes(formData);
+                    actual = Form7600A.transformToPDFAttributes(formData);
                 });
                 
                 describe.skip("servicing_agency_name", function() {
