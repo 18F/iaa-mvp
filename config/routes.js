@@ -19,7 +19,10 @@ Router.plugin('dataNotFound', {notFoundTemplate: 'not_found'});
 
 Form7600AController = ApplicationController.extend({
   subscriptions: function() {
-    return Meteor.subscribe("Form7600A");
+    return [
+      Meteor.subscribe("Form7600A"),
+      Meteor.subscribe("userData")
+    ];
   },
   action: function() {
     if (this.ready()) {    
@@ -34,7 +37,10 @@ Form7600AController = ApplicationController.extend({
 
 IndexController = ApplicationController.extend({
   subscriptions: function() {
-    return Meteor.subscribe("Form7600A");
+    return [
+      Meteor.subscribe("Form7600A"),
+      Meteor.subscribe("userData")
+    ];
   }
 });
 

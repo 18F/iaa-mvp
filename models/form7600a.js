@@ -10,9 +10,21 @@ CreateForm7600A = function(formValues) {
   mergedFormValues['createdAt'] = currentTime;
   mergedFormValues['updatedAt'] = currentTime;
   
+  var currentUser = Meteor.user();
+  
   // ownership fields
-  mergedFormValues['owner'] = Meteor.userId();
-  mergedFormValues['sharedWith'] = [Meteor.userId()];
+  mergedFormValues['owner'] = currentUser._id;
+  mergedFormValues['sharedWith'] = [currentUser._id];
+  
+  // if the user is in just one github org, stamp the form with that org
+  var orgs = currentUser.orgs;
+  if (orgs.length === 1) {
+    mergedFormValues['org'] = orgs[0];
+  } else {
+  // else, raise an error, and implement support for this feature later
+    throw new Meteor.Error("multi-org-not-supported", "Multi-organization support has not yet been implemented.");
+  }
+
 
   // versioning fields
   // start with an empty revisions history
@@ -59,12 +71,21 @@ Form7600ADefaults = {
 
 if (Meteor.isServer) {
   Meteor.publish("Form7600A", function () {
-    return Form7600A.find({owner: this.userId});
+    var orgs = Meteor.users.findOne({_id: this.userId}).orgs;
+    return Form7600A.find(
+      {
+        $or: [
+          {owner: this.userId},
+          {org: {$in: orgs}}
+        ]
+      }
+    );
   });
   
   Form7600A.allow({
     update: function(userId, doc, fields, modifier) {
-      return doc.owner === userId;
+      var orgs = Meteor.users.findOne({_id: this.userId}).orgs;
+      return doc.owner === userId || _.contains(orgs, doc.org);
     },
     insert: function (userId, doc) {
       return (userId && doc.owner === userId);
