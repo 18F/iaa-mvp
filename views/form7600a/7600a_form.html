@@ -2,7 +2,7 @@
   {{#with formValues}}
   <form class="form-7600a form-main" novalidate>
     <header class="page">
-    <a href="/" class="a-back">&larr; Back to index</a>
+      <a href="/" class="a-back">&larr; Back to index</a>
       <h1 class="page-title">Form 7600A</h1>
       <div class="form-metadata">
         <div class="last-updated">Last updated: {{ updatedAt }}</div>
@@ -23,6 +23,7 @@
     <input type="hidden" name="formId" value={{ _id }} />
     <section class="section-form section-parties">
       <header>
+        <span class="section-form-number">1</span>
         <h1>Parties</h1>
       </header>
       <fieldset class="fieldset-parties-requesting-agency">
@@ -112,6 +113,7 @@
     </section>
     <section class="section-form section-servicing-agency-tracking-number">
       <header>
+        <span class="section-form-number">2</span>
         <h1>Servicing agency tracking number (optional)</h1>
       </header>
       <div class="field field-servicing-agency-tracking-number">
@@ -123,6 +125,7 @@
     </section>
     <section class="section-form section-assisted-acquisition-agreement">
       <header>
+        <span class="section-form-number">3</span>
         <h1>Assisted acquisition agreement</h1>
       </header>
       <fieldset class="fieldset-assisted-acquisition-agreement fieldset-radio" data-branch-name="assisted-acquisition-agreement">
@@ -143,6 +146,7 @@
     </section>
     <section class="section-form section-gtc-action">
       <header>
+        <span class="section-form-number">4</span>
         <h1>GT&amp;C action</h1>
       </header>
       <fieldset class="fieldset-gtc-action fieldset-radio" data-branch-name="gtc-action">
@@ -203,6 +207,7 @@
       </aside>
     </section>
     <section class="section-form section-agreement-period">
+      <span class="section-form-number">5</span>
       <h1>Agreement period</h1>
       <fieldset class="fieldset-agreement-period fieldset-date-range">
         <legend>Agreement period</legend>
@@ -222,6 +227,7 @@
     </section>
     <section class="section-form section-recurring-agreement">
       <header>
+        <span class="section-form-number">6</span>
         <h1>Recurring agreement</h1>
       </header>
       <fieldset class="fieldset-recurring-agreement fieldset-radio" data-branch-name="recurring-agreement">
@@ -293,6 +299,7 @@
     </section>
     <section class="section-form section-agreement-type">
       <header>
+        <span class="section-form-number">7</span>
         <h1>Agreement type</h1>
       </header>
       <fieldset class="fieldset-agreement-type fieldset-radio">
@@ -323,6 +330,7 @@
     </section>
     <section class="section-form section-advance-payments">
       <header>
+        <span class="section-form-number">8</span>
         <h1>Are advance payments allowed?</h1>
       </header>
       <fieldset class="fieldset-advanced-payments fieldset-radio" data-branch-name="advance-payments">
@@ -366,6 +374,7 @@
     </section>
     <section class="section-form section-estimated-agreement-amount">
       <header>
+        <span class="section-form-number">9</span>
         <h1>Estimated agreement amount</h1>
       </header>
       <div class="field field-cost">
@@ -395,6 +404,7 @@
     </section>
     <section class="section-form section-statutory-authority">
       <header>
+        <span class="section-form-number">10</span>
         <h1>Statutory authority</h1>
       </header>
       <fieldset class="fieldset-requesting-agency fieldset-radio" data-branch-name="statutory-authority-requesting-agency">
@@ -530,6 +540,7 @@
     </section>
     <section class="section-form section-scope">
       <header>
+        <span class="section-form-number">11</span>
         <h1>Requesting agency&rsquo;s scope</h1>
       </header>
       <div class="field field-textarea field-scope">
@@ -541,6 +552,7 @@
     </section>
     <section class="section-form section-roles-and-responsibilities">
       <header>
+        <span class="section-form-number">12</span>
         <h1>Roles &amp; responsibilities</h1>
       </header>
       <div class="field field-textarea field-roles-and-responsibilities">
@@ -552,6 +564,7 @@
     </section>
     <section id="13" class="section-form section-restrictions">
       <header>
+        <span class="section-form-number">13</span>
         <h1>Restrictions</h1>
       </header>
       <div class="field field-textarea">
@@ -563,6 +576,7 @@
     </section>
     <section class="section-form section-assisted-acquisition-small-business-credit-clause branch" data-branch-name="assisted-acquisition-agreement" data-branch-value="yes">
       <header>
+        <span class="section-form-number">14</span>
         <h1>Assisted acquisition small business credit clause</h1>
       </header>
       <div class="field field-textarea field-assisted-acquisition-small-business-credit-clause">
@@ -574,6 +588,7 @@
     </section>
     <section class="section-form section-disputes">
       <header>
+        <span class="section-form-number">15</span>
         <h1>Disputes</h1>
       </header>
       <div class="field field-textarea field-disputes">
@@ -585,6 +600,7 @@
     </section>
     <section class="section-form section-termination">
       <header>
+        <span class="section-form-number">16</span>
         <h1>Termination</h1>
       </header>
       <div class="field field-textarea field-termination-days">
@@ -602,6 +618,7 @@
     </section>
     <section class="section-form section-authorized-assistants-requesting-agency branch" data-branch-name="assisted-acquisition-agreement" data-branch-value="yes">
       <header>
+        <span class="section-form-number">17</span>
         <h1>Assisted acquisition agreements &mdash; requesting agency&rsquo;s organizations authorized to request acquisition assistance for this IAA.</h1>
       </header>
       <div class="field field-textarea">
@@ -613,6 +630,7 @@
     </section>
     <section class="section-form section-authorized-assistants-requesting-agency branch" data-branch-name="assisted-acquisition-agreement" data-branch-value="yes">
       <header>
+        <span class="section-form-number">18</span>
         <h1>Assisted acquisition agreements &mdash; servicing agency&rsquo;s organizations authorized to request acquisition assistance for this IAA.</h1>
       </header>
       <div class="field field-textarea">
@@ -624,6 +642,7 @@
     </section>
     <section class="section-form section-clauses-requesting-agency">
       <header>
+        <span class="section-form-number">19</span>
         <h1>Requesting agency&rsquo;s clause(s)</h1>
       </header>
       <div class="field field-textarea">
@@ -635,6 +654,7 @@
     </section>
     <section class="section-form section-clauses-servicing-agency">
       <header>
+        <span class="section-form-number">20</span>
         <h1>Servicing agency&rsquo;s clause(s)</h1>
       </header>
       <div class="field field-textarea">
@@ -646,6 +666,7 @@
     </section>
     <section class="section-form section-additional-agency-attachments">
       <header>
+        <span class="section-form-number">21</span>
         <h1>Additional agency attachments</h1>
       </header>
       <div class="field field-textarea field-additional-agency-attachments">
@@ -657,12 +678,14 @@
     </section>
     <section class="section-form section-annual-review">
       <header>
+        <span class="section-form-number">22</span>
         <h1>Annual review of IAA</h1>
       </header>
       <p>By signing this agreement, the parties agree to annually review the IAA if the agreement period exceeds one year. Appropriate changes will be made by ammendment to the GT&amp;C and/or modification to any affected order(s).</p>
     </section>
     <section class="section-form section-agency-official">
       <header>
+        <span class="section-form-number">23</span>
         <h1>Agency official</h1>
       </header>
       <fieldset class="fieldset-requesting-agency">
