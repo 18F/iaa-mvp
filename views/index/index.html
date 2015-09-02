@@ -9,7 +9,10 @@
     </div>
     <input type="submit" class="button" value="New">
   </form>
-  {{#each form7600as}}
+  
+  <h2>My Form 7600As:</h2>
+  <br />
+  {{#each myForm7600as}}
     <article class="form-7600a">
       <dl>
         <dt class="requesting-agency">Requesting agency</dt>
@@ -29,7 +32,29 @@
     </article>
     {{else}}
     <p class="boilerplate">
-      No 7600As exist yet! Use the form above to get started.
+      You haven't created any 7600As yet! Use the form above to get started.
     </p>
+  {{/each}}
+  
+  {{#if theirForm7600as}}
+  <br />
+  <h2>Form 7600As Shared with me:</h2>
+  <br />
+  {{/if}}
+  {{#each theirForm7600as}}
+    <article class="form-7600a">
+      <dl>
+        <dt class="requesting-agency">Requesting agency</dt>
+        <dd class="requesting-agency"><a href="/7600a/{{_id}}/edit">{{d 'parties-requesting-agency-name'}}</a></dd>
+        <dt class="id-number">ID number</dt>
+        <dd class="id-number">{{d 'gtc-number'}} - 0000 - {{d 'mod-number'}}</dd>
+      </dl>
+      <div class="form-7600a-actions">
+          <p>Created by <a href="https://github.com/{{ usernameFromUserId owner }}">{{ usernameFromUserId owner }}</a></p>
+          <a class="edit" href="/7600a/{{_id}}/edit">Show/edit</a>
+          <a class="edit" href="/7600a/{{_id}}/pdf">View PDF</a>
+          <a class="edit" href="/7600a/{{_id}}/pdf/download">Download PDF</a>
+      </div>
+    </article>
   {{/each}}
 </template>
