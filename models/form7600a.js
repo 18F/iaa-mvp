@@ -84,7 +84,7 @@ if (Meteor.isServer) {
   
   Form7600A.allow({
     update: function(userId, doc, fields, modifier) {
-      var orgs = Meteor.users.findOne({_id: this.userId}).orgs;
+      var orgs = Meteor.users.findOne({_id: userId}).orgs;
       return doc.owner === userId || _.contains(orgs, doc.org);
     },
     insert: function (userId, doc) {
@@ -110,12 +110,34 @@ var merge = function(obj, key, value) {
   return copy;
 };
 
+// input: YYYY-MM-DD
+// output: MM-DD-YYYY
+var formatDate = function(date) {
+  if (!date) {
+    return "";
+  }
+  
+  var chunks = date.split('-');
+  var mm = chunks[1];
+  var dd = chunks[2];
+  var yyyy = chunks[0];
+  
+  var result = [mm, dd, yyyy].join('-');
+  
+  return result;
+};
+
+var formatCity = function(city) {
+  return city+",";
+};
+
 Form7600AAttributes = [  
   {
-    "parties-requesting-agency-mailing-address-state": "requesting_agency_address"
+    "parties-requesting-agency-mailing-address-city": "requesting_agency_address",
+    "transform": formatCity
   },
   {
-    "parties-requesting-agency-mailing-address-city": "requesting_agency_address"
+    "parties-requesting-agency-mailing-address-state": "requesting_agency_address"
   },
   {
     "parties-servicing-agency-name": "servicing_agency_name"
@@ -124,7 +146,8 @@ Form7600AAttributes = [
     "parties-servicing-agency-mailing-address-street-address": "servicing_agency_address"
   },
   {
-    "parties-servicing-agency-mailing-address-city": "servicing_agency_address"
+    "parties-servicing-agency-mailing-address-city": "servicing_agency_address",
+    "transform": formatCity
   },
   {
     "parties-servicing-agency-mailing-address-state": "servicing_agency_address"
@@ -169,10 +192,12 @@ Form7600AAttributes = [
     "gtc-action-cancellation-explanation": "cancellation_explanation"
   },
   {
-    "agreement-period-start-date": "start_date"
+    "agreement-period-start-date": "start_date",
+    "transform": formatDate
   },
   {
-    "agreement-period-end-date": "end_date"
+    "agreement-period-end-date": "end_date",
+    "transform": formatDate
   },
   {
     "recurring-agreement": "radio3",
@@ -379,9 +404,14 @@ TransformForm7600AToPDFAttributes = function(form) {
     var mergeValue;
     
     if (_.has(obj, 'radio')) {
-      mergeValue = obj['radio'][form[key]]
+      mergeValue = obj['radio'][form[key]];
     } else {
-      mergeValue = form[key]
+      
+      if (_.has(obj, 'transform')) {
+        mergeValue = obj.transform(form[key]);
+      } else {
+        mergeValue = form[key];
+      }
     }
     
     result = merge(result, value, mergeValue);
