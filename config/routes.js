@@ -21,7 +21,8 @@ Form7600AController = ApplicationController.extend({
   subscriptions: function() {
     return [
       Meteor.subscribe("Form7600A"),
-      Meteor.subscribe("userData")
+      Meteor.subscribe("userData"),
+      Meteor.subscribe("allUserData")
     ];
   },
   action: function() {
@@ -39,7 +40,8 @@ IndexController = ApplicationController.extend({
   subscriptions: function() {
     return [
       Meteor.subscribe("Form7600A"),
-      Meteor.subscribe("userData")
+      Meteor.subscribe("userData"),
+      Meteor.subscribe("allUserData")
     ];
   }
 });
@@ -78,20 +80,3 @@ Router.route('/for-agencies/primer', {
 Router.route('/for-agencies/survey', {
   template: 'for-agencies_survey'
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

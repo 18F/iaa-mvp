@@ -9,4 +9,12 @@ if (Meteor.isServer) {
       this.ready();
     }
   });
+  
+  Meteor.publish("allUserData", function () {
+    if (this.userId) {
+      return Meteor.users.find({}, {fields: {'services.github.username': 1}});
+    } else {
+      this.ready();
+    }
+  });
 }
