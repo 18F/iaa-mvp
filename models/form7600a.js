@@ -1,5 +1,9 @@
 // define collection
-Form7600A = new Mongo.Collection("form7600a");
+Form7600A = _.extend(new Mongo.Collection("form7600a"), {
+  remove: function(selector, callback) {
+    Form7600A.update(selector, {$set: {deleted: true}}, {}, callback);
+  }
+});
 
 CreateForm7600A = function(formValues) {
   // merge in default values
@@ -73,18 +77,21 @@ if (Meteor.isServer) {
   Meteor.publish("Form7600A", function () {
     var orgs = Meteor.users.findOne({_id: this.userId}).orgs;
     return Form7600A.find(
-      {
-        $or: [
-          {owner: this.userId},
-          {org: {$in: orgs}}
-        ]
-      }
+      {$and: [
+        {deleted: {$ne: true}},
+        {
+          $or: [
+            {owner: this.userId},
+            {org: {$in: orgs}}
+          ]
+        }
+      ]}
     );
   });
   
   Form7600A.allow({
     update: function(userId, doc, fields, modifier) {
-      var orgs = Meteor.users.findOne({_id: this.userId}).orgs;
+      var orgs = Meteor.users.findOne({_id: userId}).orgs;
       return doc.owner === userId || _.contains(orgs, doc.org);
     },
     insert: function (userId, doc) {
