@@ -84,7 +84,7 @@ if (Meteor.isServer) {
   
   Form7600A.allow({
     update: function(userId, doc, fields, modifier) {
-      var orgs = Meteor.users.findOne({_id: this.userId}).orgs;
+      var orgs = Meteor.users.findOne({_id: userId}).orgs;
       return doc.owner === userId || _.contains(orgs, doc.org);
     },
     insert: function (userId, doc) {
