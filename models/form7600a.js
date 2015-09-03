@@ -127,12 +127,17 @@ var formatDate = function(date) {
   return result;
 };
 
+var formatCity = function(city) {
+  return city+",";
+};
+
 Form7600AAttributes = [  
   {
-    "parties-requesting-agency-mailing-address-state": "requesting_agency_address"
+    "parties-requesting-agency-mailing-address-city": "requesting_agency_address",
+    "transform": formatCity
   },
   {
-    "parties-requesting-agency-mailing-address-city": "requesting_agency_address"
+    "parties-requesting-agency-mailing-address-state": "requesting_agency_address"
   },
   {
     "parties-servicing-agency-name": "servicing_agency_name"
@@ -141,7 +146,8 @@ Form7600AAttributes = [
     "parties-servicing-agency-mailing-address-street-address": "servicing_agency_address"
   },
   {
-    "parties-servicing-agency-mailing-address-city": "servicing_agency_address"
+    "parties-servicing-agency-mailing-address-city": "servicing_agency_address",
+    "transform": formatCity
   },
   {
     "parties-servicing-agency-mailing-address-state": "servicing_agency_address"
@@ -400,6 +406,7 @@ TransformForm7600AToPDFAttributes = function(form) {
     if (_.has(obj, 'radio')) {
       mergeValue = obj['radio'][form[key]];
     } else {
+      
       if (_.has(obj, 'transform')) {
         mergeValue = obj.transform(form[key]);
       } else {
