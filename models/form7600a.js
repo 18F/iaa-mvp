@@ -1,5 +1,13 @@
 // define collection
-Form7600A = new Mongo.Collection("form7600a");
+Form7600A = _.extend(new Mongo.Collection("form7600a"), {
+  remove: function(selector, callback) {
+    var currentTime = new Date();
+    Form7600A.update(selector, {$set: {deleted: true, deletedAt: currentTime}}, {}, callback);
+  },
+  unremove: function(selector, callback) {
+    Form7600A.update(selector, {$set: {deleted: false, deletedAt: undefined}}, {}, callback);
+  }
+});
 
 CreateForm7600A = function(formValues) {
   // merge in default values
@@ -72,13 +80,21 @@ Form7600ADefaults = {
 if (Meteor.isServer) {
   Meteor.publish("Form7600A", function () {
     var orgs = Meteor.users.findOne({_id: this.userId}).orgs;
+    var tenMinutesAgo = new Date(Date.now() - (1000 * 60 * 10));
     return Form7600A.find(
-      {
-        $or: [
-          {owner: this.userId},
-          {org: {$in: orgs}}
+      {$and: [
+        {$or: [
+          {deleted: {$ne: true}},
+          {deletedAt: {$gt: tenMinutesAgo}}
         ]
-      }
+        },
+        {
+          $or: [
+            {owner: this.userId},
+            {org: {$in: orgs}}
+          ]
+        }
+      ]}
     );
   });
   
