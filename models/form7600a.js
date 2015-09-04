@@ -428,7 +428,7 @@ Render7600APDFFromBlob = function(blob, canvases) {
   PDFJS.workerSrc = '/packages/pascoual_pdfjs/build/pdf.worker.js';
   PDFJS.getDocument(url).then(function getPdfHelloWorld(pdf) {
     _.each(canvases, function(myCanvas, index) {
-      RenderPdfPage(pdf, index, myCanvas);
+      RenderPdfPage(pdf, index+1, myCanvas);
     });
   });
 };
