@@ -1,6 +1,14 @@
 sudo: true
+language: node_js
+node_js:
+  - "0.12"
 script:
-- echo 'Hi there. I am a placeholder for tests.'
+  - bash test.sh
+services:
+  - mongodb
+env:
+  - LAIKA_OPTIONS="-t 5000"
+
 deploy:
   edge: true
   provider: cloudfoundry
@@ -16,3 +24,6 @@ before_deploy:
 - echo "deploy on the way"
 after_success:
 - echo "success!"
+
+
+
